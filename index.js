@@ -37,7 +37,7 @@ getStdin()
 .then(input => {
   // console.log(input)
   // console.log(generateFixes(input.actions))
-  console.log(analyzeAdvisories(input.advisories))
+  analyzeAdvisories(input.advisories).then(console.log)
 })
 
 function generateFixes (actions) {
@@ -51,16 +51,34 @@ function generateFixes (actions) {
 function analyzeAdvisories (advisories) {
   console.log(Object.values(advisories))
   const todo = Object.values(advisories).reduce((acc, a) =>
-    acc.concat(a.findings.map(finding => ({firstChain: finding.paths[0].split('>').reverse(), version: finding.version})))
+    acc.concat(a.findings.map(finding => ({firstChain: finding.paths[0].split('>').reverse(), version: finding.version, advisedVersion:a.patched_versions})))
+          //TODO: parse advisedVersion
   , [])
-  Promise.all(todo.map(t => {
-    promiseCommand(`npm info ${t.firstChain[1]} --json`)
-    .then(JSON.parse)
-    .then(info=>info.dependencies[t.firstChain[0]] || info.devDependencies[t.firstChain[0]])
-    .then(a => console.log(`${t.firstChain[1]} depends on ${t.firstChain[0]} at ${a}`))
+  return Promise.all(todo.map(t => {
+    const targetPackage = t.firstChain.shift()
+    return findFeasibleUpdate(targetPackage, t.advisedVersion, t.firstChain)
   }))
 
-  //TODO next, take the version def it depends on and match against advisory, if advised version included, go up the chain. IF advised version not included, create a report
 
-  return todo
+}
+
+function matchSemverToVersion(semver, version){
+  return false
+}
+
+function findFeasibleUpdate(targetPackage, targetVersion, dependantsChain){
+  return promiseCommand(`npm info ${dependantsChain[0]} --json`)
+  .then(JSON.parse)
+  .then(info=>{
+    const semver=info.dependencies[targetPackage] || info.devDependencies[targetPackage]
+    if(matchSemverToVersion(semver, targetVersion)){
+      //semver range includes the fix, go up
+      const newTarget = dependantsChain.shift()
+      //This is a bit strict, maybe we wouldn't have to force an update to latest on everything in the chain, but it'd require iterating over all versions between what's used by dependant and latest
+      const newTargetVersion = info['dist-tags'].latest
+      return findFeasibleUpdate(newTarget, newTargetVersion, dependantsChain)
+    } else {
+      return `update ${targetPackage} in ${dependantsChain[0]} to ${targetVersion}`
+    }
+  })
 }
