@@ -71,6 +71,9 @@ function findFeasibleUpdate(targetPackage, targetVersion, dependantsChain){
   .then(JSON.parse)
   .then(info=>{
     const semver=info.dependencies[targetPackage] || info.devDependencies[targetPackage]
+    if(dependantsChain.length <= 1) {
+      return 'ran out of parents to go up, this looks fixed'
+    }
     if(matchSemverToVersion(semver, targetVersion)){
       //semver range includes the fix, go up
       const newTarget = dependantsChain.shift()
