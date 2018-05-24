@@ -1,17 +1,17 @@
 {
   "name": "npm-audit-resolver",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Aids humans and automation in managing npm audit results",
   "bin": {
-    "resolve-audit": "index.js"
+    "resolve-audit": "index.js",
+    "check-audit": "check.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["npm","audit","security","dependencies","nsp","check"],
+  "author": "naugtur <naugtur@gmail.com>",
+  "license": "Apache 2.0",
   "dependencies": {
     "concat-stream": "^1.6.2",
     "flatten": "^1.0.2",
