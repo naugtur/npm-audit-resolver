@@ -4,6 +4,8 @@
 
 This tool creates a `audit-resolv.json` file in your app and interactively helps you manage security of your dependencies.
 
+** This is experimental, built in a few hours. When using this software you are still responsible for the security of your app **
+
 ## Install
 
 Requires npm v6.1.0 installed alongside
@@ -28,7 +30,7 @@ The decisions you make are stored in `audit-resolv.json` to keep track of it in 
 One if the problems this solves is running audit as part of your build pipeline.
 You don't want to break your CI for a few days waiting to get a fix on a dependency, but at the same time ignoring the whole class of issues or the audit result entirely means you'll rarely notice it at all.
 
-Run 
+Run
 ```
 check-audit
 ```
