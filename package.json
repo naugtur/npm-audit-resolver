@@ -1,6 +1,6 @@
 {
   "name": "npm-audit-resolver",
-  "version": "1.0.1-0",
+  "version": "1.0.1",
   "description": "Aids humans and automation in managing npm audit results",
   "bin": {
     "resolve-audit": "index.js",
