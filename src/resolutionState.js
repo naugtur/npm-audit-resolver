@@ -16,7 +16,7 @@ load();
 module.exports = {
     load,
     flush() {
-        fs.writeFileSync("audit-resolv.json", JSON.stringify(data));
+        fs.writeFileSync("audit-resolv.json", JSON.stringify(data, null, 2));
     },
     set({ id, path }, value) {
         path = pathCorruptionWorkaround(path)
