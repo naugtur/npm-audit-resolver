@@ -17,7 +17,8 @@
     "security",
     "dependencies",
     "nsp",
-    "check"
+    "check",
+    "resolve"
   ],
   "author": "naugtur <naugtur@gmail.com>",
   "license": "Apache 2.0",
