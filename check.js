@@ -1,11 +1,9 @@
 #!/usr/bin/env node
-const flatten = require("flatten");
-const promiseCommand = require("./src/promiseCommand");
 const prompter = require("./src/prompter");
 const statusManager = require("./src/statusManager");
+const npmFacade = require('./src/npmfacade');
 
-promiseCommand("npm audit --json", { ignoreExit: true })
-    .then(JSON.parse)
+npmFacade.runNpmCommand('audit', { ignoreExit: true })
     .then(input => {
         console.log(`Total of ${input.actions.length} actions to process`);
         return input.actions
