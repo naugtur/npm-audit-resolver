@@ -1,11 +1,12 @@
 const promptly = require('promptly');
 const actions = require('./actions');
 const chalk = require('chalk')
+const argv = require('./arguments')
 
 module.exports = {
     handleAction(action, advisories) {
         console.log(`\n--------------------------------------------------`);
-        console.log(chalk.bold(` ${chalk.inverse(action.module)} needs your attention.\n`));
+        console.log(` ${chalk.bold.black.bgWhite(action.module)} needs your attention.\n`);
         const groupedResolutions = action.resolves.reduce((groups, re) => {
             groups[re.id] = groups[re.id] || [];
             let type = re.dev ? ' devDependencies' : 'dependencies';
@@ -14,20 +15,23 @@ module.exports = {
             let reportLine = ` - ${type}: ${re.path}`;
             if (re.humanReviewStatus) {
                 re.humanReviewStatus.fix &&
-                    (reportLine = appendWarningLine(reportLine, '^ this issue was marked as fixed earlier'));
+                (reportLine = appendWarningLine(reportLine, '^ this issue was marked as fixed earlier'));
                 re.humanReviewStatus.remind &&
-                    (reportLine = appendWarningLine(reportLine, '^ this issue was already postponed'));
+                (reportLine = appendWarningLine(reportLine, '^ this issue was already postponed'));
             }
             if (re.isMajor) {
                 reportLine = appendWarningLine(reportLine, '! warning, fix is a major version upgrade');
             }
             groups[re.id].push(reportLine);
-
+            
             return groups;
         }, {});
-
+        let onlyLow = true;
         Object.keys(groupedResolutions).forEach(reId => {
             const adv = advisories[reId];
+            if(adv.severity !== 'low'){
+                onlyLow = false
+            }
             const severityTag = getSeverityTag(adv);
             console.log(`${severityTag} ${adv.title}`);
             console.log(
@@ -35,6 +39,10 @@ module.exports = {
             );
             console.log(groupedResolutions[reId].join('\n'));
         });
+        if(argv.ignoreLow && onlyLow){
+            console.log(chalk.greenBright(` ✔ automatically ignore low severity issue`))
+            return actions.takeAction('i', { action, advisories, command: null });
+        }
 
         const command = [
             'npm',

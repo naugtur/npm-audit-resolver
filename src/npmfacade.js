@@ -1,9 +1,6 @@
 const fs = require('fs');
 const promiseCommand = require('./promiseCommand');
-
-
-
-const argv = require('yargs-parser')(process.argv.slice(2));
+const argv = require('./arguments')
 
 let seq = 0;
 const runner = argv.mock ?

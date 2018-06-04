@@ -25,6 +25,12 @@ resolve-audit
 It goes through the results of `npm audit` and lets you decide what to do with the issues.
 The decisions you make are stored in `audit-resolv.json` to keep track of it in version control and have a log of who decided to do what and when.
 
+### Arguments 
+
+```
+--ignoreLow automatically resolve issue to ignored if severity of all vulnerabilities in that dependency is low
+```
+
 ### Running in CI
 
 One if the problems this solves is running audit as part of your build pipeline.
