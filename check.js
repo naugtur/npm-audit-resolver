@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-const prompter = require("./src/prompter");
 const statusManager = require("./src/statusManager");
 const npmFacade = require('./src/npmfacade');
 
