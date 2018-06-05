@@ -10,8 +10,14 @@ function findFeasibleUpdate(targetPackage, targetVersion, dependantsChain) {
   return npmFacade.runNpmCommand(`info ${dependantsChain[0]}`)
     .then(info => {
       const range1 = info.dependencies[targetPackage] || info.devDependencies[targetPackage]
+      if (!range1) {
+        console.log(`possible fix: ${targetPackage} doesn't seem to be a dependency in the latest version of ${dependantsChain[0]}`)
+        console.log(`  you might be able to fix it by updating ${dependantsChain[0]} to latest version`)
+        return ['r', 'i']
+      }
       if (dependantsChain.length < 1) {
         console.log('ran out of parents to go up, this looks fixed, how did we get here?');
+        return ['d']
         //TODO: figure out how this can happen
       }
       if (matchSemverToVersion(range1, targetVersion)) {
