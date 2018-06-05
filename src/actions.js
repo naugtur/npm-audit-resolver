@@ -55,7 +55,7 @@ const strategies = {
         }, {})).map(advId => {
             const adv = advisories[advId]
             const versions = adv.findings.map(f=>f.version).join()
-            console.log(`${chalk.bold(action.module)} versions installed: ${chalk.bold(versions)}
+            console.log(`${chalk.bold(adv.module_name)} versions installed: ${chalk.bold(versions)}
 ${adv.overview}
 ${adv.recommendation}
 ${adv.references}`)
