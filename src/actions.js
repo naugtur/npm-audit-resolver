@@ -1,6 +1,7 @@
-const promiseCommand = require("./promiseCommand");
-const resolutionState = require("./resolutionState");
-const investigate = require("./investigate");
+const promiseCommand = require('./promiseCommand');
+const resolutionState = require('./resolutionState');
+const investigate = require('./investigate');
+const chalk = require('chalk')
 
 function saveResolutionAll(action, resolution) {
     action.resolves.map(re => resolutionState.set(
@@ -28,25 +29,53 @@ const strategies = {
         return saveResolutionAll(action, { remind: Date.now() + LATER });
     },
     f: function fix({ action, advisories, command }) {
-        console.log("Fixing!");
+        console.log('Fixing!');
         return promiseCommand(command).then(() =>
             saveResolutionAll(action, { fix: 1 })
         );
     },
+    del: function del({ action, advisories, command }) {
+        console.log('Removing');
+        return Promise.all(Object.keys(action.resolves.reduce((mem, re) => {
+            const topModule = re.path.split('>')[0]
+            if (topModule) {
+                mem[topModule + (re.dev ? ' -D' : ' -S')] = 1
+            }
+            return mem
+        }, {})).map(commandBit => {
+            return promiseCommand(`npm rm ${commandBit}`)
+        })).then(() => { })
+    },
+    d: function details({ action, advisories, command }) {
+        console.log('');
+        
+        Object.keys(action.resolves.reduce((mem, re) => {
+            mem[re.id] = 1
+            return mem
+        }, {})).map(advId => {
+            const adv = advisories[advId]
+            const versions = adv.findings.map(f=>f.version).join()
+            console.log(`${chalk.bold(action.module)} versions installed: ${chalk.bold(versions)}
+${adv.overview}
+${adv.recommendation}
+${adv.references}`)
+        })
+        return null;
+    },
     '?': function investigateIt({ action, advisories, command }) {
-        console.log("Investigating!");
+        console.log('Investigating!');
         return investigate.findFeasibleResolutions({ action, advisories })
     },
     s: function abort() {
-        console.log("Skipped");
+        console.log('Skipped');
     },
     q: function abort() {
-        console.log("Aborting. Bye!");
+        console.log('Aborting. Bye!');
         process.exit(1);
     }
 };
 
-const noop = () => console.log("doing nothing");
+const noop = () => console.log('doing nothing');
 function strategyOf(choice) {
     return strategies[choice] || noop;
 }

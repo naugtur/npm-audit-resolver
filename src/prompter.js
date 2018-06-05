@@ -15,21 +15,21 @@ module.exports = {
             let reportLine = ` - ${type}: ${re.path}`;
             if (re.humanReviewStatus) {
                 re.humanReviewStatus.fix &&
-                (reportLine = appendWarningLine(reportLine, '^ this issue was marked as fixed earlier'));
+                    (reportLine = appendWarningLine(reportLine, '^ this issue was marked as fixed earlier'));
                 re.humanReviewStatus.remind &&
-                (reportLine = appendWarningLine(reportLine, '^ this issue was already postponed'));
+                    (reportLine = appendWarningLine(reportLine, '^ this issue was already postponed'));
             }
             if (re.isMajor) {
                 reportLine = appendWarningLine(reportLine, '! warning, fix is a major version upgrade');
             }
             groups[re.id].push(reportLine);
-            
+
             return groups;
         }, {});
         let onlyLow = true;
         Object.keys(groupedResolutions).forEach(reId => {
             const adv = advisories[reId];
-            if(adv.severity !== 'low'){
+            if (adv.severity !== 'low') {
                 onlyLow = false
             }
             const severityTag = getSeverityTag(adv);
@@ -39,7 +39,7 @@ module.exports = {
             );
             console.log(groupedResolutions[reId].join('\n'));
         });
-        if(argv.ignoreLow && onlyLow){
+        if (argv.ignoreLow && onlyLow) {
             console.log(chalk.greenBright(` ✔ automatically ignore low severity issue`))
             return actions.takeAction('i', { action, advisories, command: null });
         }
@@ -60,6 +60,10 @@ function optionsPrompt({ action, advisories, command }, availableChoices = null)
 
     const choices = [
         {
+            key: 'd',
+            name: 'show more details and ask me again'
+        },
+        {
             key: 'r',
             name: 'remind me in 24h'
         },
@@ -68,12 +72,12 @@ function optionsPrompt({ action, advisories, command }, availableChoices = null)
             name: 'ignore paths'
         },
         {
-            key: 's',
-            name: 'Skip this'
+            key: 'del',
+            name: 'Remove all listed dependency paths'
         },
         {
-            key: 'd',
-            name: 'show more details and skip'
+            key: 's',
+            name: 'Skip this'
         },
         {
             key: 'q',
@@ -94,7 +98,7 @@ function optionsPrompt({ action, advisories, command }, availableChoices = null)
         });
     }
 
-    availableChoices = ['x', 's'].concat(availableChoices || choices.map(c => c.key))
+    availableChoices = ['q', 's'].concat(availableChoices || choices.map(c => c.key))
 
     console.log('_');
     console.log(
@@ -111,7 +115,7 @@ function optionsPrompt({ action, advisories, command }, availableChoices = null)
         return actions.takeAction(answer, { action, advisories, command });
     })
         .then(choices => {
-            if (choices) {
+            if (choices !== undefined) {
                 return optionsPrompt({ action, advisories, command }, choices)
             }
         })
