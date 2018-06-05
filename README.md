@@ -43,9 +43,25 @@ check-audit
 
 This command will only exit with an error if a human needs to make new decisions about vulnerabilities and commit the `audit-resolv.json` file. If all issues are addressed, your build can pass.
 
-## Why would I ignore security vulnerabilities?
+## Features
+
+Want to give it a go? Download this repo and run `npm test`
+
+When a vulnerability is found, you get to choose between the following options:
+
+- fix - Runs the fix proposed by npm audit and makes a note. If the same issue comes back because someone else on the team changed package-lock.json, you'll get a warning about that.
+- investigate - If npm audit doesn't suggest a fix, resolver will help you find where the fix could be introduced.
+- show details - Prints more information about the issues form the audit and asks what to do again
+- remind in 24h - Lets you ignore an issue temporarily to make the build pass until a fix is known
+- ignore - Adds the particular dependency paths and advisories to be ignored in the future. If the same issue in the same package comes up, but it's a dependency of another package, it won't get ignored. If a new issue is found in the package, it doesn't get ignored.
+- delete - Removes your dependency that brought the vulnerability in its dependencies.
+- skip and quit, obviously
+
+audit-resolv.json is formatted, so git history has a trace of who addressed which vulnerability, when and how.
+
+### Why would I ignore security vulnerabilities?
 
 - dev dependencies! a DOS vulnerability in your test runner's dependency is not a showstopper
 - build tooling vulnerability
-- dependencies of a tool you use very narrowly
+- dependencies of a tool you use very narrowly and can prove it's safe
 - new vulnerability without a fix and you want to wait for a fix while running your builds (there's a remind me in 24h option available)
