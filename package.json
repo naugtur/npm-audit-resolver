@@ -7,9 +7,10 @@
     "check-audit": "check.js"
   },
   "scripts": {
-    "add-vulns": "npm i -D base64url@2.0.0 lodash@2.0.0",
-    "rm-vulns": "npm rm -D base64url lodash",
-    "test": "npm run add-vulns && node index.js --ignoreLow && node check.js && npm run rm-vulns"
+    "add-vulns": "npm i -D base64url@2.0.0 lodash@2.0.0 request@2.0.0",
+    "rm-vulns": "npm rm -D base64url lodash request",
+    "test-exec": "node index.js && node check.js",
+    "test": "npm run add-vulns && npm run test-exec && npm run rm-vulns"
   },
   "keywords": [
     "npm",
@@ -31,8 +32,5 @@
     "spawn-shell": "^2.0.1",
     "yargs-parser": "^10.0.0"
   },
-  "devDependencies": {
-    "base64url": "^2.0.0",
-    "lodash": "^2.0.0"
-  }
+  "devDependencies": {}
 }
