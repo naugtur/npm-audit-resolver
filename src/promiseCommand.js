@@ -5,8 +5,9 @@ const concat = require('concat-stream');
 module.exports = function promiseCommand (command, opts={}) {
   console.log('>>>>', command)
   const pSpawn = spawnShell(command, Object.assign({
-    stdio: [0, 'pipe', 2]
-  },opts))
+    stdio: [0, 'pipe', 2],
+    env: process.env
+  }, opts))
 
   const pOutput = new Promise((resolve, reject) => {
     pSpawn.stdout.pipe(concat(
@@ -22,6 +23,7 @@ module.exports = function promiseCommand (command, opts={}) {
     pSpawn.exitPromise
         .then((exitCode) => {
           if (opts.ignoreExit || exitCode === 0) {
+            console.log('>>>> exit:', exitCode)
             return
           } else {
             throw Error('Exit ' + exitCode)

@@ -47,7 +47,7 @@ module.exports = {
         const command = [
             'npm',
             action.action,
-            action.module + '@' + action.target,
+            action.module,
             action.depth ? '--depth ' + action.depth : ''
         ].join(' ');
 
