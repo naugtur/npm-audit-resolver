@@ -4,7 +4,7 @@ const argv = require('./arguments')
 
 var data = null;
 
-const biuldKey = ({ id, depPath }) => `${id}|${depPath}`;
+const biuldKey = ({ id, path }) => `${id}|${path}`;
 const filePath = () => path.resolve(argv.get().prefix || '.', 'audit-resolv.json')
 
 function load() {
@@ -35,14 +35,14 @@ module.exports = {
     flush() {
         fs.writeFileSync(filePath(), JSON.stringify(data, null, 2));
     },
-    set({ id, depPath }, value) {
+    set({ id, path }, value) {
         load()
-        depPath = pathCorruptionWorkaround(depPath)
-        return (data[biuldKey({ id, depPath })] = value);
+        path = pathCorruptionWorkaround(path)
+        return (data[biuldKey({ id, path })] = value);
     },
-    get({ id, depPath }) {
+    get({ id, path }) {
         load()
-        depPath = pathCorruptionWorkaround(depPath)
-        return data[biuldKey({ id, depPath })];
+        path = pathCorruptionWorkaround(path)
+        return data[biuldKey({ id, path })];
     }
 };

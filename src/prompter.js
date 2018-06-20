@@ -1,4 +1,4 @@
-const promptly = require('./micor-promptly');
+const promptly = require('./micro-promptly');
 const actions = require('./actions');
 const chalk = require('chalk')
 const argv = require('./arguments')
