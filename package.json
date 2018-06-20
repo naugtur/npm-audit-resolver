@@ -27,8 +27,7 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "concat-stream": "^1.6.2",
-    "flatten": "^1.0.2",
-    "promptly": "^3.0.3",
+    "read": "^1.0.7",
     "semver": "^5.5.0",
     "spawn-shell": "^2.0.1",
     "yargs-parser": "^10.0.0"
