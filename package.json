@@ -23,6 +23,14 @@
     "resolve"
   ],
   "author": "naugtur <naugtur@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naugtur/npm-audit-resolver.git"
+  },
+  "bugs": {
+    "url": "https://github.com/naugtur/npm-audit-resolver/issues"
+  },
+  "homepage": "https://github.com/naugtur/npm-audit-resolver#readme",
   "license": "Apache 2.0",
   "dependencies": {
     "chalk": "^2.4.1",
