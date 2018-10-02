@@ -10,7 +10,7 @@
   "scripts": {
     "add-vulns": "npm i -D base64url@2.0.0 lodash@2.0.0 request@2.0.0",
     "rm-vulns": "npm rm -D base64url lodash request",
-    "test-exec": "node resolve.js && node check.js",
+    "test-exec": "rm -f audit-resolv.json && ! node check.js && node resolve.js && node check.js",
     "test": "npm run add-vulns && npm run test-exec && npm run rm-vulns"
   },
   "keywords": [
