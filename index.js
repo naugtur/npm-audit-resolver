@@ -38,7 +38,8 @@ module.exports = {
     },
     checkAudit(input, args) {
         argv.set(args)
-        return input.actions
+        const groups = {};
+        input.actions
             .map(statusManager.addStatus)
             .filter(a => {
                 if (a.humanReviewComplete) {
@@ -49,7 +50,7 @@ module.exports = {
                 return !a.humanReviewComplete;
             })
             .forEach(action => {
-                const groupedIssues = action.resolves.reduce((groups, re) => {
+                action.resolves && action.resolves.forEach(re => {
                     groups[re.id] = groups[re.id] || [];
                     let type = re.dev ? " devDependencies" : "dependencies";
                     re.optional && (type += " (optional)");
@@ -67,19 +68,17 @@ module.exports = {
                         data: re,
                         report: reportLine
                     });
-
-                    return groups;
-                }, {});
-
-                return Object.keys(groupedIssues).map(reId => {
-                    const adv = input.advisories[reId];
-                    return {
-                        title: adv.title,
-                        severity: adv.severity,
-                        items: groupedIssues[reId]
-                    }
                 });
-
             });
+
+        return Object.keys(groups).map(reId => {
+            const adv = input.advisories[reId];
+            return {
+                title: adv.title,
+                severity: adv.severity,
+                items: groups[reId]
+            }
+        });
+
     }
 }
