@@ -8,7 +8,7 @@ const runner = argv.mock ?
         return Promise.resolve(fs.readFileSync(`mock-${command.substr(0, 4)}.json`))
     }
     :
-    (command, opts) => promiseCommand('npm ' + command + ' --json', opts);
+    (command, opts) => promiseCommand('npm ' + command + ` --json ${argv.registry ? `--registry ${argv.registry}` : '' }`, opts)
 
 module.exports = {
     runNpmCommand(command, opts) {
