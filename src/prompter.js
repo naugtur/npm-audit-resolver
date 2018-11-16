@@ -45,12 +45,7 @@ module.exports = {
             return actions.takeAction('i', { action, advisories, command: null });
         }
 
-        const command = [
-            'npm',
-            action.action,
-            action.module,
-            action.depth ? '--depth ' + action.depth : ''
-        ].join(' ');
+        const command = getCommand(action)
 
         return optionsPrompt({ action, advisories, command })
     }
@@ -133,4 +128,15 @@ function getSeverityTag(advisory) {
 
 function appendWarningLine(message, line) {
     return message + '\n     ' + chalk.bold(line);
+}
+
+function getCommand(action){
+    // Derived from npm-audit-report
+    // TODO: share the code
+    if (action.action === 'install') {
+        const isDev = action.resolves[0].dev
+        return `npm install ${isDev ? '--save-dev ' : ''}${action.module}@${action.target}`
+      } else {
+        return `npm update ${action.module} --depth ${action.depth}`
+    }
 }
