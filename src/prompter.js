@@ -48,8 +48,9 @@ module.exports = {
         const command = [
             'npm',
             action.action,
-            action.module,
-            action.depth ? '--depth ' + action.depth : ''
+            action.resolves[0].dev ? '--save-dev' : '',
+            action.depth ? '--depth ' + action.depth : '',
+            action.module + (action.target ? '@' + action.target : '')
         ].join(' ');
 
         return optionsPrompt({ action, advisories, command })
