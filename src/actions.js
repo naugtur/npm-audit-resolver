@@ -1,7 +1,8 @@
 const promiseCommand = require('./promiseCommand');
 const resolutionState = require('./resolutionState');
 const investigate = require('./investigate');
-const chalk = require('chalk')
+const chalk = require('chalk');
+const RESOLUTIONS = require("./RESOLUTIONS")
 
 function saveResolutionAll(action, resolution) {
     action.resolves.map(re => resolutionState.set(
@@ -23,15 +24,15 @@ const LATER = 24 * 60 * 60 * 1000;
 
 const strategies = {
     i: function ignore({ action, advisories, command }) {
-        return saveResolutionAll(action, { ignore: 1 });
+        return saveResolutionAll(action, { resolution: RESOLUTIONS.ignore });
     },
     r: function remindLater({ action, advisories, command }) {
-        return saveResolutionAll(action, { remind: Date.now() + LATER });
+        return saveResolutionAll(action, { resolution: RESOLUTIONS.remind, remindTime: Date.now() + LATER });
     },
     f: function fix({ action, advisories, command }) {
         console.log('Fixing!');
         return promiseCommand(command).then(() =>
-            saveResolutionAll(action, { fix: 1 })
+            saveResolutionAll(action, { resolution: RESOLUTIONS.fix })
         );
     },
     del: function del({ action, advisories, command }) {

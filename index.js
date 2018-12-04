@@ -10,7 +10,7 @@ module.exports = {
             .map(statusManager.addStatus)
             .filter(a => {
                 if (a.humanReviewComplete) {
-                    console.log(`skipping ${a.module} issue based on audit-resolv.json`)
+                    console.log(`skipping ${a.module} issue based on audit-resolve.json`)
                 }
                 return !a.humanReviewComplete
             })

@@ -62,5 +62,6 @@ typings/
 
 # local testing
 audit-resolv.json
+audit-resolve.json
 ?
 mock-*.json

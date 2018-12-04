@@ -2,7 +2,12 @@ const promptly = require('./micro-promptly');
 const actions = require('./actions');
 const chalk = require('chalk')
 const argv = require('./arguments')
+const RESOLUTIONS = require("./RESOLUTIONS");
 
+const warnings = {
+    [RESOLUTIONS.fix]: '^ this issue was marked as fixed earlier',
+    [RESOLUTIONS.remind]: '^ this issue was already postponed'
+}
 
 module.exports = {
     handleAction(action, advisories) {
@@ -15,10 +20,7 @@ module.exports = {
             re.bundled && (type += ' (bundled)');
             let reportLine = ` - ${type}: ${re.path}`;
             if (re.humanReviewStatus) {
-                re.humanReviewStatus.fix &&
-                    (reportLine = appendWarningLine(reportLine, '^ this issue was marked as fixed earlier'));
-                re.humanReviewStatus.remind &&
-                    (reportLine = appendWarningLine(reportLine, '^ this issue was already postponed'));
+                reportLine = appendWarningLine(reportLine, warnings[re.humanReviewStatus.resolution])
             }
             if (re.isMajor) {
                 reportLine = appendWarningLine(reportLine, '! warning, fix is a major version upgrade');
@@ -130,13 +132,13 @@ function appendWarningLine(message, line) {
     return message + '\n     ' + chalk.bold(line);
 }
 
-function getCommand(action){
+function getCommand(action) {
     // Derived from npm-audit-report
     // TODO: share the code
     if (action.action === 'install') {
         const isDev = action.resolves[0].dev
         return `npm install ${isDev ? '--save-dev ' : ''}${action.module}@${action.target}`
-      } else {
+    } else {
         return `npm update ${action.module} --depth ${action.depth}`
     }
 }
