@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 const core = require("./index");
 const npmFacade = require('./src/npmfacade');
+const yarnManager = require('./src/yarn-manager')
 
-npmFacade.runNpmCommand('audit', { ignoreExit: true })
+yarnManager.addPackageLockFromYarnIfNecessary()
+    .then(() => {
+        return npmFacade.runNpmCommand('audit', { ignoreExit: true })
+    })
+    .then(yarnManager.removePackageLockIfNecessary)
     .then(input => {
         console.log(`Total of ${input.actions.length} actions to process`);
         return core.checkAudit(input)
@@ -30,5 +35,6 @@ npmFacade.runNpmCommand('audit', { ignoreExit: true })
     .then(() => console.log("audit ok."))
     .catch(e => {
         console.error(e);
-        process.exit(2);
+        yarnManager.removePackageLockIfNecessary()
+            .then(() => process.exit(2));
     });

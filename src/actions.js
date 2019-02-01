@@ -2,6 +2,7 @@ const promiseCommand = require('./promiseCommand');
 const resolutionState = require('./resolutionState');
 const investigate = require('./investigate');
 const chalk = require('chalk')
+const argv = require('./arguments')
 
 function saveResolutionAll(action, resolution) {
     action.resolves.map(re => resolutionState.set(
@@ -43,6 +44,9 @@ const strategies = {
             }
             return mem
         }, {})).map(commandBit => {
+            if (argv.get().yarn) {
+                return promiseCommand(`yarn remove ${commandBit}`)
+            }
             return promiseCommand(`npm rm ${commandBit}`)
         })).then(() => { })
     },

@@ -2,7 +2,7 @@ const promptly = require('./micro-promptly');
 const actions = require('./actions');
 const chalk = require('chalk')
 const argv = require('./arguments')
-
+const packageJSON = require(require('path').resolve('./package.json'))
 
 module.exports = {
     handleAction(action, advisories) {
@@ -133,6 +133,14 @@ function appendWarningLine(message, line) {
 function getCommand(action){
     // Derived from npm-audit-report
     // TODO: share the code
+    if (argv.get().yarn) {
+        if (action.action === 'install') {
+            const isDev = packageJSON.devDependencies[action.module] !== undefined;
+            return `yarn add ${isDev ? '--dev ' : ''}${action.module}@${action.target}`
+          } else {
+            return `yarn upgrade ${action.module}`
+        }
+    }
     if (action.action === 'install') {
         const isDev = action.resolves[0].dev
         return `npm install ${isDev ? '--save-dev ' : ''}${action.module}@${action.target}`
