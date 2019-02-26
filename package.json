@@ -37,7 +37,7 @@
     "concat-stream": "^1.6.2",
     "read": "^1.0.7",
     "semver": "^5.5.0",
-    "spawn-shell": "^2.0.1",
+    "spawn-shell": "^2.1.0",
     "yargs-parser": "^10.0.0"
   },
   "devDependencies": {}
