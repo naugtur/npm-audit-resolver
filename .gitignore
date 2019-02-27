@@ -61,6 +61,6 @@ typings/
 .next
 
 # local testing
-audit-resolv.json
+audit-resolve.json
 ?
 mock-*.json

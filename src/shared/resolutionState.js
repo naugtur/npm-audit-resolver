@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const argv = require('./arguments')
+const auditFile = require('../auditFile')
 
 var data = null;
 
@@ -13,8 +14,7 @@ function load() {
     }
     data = {} //in case loading fails, have something valid to extend and save
     try {
-        const rawdata = fs.readFileSync(filePath());
-        data = JSON.parse(rawdata);
+        auditFile.load()
     } catch (e) { }
 }
 
@@ -33,7 +33,7 @@ function pathCorruptionWorkaround(depPath) {
 module.exports = {
     load,
     flush() {
-        fs.writeFileSync(filePath(), JSON.stringify(data, null, 2));
+        auditFile.save(data)
     },
     set({ id, path }, value) {
         load()
