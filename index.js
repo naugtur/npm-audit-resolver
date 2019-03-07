@@ -42,7 +42,7 @@ module.exports = {
         input.actions
             .map(statusManager.addStatus)
             .filter(a => {
-                if (a.humanReviewComplete) {
+                if (a.humanReviewComplete && !argv.get().json) {
                     console.log(
                         `skipping ${a.module} issue based on audit-resolv.json`
                     );
