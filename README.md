@@ -45,6 +45,11 @@ check-audit
 
 This command will only exit with an error if a human needs to make new decisions about vulnerabilities and commit the `audit-resolv.json` file. If all issues are addressed, your build can pass.
 
+For JSON output (similar to `npm audit --json`), run
+```
+check-audit --json
+```
+
 ## Features
 
 Want to give it a go? Download this repo and run `npm test`
