@@ -40,9 +40,10 @@ npmFacade.runNpmCommand('audit', { ignoreExit: true })
         }
         return core.checkAudit(input)
     })
-    .then(issues => {
+    .then(result => {
+        const { issues } = result;
         if (argv.json) {
-            printJsonReport(issues);
+            printJsonReport(result);
         } else {
             printHumanReadableReport(issues);
         }
