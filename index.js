@@ -4,8 +4,8 @@ const statusManager = require('./src/statusManager');
 const argv = require('./src/arguments')
 
 function countVulnerabilities(advisories, severity) {
-    return Object.values(advisories)
-        .reduce((count, advisory) => advisory.severity === severity ? count + 1 : count, 0);
+    return Object.keys(advisories)
+        .reduce((count, advisoryKey) => advisories[advisoryKey].severity === severity ? count + 1 : count, 0);
 }
 
 module.exports = {
