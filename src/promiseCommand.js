@@ -1,9 +1,12 @@
 const spawnShell = require('spawn-shell');
 const concat = require('concat-stream');
+const argv = require('./arguments').get();
 
 
 module.exports = function promiseCommand (command, opts={}) {
-  console.log('>>>>', command)
+  if (!argv.json) {
+    console.log('>>>>', command);
+  }
   const pSpawn = spawnShell(command, Object.assign({
     stdio: [0, 'pipe', 2],
     env: process.env
@@ -23,7 +26,9 @@ module.exports = function promiseCommand (command, opts={}) {
     pSpawn.exitPromise
         .then((exitCode) => {
           if (opts.ignoreExit || exitCode === 0) {
-            console.log('>>>> exit:', exitCode)
+            if (!argv.json) {
+              console.log('>>>> exit:', exitCode)
+            }
             return
           } else {
             throw Error('Exit ' + exitCode)
