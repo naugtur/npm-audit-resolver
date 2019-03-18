@@ -18,7 +18,7 @@ function printHumanReadableReport(issues) {
         );
         console.log(`[${issue.severity}] ${issue.title}`);
         console.log(issue.items.map(item => item.report).join("\n"));
-    })
+    });
 
     console.log(
         `--------------------------------------------------`
@@ -35,6 +35,9 @@ function printJsonReport(issues) {
 
 npmFacade.runNpmCommand('audit', { ignoreExit: true })
     .then(input => {
+        if (input.error) {
+            throw new Error(`'npm audit' failed with ${input.error.code}. Check the log above for more details.`);
+        }
         if (!argv.json) {
             console.log(`Total of ${input.actions.length} actions to process`);
         }
