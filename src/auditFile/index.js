@@ -1,4 +1,5 @@
 const argv = require('../shared/arguments')
+const djv = require('djv')
 const path = require('path')
 const fs = require('fs')
 const CONSTS = require('../CONSTS')
@@ -17,7 +18,7 @@ module.exports = {
             resolutions: data,
             version: 1
         }
-        versions[1].validate(wrappedData)
+        validate(versions[1].schema, wrappedData)
         fs.writeFileSync(defaultFilePath(pathOverride), JSON.stringify(wrappedData, null, 2))
     }
 }
@@ -47,7 +48,12 @@ function resolutionFilePath(pathOverride) {
 }
 
 function validate(JSONSchema, data) {
-    //validate here
+    const env = new djv();
+    env.addSchema('resolve', JSONSchema);
+    const result = env.validate('resolve', data);
+    if(result){
+        throw Error(`Invalid audit-resolve file. ${JSON.stringify(result,null,2)}`)
+    }
 }
 function parseResolutionsData(rawdata) {
     const data = JSON.parse(rawdata);

@@ -35,6 +35,7 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "concat-stream": "^1.6.2",
+    "djv": "^2.1.2",
     "read": "^1.0.7",
     "semver": "^5.5.0",
     "spawn-shell": "^2.1.0",

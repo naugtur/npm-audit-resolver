@@ -14,10 +14,10 @@ module.exports = {
         return input.actions
             .map(statusManager.addStatus)
             .filter(a => {
-                if (a.humanReviewComplete) {
+                if (a.isMarkedResolved) {
                     console.log(`skipping ${a.module} issue based on audit-resolv.json`)
                 }
-                return !a.humanReviewComplete
+                return !a.isMarkedResolved
             })
             .reduce(
                 (prev, action) =>
@@ -32,12 +32,12 @@ module.exports = {
         input.actions = input.actions
             .map(statusManager.addStatus)
             .filter(a => {
-                if (a.humanReviewComplete) {
+                if (a.isMarkedResolved) {
                     console.error(
                         `skipping ${a.module} issue based on audit-resolv.json`
                     );
                 }
-                return !a.humanReviewComplete;
+                return !a.isMarkedResolved;
             })
         return input
     },
@@ -46,12 +46,12 @@ module.exports = {
         const relevantActions = input.actions
             .map(statusManager.addStatus)
             .filter(a => {
-                if (a.humanReviewComplete && !argv.get().json) {
+                if (a.isMarkedResolved && !argv.get().json) {
                     console.log(
                         `skipping ${a.module} issue based on audit-resolv.json`
                     );
                 }
-                return !a.humanReviewComplete;
+                return !a.isMarkedResolved;
             });
         const groups = {};
         relevantActions.forEach(action => {

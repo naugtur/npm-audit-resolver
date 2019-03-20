@@ -1,6 +1,6 @@
 const fs = require('fs');
 const promiseCommand = require('./promiseCommand');
-const argv = require('./arguments').get()
+const argv = require('./shared/arguments').get()
 
 const runner = argv.mock ?
     (command) => {

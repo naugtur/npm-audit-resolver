@@ -4,11 +4,11 @@ module.exports = {
     dropResolvedActions(actions) {
         return actions
             .map(statusManager.addStatus)
-            .filter(a => {
-                if (a.humanReviewComplete) {
-                    printSkipping(a)
+            .filter(action => {
+                if (action.isMarkedResolved) {
+                    printSkipping(action)
                 }
-                return !a.humanReviewComplete;
+                return !action.isMarkedResolved;
             })
     }
 }

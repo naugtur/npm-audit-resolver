@@ -20,7 +20,7 @@ module.exports = {
             }
             return re;
         });
-        action.humanReviewComplete = !unresolved
+        action.isMarkedResolved = !unresolved
         return action
     }
 };

@@ -1,5 +1,5 @@
 const promptly = require('./micro-promptly');
-const actions = require('./actions');
+const actions = require('../actions');
 const chalk = require('chalk')
 const argv = require('./arguments')
 

@@ -14,7 +14,7 @@ function load() {
     }
     data = {} //in case loading fails, have something valid to extend and save
     try {
-        auditFile.load()
+        data = auditFile.load()
     } catch (e) { }
 }
 

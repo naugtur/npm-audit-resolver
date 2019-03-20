@@ -1,0 +1,13 @@
+{
+    "version": 1,
+    "decisions": {
+        "123|lodash": {
+            "what": "fix",
+            "when": 1552676146555
+        },
+        "123|other": {
+            "what": "postpone",
+            "when": 1552676146555
+        }
+    }
+}
