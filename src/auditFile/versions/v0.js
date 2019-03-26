@@ -1,21 +1,20 @@
+const RESOLUTIONS = require('../../RESOLUTIONS')
+const MILIS24H = 1000 * 60 * 60 * 24
+
 module.exports = {
     schema: {
-        "properties": {
-            "type": {
-              "enum": ["common"]
-            }
-          },
-          "required": [
-            "type"
-          ]
+        type: "object",
+        "additionalProperties": {
+            "type": "object"
+        }
     },
     extract(data) {
         return Object.keys(data).reduce((acc, key) => {
             acc[key] = { when: 0 }
-            if(data[key] === 'postpone'){
-                
+            if (data[key].postpone) {
+                acc[key].what = RESOLUTIONS.POSTPONE
+                acc[key].when = data[key].postpone - MILIS24H
             }
-            acc[key][data[key])
             return acc
         }, {})
     }

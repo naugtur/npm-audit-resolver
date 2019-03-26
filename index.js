@@ -61,11 +61,11 @@ module.exports = {
                     re.optional && (type += " (optional)");
                     re.bundled && (type += " (bundled)");
                     let reportLine = ` - ${type}: ${re.path}`;
-                    if (re.humanReviewStatus) {
-                        re.humanReviewStatus.fix &&
+                    if (re.decision) {
+                        re.decision.fix &&
                             (reportLine +=
                                 "\n     ^ this issue was marked as fixed earlier");
-                        re.humanReviewStatus.remind &&
+                        re.decision.remind &&
                             (reportLine +=
                                 "\n     ^ this issue was postponed, the time ran out");
                     }

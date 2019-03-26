@@ -1,7 +1,7 @@
 const promptly = require('./micro-promptly');
 const actions = require('../actions');
 const chalk = require('chalk')
-const argv = require('./arguments')
+const argv = require('../shared/arguments')
 
 
 module.exports = {
@@ -14,10 +14,10 @@ module.exports = {
             re.optional && (type += ' (optional)');
             re.bundled && (type += ' (bundled)');
             let reportLine = ` - ${type}: ${re.path}`;
-            if (re.humanReviewStatus) {
-                re.humanReviewStatus.fix &&
+            if (re.decision) {
+                re.decision.fix &&
                     (reportLine = appendWarningLine(reportLine, '^ this issue was marked as fixed earlier'));
-                re.humanReviewStatus.remind &&
+                re.decision.remind &&
                     (reportLine = appendWarningLine(reportLine, '^ this issue was already postponed'));
             }
             if (re.isMajor) {

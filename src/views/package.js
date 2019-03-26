@@ -1,9 +1,9 @@
-const CONSTS = require('../CONSTS')
+const FILE = require('../auditFile/FILE')
 
 module.exports = {
     printSkipping(item){
         console.log(
-            `skipping ${item.module} issue based on decision ${item.decision} from ${CONSTS.FILENAME}`
+            `skipping issues in ${item.module} based on decisions: ${item.resolves.map(re=>re.decision).join()} from ${FILE.FILENAME}`
         )
     }
 }

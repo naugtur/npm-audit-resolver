@@ -1,3 +1,5 @@
+const RESOLUTIONS = require('../../RESOLUTIONS')
+
 module.exports = {
     schema: {
         "properties": {
@@ -10,14 +12,18 @@ module.exports = {
                 "additionalProperties": {
                     "type": "object",
                     properties: {
-                        what: { type: "string" },
+                        what: {
+                            type: "string",
+                            enum: Object.keys(RESOLUTIONS).map(a=>RESOLUTIONS[a]) // I know Object.values, but node6
+                        },
                         when: { type: "number" }
                     }
                 }
             }
         },
         "required": [
-            "version"
+            "version",
+            "decisions"
         ]
     },
     extract(data) {
