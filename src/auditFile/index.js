@@ -32,11 +32,11 @@ function statusFromData(item) {
     if (!item) {
         return RESOLUTIONS.NONE
     }
-    const what = item.what.toLowerCase()
-    if (what === RESOLUTIONS.POSTPONE && Date.now() > item.when + MILIS24H) {
+    const decision = item.decision.toLowerCase()
+    if (decision === RESOLUTIONS.POSTPONE && Date.now() > item.madeAt + MILIS24H) {
         return RESOLUTIONS.POSTPONE_EXPIRED
     }
-    return RESOLUTIONS[RESOLUTIONS.reverseLookup[what]] || RESOLUTIONS.NONE
+    return RESOLUTIONS[RESOLUTIONS.reverseLookup[decision]] || RESOLUTIONS.NONE
 }
 
 module.exports = {
@@ -44,14 +44,17 @@ module.exports = {
     flush() {
         auditFile.save(data)
     },
-    set({ id, path }, value) {
+    set({ id, path }, value, reason) {
         if (!RESOLUTIONS.reverseLookup[value]) {
             throw Error(`invalid resolution value ${value}`)
         }
         load()
         path = pathCorruptionWorkaround(path)
-        // validate if value is from enum
-        return (data[buildKey({ id, path })] = value);
+        return (data[buildKey({ id, path })] = {
+            decision: value,
+            madeAt: Date.now(),
+            reason
+        });
     },
     get({ id, path }) {
         load()

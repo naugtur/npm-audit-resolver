@@ -2,28 +2,30 @@ const RESOLUTIONS = require('../../RESOLUTIONS')
 
 module.exports = {
     schema: {
-        "properties": {
-            "version": {
-                "type": "number",
-                "minimum": 1
+        properties: {
+            version: {
+                'type': 'number',
+                'minimum': 1
             },
-            "decisions": {
-                type: "object",
-                "additionalProperties": {
-                    "type": "object",
+            decisions: {
+                type: 'object',
+                additionalProperties: {
+                    type: 'object',
+                    required: ['decision'],
                     properties: {
-                        what: {
-                            type: "string",
-                            enum: Object.keys(RESOLUTIONS).map(a=>RESOLUTIONS[a]) // I know Object.values, but node6
+                        decision: {
+                            type: 'string',
+                            enum: Object.keys(RESOLUTIONS.reverseLookup)
                         },
-                        when: { type: "number" }
+                        reason: { type: 'string' },
+                        madeAt: { type: 'number' }
                     }
                 }
             }
         },
-        "required": [
-            "version",
-            "decisions"
+        required: [
+            'version',
+            'decisions'
         ]
     },
     extract(data) {
