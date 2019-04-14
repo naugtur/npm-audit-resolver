@@ -61,7 +61,7 @@ function optionsPrompt({ action, advisories, command }, availableChoices = null)
         },
         {
             key: 'r',
-            name: 'remind me in 24h'
+            name: 'snooze for 31 days'
         },
         {
             key: 'i',
@@ -130,13 +130,13 @@ function appendWarningLine(message, line) {
     return message + '\n     ' + chalk.bold(line);
 }
 
-function getCommand(action){
+function getCommand(action) {
     // Derived from npm-audit-report
     // TODO: share the code
     if (action.action === 'install') {
         const isDev = action.resolves[0].dev
         return `npm install ${isDev ? '--save-dev ' : ''}${action.module}@${action.target}`
-      } else {
+    } else {
         return `npm update ${action.module} --depth ${action.depth}`
     }
 }

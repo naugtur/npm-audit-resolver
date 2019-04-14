@@ -19,7 +19,7 @@ function saveResolution(singleResolve, resolution) {
     return resolutionState.flush()
 }
 
-const LATER = 24 * 60 * 60 * 1000;
+const LATER = 31 * 24 * 60 * 60 * 1000;
 
 const strategies = {
     i: function ignore({ action, advisories, command }) {
@@ -48,13 +48,13 @@ const strategies = {
     },
     d: function details({ action, advisories, command }) {
         console.log('');
-        
+
         Object.keys(action.resolves.reduce((mem, re) => {
             mem[re.id] = 1
             return mem
         }, {})).map(advId => {
             const adv = advisories[advId]
-            const versions = adv.findings.map(f=>f.version).join()
+            const versions = adv.findings.map(f => f.version).join()
             console.log(`${chalk.bold(adv.module_name)} versions installed: ${chalk.bold(versions)}
 ${adv.overview}
 ${adv.recommendation}
