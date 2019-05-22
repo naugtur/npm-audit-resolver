@@ -1,4 +1,4 @@
-const argv = require('../shared/arguments')
+const argv = require('../arguments')
 const djv = require('djv')
 const path = require('path')
 const fs = require('fs')
@@ -7,21 +7,6 @@ const migrationView = require('../views/migration')
 const versions = {
     0: require('./versions/v0'),
     1: require('./versions/v1')
-}
-
-module.exports = {
-    load(pathOverride) {
-        const rawdata = fs.readFileSync(resolutionFilePath(pathOverride));
-        return parseResolutionsData(rawdata)
-    },
-    save(data, pathOverride) {
-        const wrappedData = {
-            resolutions: data,
-            version: 1
-        }
-        validate(versions[1].schema, wrappedData)
-        fs.writeFileSync(defaultFilePath(pathOverride), JSON.stringify(wrappedData, null, 2))
-    }
 }
 
 function defaultFilePath(pathOverride) {
@@ -52,8 +37,8 @@ function validate(JSONSchema, data) {
     const env = new djv();
     env.addSchema('resolve', JSONSchema);
     const result = env.validate('resolve', data);
-    if(result){
-        throw Error(`Invalid audit-resolve file. ${JSON.stringify(result,null,2)}`)
+    if (result) {
+        throw Error(`Invalid audit-resolve file. ${JSON.stringify(result, null, 2)}`)
     }
 }
 function parseResolutionsData(rawdata) {
@@ -68,4 +53,19 @@ function parseResolutionsData(rawdata) {
     validate(versions[version].schema, data)
     return versions[version].extract(data)
 
+}
+
+module.exports = {
+    load(pathOverride) {
+        const rawdata = fs.readFileSync(resolutionFilePath(pathOverride));
+        return parseResolutionsData(rawdata)
+    },
+    save(data, pathOverride) {
+        const wrappedData = {
+            resolutions: data,
+            version: 1
+        }
+        validate(versions[1].schema, wrappedData)
+        fs.writeFileSync(defaultFilePath(pathOverride), JSON.stringify(wrappedData, null, 2))
+    }
 }

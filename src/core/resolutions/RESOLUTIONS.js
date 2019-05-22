@@ -3,7 +3,7 @@ const RESOLUTIONS = {
     FIX: 'fix',
     IGNORE: 'ignore',
     POSTPONE: 'postpone',
-    POSTPONE_EXPIRED: 'postpone_expired'
+    EXPIRED: 'expired'
 }
 
 RESOLUTIONS.reverseLookup = Object.keys(RESOLUTIONS).reduce((acc, key) => {

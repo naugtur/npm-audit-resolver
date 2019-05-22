@@ -1,4 +1,4 @@
-const statusManager = require('../shared/statusManager');
+const statusManager = require('../core/statusManager');
 const {printSkipping} = require('../views/package')
 module.exports = {
     dropResolvedActions(actions) {

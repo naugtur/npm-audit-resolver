@@ -1,4 +1,4 @@
-const RESOLUTIONS = require('../../RESOLUTIONS')
+const RESOLUTIONS = require('../../resolutions/RESOLUTIONS')
 const MILIS24H = 1000 * 60 * 60 * 24
 
 module.exports = {

@@ -1,6 +1,6 @@
 const auditFile = require('./fileHandle')
-const RESOLUTIONS = require('../RESOLUTIONS')
-const MILIS24H = 1000 * 60 * 60 * 24
+const RESOLUTIONS = require('../resolutions/RESOLUTIONS')
+const decision2resolution = require('../resolutions/decision2resolution')
 var data = null;
 
 const buildKey = ({ id, path }) => `${id}|${path}`;
@@ -28,23 +28,12 @@ function pathCorruptionWorkaround(depPath) {
     }).join('>')
 }
 
-function statusFromData(item) {
-    if (!item) {
-        return RESOLUTIONS.NONE
-    }
-    const decision = item.decision.toLowerCase()
-    if (decision === RESOLUTIONS.POSTPONE && Date.now() > item.madeAt + MILIS24H) {
-        return RESOLUTIONS.POSTPONE_EXPIRED
-    }
-    return RESOLUTIONS[RESOLUTIONS.reverseLookup[decision]] || RESOLUTIONS.NONE
-}
-
 module.exports = {
     load,
     flush() {
         auditFile.save(data)
     },
-    set({ id, path }, value, reason) {
+    set({ id, path }, value, reason, expiresAt) {
         if (!RESOLUTIONS.reverseLookup[value]) {
             throw Error(`invalid resolution value ${value}`)
         }
@@ -53,13 +42,14 @@ module.exports = {
         return (data[buildKey({ id, path })] = {
             decision: value,
             madeAt: Date.now(),
-            reason
+            reason,
+            expiresAt
         });
     },
     get({ id, path }) {
         load()
         path = pathCorruptionWorkaround(path)
-        return statusFromData(data[buildKey({ id, path })]);
+        return decision2resolution(data[buildKey({ id, path })]);
     }
 };
 

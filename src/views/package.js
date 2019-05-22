@@ -1,4 +1,4 @@
-const FILE = require('../auditFile/FILE')
+const FILE = require('../core/auditFile/FILE')
 
 module.exports = {
     printSkipping(action) {

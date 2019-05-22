@@ -1,4 +1,4 @@
-const RESOLUTIONS = require('../../RESOLUTIONS')
+const RESOLUTIONS = require('../../resolutions/RESOLUTIONS')
 
 module.exports = {
     schema: {
@@ -18,7 +18,8 @@ module.exports = {
                             enum: Object.keys(RESOLUTIONS.reverseLookup)
                         },
                         reason: { type: 'string' },
-                        madeAt: { type: 'number' }
+                        madeAt: { type: 'number' },
+                        expiresAt: { type: 'number' }
                     }
                 }
             }

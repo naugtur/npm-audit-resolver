@@ -1,5 +1,5 @@
-const auditFile = require('../auditFile');
-const RESOLUTIONS = require('../RESOLUTIONS');
+const auditFile = require('./auditFile');
+const RESOLUTIONS = require('./resolutions/RESOLUTIONS');
 
 
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
                     // should have been fixed!
                     unresolved = true
                 }
-                if(status = RESOLUTIONS.POSTPONE_EXPIRED){
+                if(status = RESOLUTIONS.EXPIRED){
                     unresolved = true
                 }
             } else {
