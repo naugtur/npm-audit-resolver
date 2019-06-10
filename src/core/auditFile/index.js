@@ -1,17 +1,20 @@
 const auditFile = require('./fileHandle')
 const RESOLUTIONS = require('../resolutions/RESOLUTIONS')
 const decision2resolution = require('../resolutions/decision2resolution')
-var data = null;
+let decisionsData = null;
+let rules = {};
 
 const buildKey = ({ id, path }) => `${id}|${path}`;
 
 function load() {
-    if (data) {
+    if (decisionsData) {
         return
     }
-    data = {} //in case loading fails, have something valid to extend and save
+    decisionsData = {} //in case loading fails, have something valid to extend and save
     try {
-        data = auditFile.load()
+        const file = auditFile.load()
+        rules = file.rules
+        decisionsData = file.decisions
     } catch (e) { }
 }
 
@@ -30,8 +33,15 @@ function pathCorruptionWorkaround(depPath) {
 
 module.exports = {
     load,
+    getRules(){
+        // naive clone is enough to make you, dear contributor, treat this as readonly
+        return Object.assign({}, rules)
+    },
     flush() {
-        auditFile.save(data)
+        auditFile.save({
+            decisions: decisionsData,
+            rules
+        })
     },
     set({ id, path }, value, reason, expiresAt) {
         if (!RESOLUTIONS.reverseLookup[value]) {
@@ -39,7 +49,7 @@ module.exports = {
         }
         load()
         path = pathCorruptionWorkaround(path)
-        return (data[buildKey({ id, path })] = {
+        return (decisionsData[buildKey({ id, path })] = {
             decision: value,
             madeAt: Date.now(),
             reason,
@@ -49,7 +59,7 @@ module.exports = {
     get({ id, path }) {
         load()
         path = pathCorruptionWorkaround(path)
-        return decision2resolution(data[buildKey({ id, path })]);
+        return decision2resolution(decisionsData[buildKey({ id, path })]);
     }
 };
 

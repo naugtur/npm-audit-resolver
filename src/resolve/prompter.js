@@ -2,8 +2,9 @@ const promptly = require('./micro-promptly');
 const actions = require('./actions');
 const chalk = require('chalk')
 const argv = require('../shared/arguments').get()
+const view = require('../views/decisions')
 
-function optionsPrompt({ action, advisories, command }, availableChoices = null) {
+function optionsPrompt({ action, advisories }, availableChoices = null) {
     const actionName = action.action;
 
     const choices = [
@@ -37,7 +38,7 @@ function optionsPrompt({ action, advisories, command }, availableChoices = null)
     if (['install', 'update'].includes(actionName)) {
         choices.unshift({
             key: 'f',
-            name: 'fix with ' + chalk.greenBright(command)
+            name: 'fix automatically'
         });
     } else {
         choices.unshift({
@@ -48,11 +49,10 @@ function optionsPrompt({ action, advisories, command }, availableChoices = null)
 
     availableChoices = ['q', 's'].concat(availableChoices || choices.map(c => c.key))
 
-    console.log('_');
-    console.log(
+    view.printChoices(
         choices
             .filter(c => availableChoices.includes(c.key))
-            .map(c => ` ${chalk.bold(c.key)}) ${c.name}`).join('\n')
+
     );
 
     return promptly.choose(
@@ -60,61 +60,23 @@ function optionsPrompt({ action, advisories, command }, availableChoices = null)
         choices.map(c => c.key),
         { trim: true, retry: true }
     )
-        .then(answer => actions.takeAction(answer, { action, advisories, command }))
+        .then(answer => actions.takeAction(answer, { action, advisories }))
         .then(choicesAvailableNow => {
             if (choicesAvailableNow !== undefined) {
-                return optionsPrompt({ action, advisories, command }, choicesAvailableNow)
+                return optionsPrompt({ action, advisories }, choicesAvailableNow)
             }
         })
 }
 
-const colors = {
-    critical: chalk.bold.white.bgRedBright,
-    high: chalk.bold.redBright,
-    moderate: chalk.bold.yellow
-}
-function getSeverityTag(advisory) {
-    const color = colors[advisory.severity] || (a => a);
-    return color(`[ ${advisory.severity} ]`)
-}
 
-function appendWarningLine(message, line) {
-    return message + '\n     ' + chalk.bold(line);
-}
-
-function getCommand(action) {
-    // Derived from npm-audit-report
-    // TODO: share the code
-    if (action.action === 'install') {
-        const isDev = action.resolves[0].dev
-        return `npm install ${isDev ? '--save-dev ' : ''}${action.module}@${action.target}`
-    } else {
-        return `npm update ${action.module} --depth ${action.depth}`
-    }
-}
 
 
 module.exports = {
     handleAction(action, advisories) {
-        console.log(`\n--------------------------------------------------`);
-        console.log(` ${chalk.bold.black.bgWhite(action.module)} needs your attention.\n`);
+        view.printActionIntro(action)
         const groupedResolutions = action.resolves.reduce((groups, re) => {
             groups[re.id] = groups[re.id] || [];
-            let type = re.dev ? ' devDependencies' : 'dependencies';
-            re.optional && (type += ' (optional)');
-            re.bundled && (type += ' (bundled)');
-            let reportLine = ` - ${type}: ${re.path}`;
-            if (re.decision) {
-                re.decision.fix &&
-                    (reportLine = appendWarningLine(reportLine, '^ this issue was marked as fixed earlier'));
-                re.decision.remind &&
-                    (reportLine = appendWarningLine(reportLine, '^ this issue was already postponed'));
-            }
-            if (re.isMajor) {
-                reportLine = appendWarningLine(reportLine, '! warning, fix is a major version upgrade');
-            }
-            groups[re.id].push(reportLine);
-
+            groups[re.id].push(view.buildEntryForResolution(re));
             return groups;
         }, {});
         let onlyLow = true;
@@ -123,20 +85,13 @@ module.exports = {
             if (adv.severity !== 'low') {
                 onlyLow = false
             }
-            const severityTag = getSeverityTag(adv);
-            console.log(`${severityTag} ${adv.title}`);
-            console.log(
-                ` vulnerable versions ${adv.vulnerable_versions} found in:`
-            );
-            console.log(groupedResolutions[reId].join('\n'));
+            view.printResolutionGroupInfo(groupedResolutions[reId], adv)
         });
         if (argv.ignoreLow && onlyLow) {
-            console.log(chalk.greenBright(` ✔ automatically ignore low severity issue`))
-            return actions.takeAction('i', { action, advisories, command: null });
+            view.printLowSeverityHint()
+            return actions.takeAction('i', { action, advisories });
         }
 
-        const command = getCommand(action)
-
-        return optionsPrompt({ action, advisories, command })
+        return optionsPrompt({ action, advisories })
     }
 };

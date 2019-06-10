@@ -6,21 +6,21 @@ const RESOLUTIONS = require('../core/resolutions/RESOLUTIONS')
 const TWO_WEEKS_LATER = Date.now() + 14 * 24 * 60 * 60 * 1000
 
 const strategies = {
-    i: function ignore({ action, advisories, command }) {
+    i: function ignore({ action, advisories}) {
         return statusManager.saveResolution(action, { resolution: RESOLUTIONS.IGNORE });
     },
-    r: function remindLater({ action, advisories, command }) {
+    r: function remindLater({ action, advisories }) {
         return statusManager.saveResolution(action, { resolution: RESOLUTIONS.POSTPONE });
     },
-    f: function fix({ action, advisories, command }) {
+    f: function fix({ action, advisories }) {
         console.log('Fixing!');
-        return pkgFacade.fix({ command, action }).then(() =>
+        return pkgFacade.fix({ action }).then(() =>
             statusManager.saveResolution(action, { resolution: RESOLUTIONS.FIX })
         );
     },
-    del: function del({ action, advisories, command }) {
+    del: function del({ action, advisories }) {
         console.log('Removing');
-        pkgFacade.removeAll({ command, action })
+        pkgFacade.removeAll({ action })
         const uniqueNames = action.resolves.reduce((mem, re) => {
             const topModule = re.path.split('>')[0]
             if (topModule) {
@@ -33,7 +33,7 @@ const strategies = {
                 statusManager.saveResolution(action, { resolution: RESOLUTIONS.NONE, reason: 'package was removed', expiresAt: TWO_WEEKS_LATER })
             );
     },
-    d: function details({ action, advisories, command }) {
+    d: function details({ action, advisories }) {
         console.log('');
 
         Object.keys(action.resolves.reduce((mem, re) => {
@@ -49,7 +49,7 @@ ${adv.references}`)
         })
         return null;
     },
-    '?': function investigateIt({ action, advisories, command }) {
+    '?': function investigateIt({ action, advisories }) {
         console.log('Investigating!');
         return investigate.findFeasibleResolutions({ action, advisories })
     },

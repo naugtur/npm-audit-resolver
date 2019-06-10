@@ -22,6 +22,13 @@ module.exports = {
                         expiresAt: { type: 'number' }
                     }
                 }
+            },
+            rules: {
+                type: 'object',
+                properties:{
+                    ignoreExpiresInDays: { type: 'number' }, //should it be days or should I pull in a dependency to resolve nice text?
+                    ignoreLowSeverity: {type: 'boolean' }
+                }
             }
         },
         required: [
@@ -30,6 +37,9 @@ module.exports = {
         ]
     },
     extract(data) {
-        return data.decisions
+        return {
+            decisions: data.decisions,
+            rules: data.rules
+        }
     }
 }

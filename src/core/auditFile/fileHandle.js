@@ -60,9 +60,10 @@ module.exports = {
         const rawdata = fs.readFileSync(resolutionFilePath(pathOverride));
         return parseResolutionsData(rawdata)
     },
-    save(data, pathOverride) {
+    save({decisions, rules}, pathOverride) {
         const wrappedData = {
-            resolutions: data,
+            decisions,
+            rules,
             version: 1
         }
         validate(versions[1].schema, wrappedData)

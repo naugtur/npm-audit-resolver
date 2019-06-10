@@ -28,7 +28,11 @@ function addStatusToAction(action) {
 }
 
 
-function saveResolution(action, {resolution, reason, expiresAt}) {
+function saveResolution(action, { resolution, reason, expiresAt }) {
+    // default expiry rules
+    if (!expiresAt && resolution === RESOLUTIONS.IGNORE && auditFile.getRules().ignoreExpiresInDays) {
+        expiresAt = auditFile.getRules().ignoreExpiresInDays * 24 * 60 * 60 * 1000
+    }
     action.resolves.map(re => auditFile.set(
         { id: re.id, path: re.path },
         resolution,

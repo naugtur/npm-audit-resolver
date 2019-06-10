@@ -7,8 +7,8 @@ module.exports = {
         // just return a promise with an audit
         return promiseCommand(``, shellOptions)
     },
-    fix({ promiseCommand, argv, shellOptions, action, command }) {
-        // implement fixing the particular set of problems by picking what you need from action and command
+    fix({ promiseCommand, argv, shellOptions, action }) {
+        // implement fixing the particular set of problems by picking what you need from action
         // Could also throw an error claiming fixing is not implemented and they shoud run overall fix before running this tool
         // I'd accept that as a user if it was too difficult to implement fixing individual problems
     },
