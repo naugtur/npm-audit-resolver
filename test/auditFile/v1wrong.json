@@ -2,8 +2,8 @@
     "version": 1,
     "decisions": [
         {
-            "what": "fix",
-            "when": 1552676146555
+            "decision": "fix",
+            "madeAt": 1552676146555
         }
     ]
 }
