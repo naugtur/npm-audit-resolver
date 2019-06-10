@@ -3,6 +3,7 @@ const actions = require('./actions');
 const chalk = require('chalk')
 const argv = require('../shared/arguments').get()
 const view = require('../views/decisions')
+const rules = require('../core/auditFile').getRules()
 
 function optionsPrompt({ action, advisories }, availableChoices = null) {
     const actionName = action.action;
@@ -87,7 +88,7 @@ module.exports = {
             }
             view.printResolutionGroupInfo(groupedResolutions[reId], adv)
         });
-        if (argv.ignoreLow && onlyLow) {
+        if ((argv.ignoreLow || rules.ignoreLowSeverity) && onlyLow) {
             view.printLowSeverityHint()
             return actions.takeAction('i', { action, advisories });
         }
