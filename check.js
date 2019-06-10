@@ -9,13 +9,12 @@ function auditOk(issues) {
 }
 
 // MARK_YARN
-// add detection or some sort of selection here
-const pkgmanager = 'npm'
 // register your implementation
 pkgFacade.addImplementation('npm', require('./src/pkgmanagers/npm'))
+// add detection or some sort of selection here
+pkgFacade.setActiveImplementation('npm')
 
-
-pkgFacade.getAudit({ pkgmanager, shellOptions: { ignoreExit: true } })
+pkgFacade.getAudit({ shellOptions: { ignoreExit: true } })
     .then(input => {
         if (!argv.json) {
             view.totalActions(input.actions.length)

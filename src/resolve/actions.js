@@ -1,60 +1,47 @@
-const promiseCommand = require('./promiseCommand');
-const resolutionState = require('./resolutionState');
-const investigate = require('./investigate');
+const statusManager = require('../core/statusManager');
+const pkgFacade = require('../core/pkgFacade')
+const investigate = require('../investigate');
 const chalk = require('chalk')
-
-function saveResolutionAll(action, resolution) {
-    action.resolves.map(re => resolutionState.set(
-        { id: re.id, path: re.path },
-        resolution
-    ))
-
-    return resolutionState.flush()
-}
-function saveResolution(singleResolve, resolution) {
-    resolutionState.set(
-        { id: singleResolve.id, path: singleResolve.path },
-        resolution
-    );
-    return resolutionState.flush()
-}
-
-const LATER = 24 * 60 * 60 * 1000;
+const RESOLUTIONS = require('../core/resolutions/RESOLUTIONS')
+const TWO_WEEKS_LATER = Date.now() + 14 * 24 * 60 * 60 * 1000
 
 const strategies = {
     i: function ignore({ action, advisories, command }) {
-        return saveResolutionAll(action, { ignore: 1 });
+        return statusManager.saveResolution(action, { resolution: RESOLUTIONS.IGNORE });
     },
     r: function remindLater({ action, advisories, command }) {
-        return saveResolutionAll(action, { remind: Date.now() + LATER });
+        return statusManager.saveResolution(action, { resolution: RESOLUTIONS.POSTPONE });
     },
     f: function fix({ action, advisories, command }) {
         console.log('Fixing!');
-        return promiseCommand(command).then(() =>
-            saveResolutionAll(action, { fix: 1 })
+        return pkgFacade.fix({ command, action }).then(() =>
+            statusManager.saveResolution(action, { resolution: RESOLUTIONS.FIX })
         );
     },
     del: function del({ action, advisories, command }) {
         console.log('Removing');
-        return Promise.all(Object.keys(action.resolves.reduce((mem, re) => {
+        pkgFacade.removeAll({ command, action })
+        const uniqueNames = action.resolves.reduce((mem, re) => {
             const topModule = re.path.split('>')[0]
             if (topModule) {
-                mem[topModule + (re.dev ? ' -D' : ' -S')] = 1
+                mem[topModule] = true
             }
             return mem
-        }, {})).map(commandBit => {
-            return promiseCommand(`npm rm ${commandBit}`)
-        })).then(() => { })
+        }, {})
+        return pkgFacade.remove({ names: Object.keys(uniqueNames) })
+            .then(() =>
+                statusManager.saveResolution(action, { resolution: RESOLUTIONS.NONE, reason: 'package was removed', expiresAt: TWO_WEEKS_LATER })
+            );
     },
     d: function details({ action, advisories, command }) {
         console.log('');
-        
+
         Object.keys(action.resolves.reduce((mem, re) => {
             mem[re.id] = 1
             return mem
         }, {})).map(advId => {
             const adv = advisories[advId]
-            const versions = adv.findings.map(f=>f.version).join()
+            const versions = adv.findings.map(f => f.version).join()
             console.log(`${chalk.bold(adv.module_name)} versions installed: ${chalk.bold(versions)}
 ${adv.overview}
 ${adv.recommendation}

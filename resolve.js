@@ -1,11 +1,23 @@
 #!/usr/bin/env node
-const core = require('./index')
-const npmFacade = require('./src/npmfacade');
+const pkgFacade = require('./src/core/pkgFacade');
+const view = require('./src/views/general')
+const argv = require('./src/core/arguments').get();
+const auditResolver = require('./src/resolve/auditResolver')
 
-npmFacade.runNpmCommand('audit', { ignoreExit: true })
+// MARK_YARN
+// register your implementation
+pkgFacade.addImplementation('npm', require('./src/pkgmanagers/npm'))
+// add detection or some sort of selection here
+pkgFacade.setActiveImplementation('npm')
+
+pkgFacade.getAudit({ shellOptions: { ignoreExit: true } })
     .then(input => {
-        console.log(`Total of ${input.actions.length} actions to process`)
-        return core.resolveAudit(input)
+        if (!argv.json) {
+            view.totalActions(input.actions.length)
+        }
+        return auditResolver.askForResolutions(input)
     })
-    .then(() => console.log('done.'))
-    .catch(e => console.error(e));
+    .catch(e => {
+        view.genericError(e);
+        process.exit(2);
+    });

@@ -1,10 +1,20 @@
 const argv = require('../arguments').get()
 const promiseCommand = require('../promiseCommand');
 
+let currentActiveRunner;
+function setActiveImplementation(name) {
+    currentActiveRunner = name
+}
+
 const runners = {
     'mock': require('./mock')
 }
 function runner(pkgmanager) {
+    if (argv.mock) {
+        pkgmanager = 'mock'
+    } else {
+        pkgmanager = pkgmanager || currentActiveRunner
+    }
     return runners[pkgmanager]
 }
 
@@ -17,12 +27,13 @@ module.exports = {
             throw Error(`expected version to be set to 1 on implementation, got ${implementation.version} instead`)
         }
         runners[name] = implementation
-    },
-    getAudit({ pkgmanager, shellOptions }) {
-        if (argv.mock) {
-            console.log('>>>mock get audit')
-            pkgmanager = 'mock'
+        // enable first by default
+        if (!currentActiveRunner) {
+            setActiveImplementation(name)
         }
+    },
+    setActiveImplementation,
+    getAudit({ pkgmanager, shellOptions }) {
         return runner(pkgmanager).getAudit({
             promiseCommand,
             argv: Object.assign({}, argv),
@@ -35,6 +46,23 @@ module.exports = {
                 console.error(output)
                 throw e;
             }
+        })
+    },
+    fix({ pkgmanager, shellOptions, action, command }) {
+        return runner(pkgmanager).fix({
+            promiseCommand,
+            argv: Object.assign({}, argv),
+            shellOptions,
+            action,
+            command
+        })
+    },
+    remove({ pkgmanager, shellOptions, names }) {
+        return runner(pkgmanager).remove({
+            promiseCommand,
+            argv: Object.assign({}, argv),
+            shellOptions,
+            names
         })
     }
 }

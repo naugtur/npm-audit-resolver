@@ -1,55 +1,7 @@
 const promptly = require('./micro-promptly');
-const actions = require('../actions');
+const actions = require('./actions');
 const chalk = require('chalk')
-const argv = require('../shared/arguments')
-
-
-module.exports = {
-    handleAction(action, advisories) {
-        console.log(`\n--------------------------------------------------`);
-        console.log(` ${chalk.bold.black.bgWhite(action.module)} needs your attention.\n`);
-        const groupedResolutions = action.resolves.reduce((groups, re) => {
-            groups[re.id] = groups[re.id] || [];
-            let type = re.dev ? ' devDependencies' : 'dependencies';
-            re.optional && (type += ' (optional)');
-            re.bundled && (type += ' (bundled)');
-            let reportLine = ` - ${type}: ${re.path}`;
-            if (re.decision) {
-                re.decision.fix &&
-                    (reportLine = appendWarningLine(reportLine, '^ this issue was marked as fixed earlier'));
-                re.decision.remind &&
-                    (reportLine = appendWarningLine(reportLine, '^ this issue was already postponed'));
-            }
-            if (re.isMajor) {
-                reportLine = appendWarningLine(reportLine, '! warning, fix is a major version upgrade');
-            }
-            groups[re.id].push(reportLine);
-
-            return groups;
-        }, {});
-        let onlyLow = true;
-        Object.keys(groupedResolutions).forEach(reId => {
-            const adv = advisories[reId];
-            if (adv.severity !== 'low') {
-                onlyLow = false
-            }
-            const severityTag = getSeverityTag(adv);
-            console.log(`${severityTag} ${adv.title}`);
-            console.log(
-                ` vulnerable versions ${adv.vulnerable_versions} found in:`
-            );
-            console.log(groupedResolutions[reId].join('\n'));
-        });
-        if (argv.get().ignoreLow && onlyLow) {
-            console.log(chalk.greenBright(` ✔ automatically ignore low severity issue`))
-            return actions.takeAction('i', { action, advisories, command: null });
-        }
-
-        const command = getCommand(action)
-
-        return optionsPrompt({ action, advisories, command })
-    }
-};
+const argv = require('../shared/arguments').get()
 
 function optionsPrompt({ action, advisories, command }, availableChoices = null) {
     const actionName = action.action;
@@ -130,13 +82,61 @@ function appendWarningLine(message, line) {
     return message + '\n     ' + chalk.bold(line);
 }
 
-function getCommand(action){
+function getCommand(action) {
     // Derived from npm-audit-report
     // TODO: share the code
     if (action.action === 'install') {
         const isDev = action.resolves[0].dev
         return `npm install ${isDev ? '--save-dev ' : ''}${action.module}@${action.target}`
-      } else {
+    } else {
         return `npm update ${action.module} --depth ${action.depth}`
     }
 }
+
+
+module.exports = {
+    handleAction(action, advisories) {
+        console.log(`\n--------------------------------------------------`);
+        console.log(` ${chalk.bold.black.bgWhite(action.module)} needs your attention.\n`);
+        const groupedResolutions = action.resolves.reduce((groups, re) => {
+            groups[re.id] = groups[re.id] || [];
+            let type = re.dev ? ' devDependencies' : 'dependencies';
+            re.optional && (type += ' (optional)');
+            re.bundled && (type += ' (bundled)');
+            let reportLine = ` - ${type}: ${re.path}`;
+            if (re.decision) {
+                re.decision.fix &&
+                    (reportLine = appendWarningLine(reportLine, '^ this issue was marked as fixed earlier'));
+                re.decision.remind &&
+                    (reportLine = appendWarningLine(reportLine, '^ this issue was already postponed'));
+            }
+            if (re.isMajor) {
+                reportLine = appendWarningLine(reportLine, '! warning, fix is a major version upgrade');
+            }
+            groups[re.id].push(reportLine);
+
+            return groups;
+        }, {});
+        let onlyLow = true;
+        Object.keys(groupedResolutions).forEach(reId => {
+            const adv = advisories[reId];
+            if (adv.severity !== 'low') {
+                onlyLow = false
+            }
+            const severityTag = getSeverityTag(adv);
+            console.log(`${severityTag} ${adv.title}`);
+            console.log(
+                ` vulnerable versions ${adv.vulnerable_versions} found in:`
+            );
+            console.log(groupedResolutions[reId].join('\n'));
+        });
+        if (argv.ignoreLow && onlyLow) {
+            console.log(chalk.greenBright(` ✔ automatically ignore low severity issue`))
+            return actions.takeAction('i', { action, advisories, command: null });
+        }
+
+        const command = getCommand(action)
+
+        return optionsPrompt({ action, advisories, command })
+    }
+};

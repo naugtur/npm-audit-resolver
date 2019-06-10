@@ -5,6 +5,11 @@
             "decision": "fix",
             "madeAt": 1552676146555
         },
+        "123|unnecessary>lodash": {
+            "decision": "none",
+            "madeAt": 1552676146555,
+            "reason": "package was removed"
+        },
         "123|other": {
             "decision": "postpone",
             "madeAt": 1552676146555,
