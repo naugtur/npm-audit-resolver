@@ -6,15 +6,15 @@ module.exports = {
     addStatus(action) {
         let unresolved = false;
         action.resolves.map(re => {
-            const status = auditFile.get({ id: re.id, path: re.path });
-            if(status){
+            let status = auditFile.get({ id: re.id, path: re.path });
+            if (status) {
                 re.decision = status
-                
-                if(status = RESOLUTIONS.FIX){
+
+                if (status = RESOLUTIONS.FIX) {
                     // should have been fixed!
                     unresolved = true
                 }
-                if(status = RESOLUTIONS.EXPIRED){
+                if (status = RESOLUTIONS.EXPIRED) {
                     unresolved = true
                 }
             } else {
