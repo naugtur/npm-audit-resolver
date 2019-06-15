@@ -33,7 +33,7 @@ function pathCorruptionWorkaround(depPath) {
 
 module.exports = {
     load,
-    getRules(){
+    getRules() {
         // naive clone is enough to make you, dear contributor, treat this as readonly
         return Object.assign({}, rules)
     },
@@ -43,18 +43,23 @@ module.exports = {
             rules
         })
     },
-    set({ id, path }, value, reason, expiresAt) {
-        if (!RESOLUTIONS.reverseLookup[value]) {
-            throw Error(`invalid resolution value ${value}`)
+    set({ id, path }, { resolution, reason, expiresAt }) {
+        if (!RESOLUTIONS.reverseLookup[resolution]) {
+            throw Error(`invalid resolution ${resolution}`)
         }
         load()
         path = pathCorruptionWorkaround(path)
-        return (decisionsData[buildKey({ id, path })] = {
-            decision: value,
-            madeAt: Date.now(),
-            reason,
-            expiresAt
-        });
+        const payload = {
+            decision: resolution,
+            madeAt: Date.now()
+        }
+        if (reason) {
+            payload.reason = reason
+        }
+        if (expiresAt) {
+            payload.expiresAt = expiresAt
+        }
+        return (decisionsData[buildKey({ id, path })] = payload);
     },
     get({ id, path }) {
         load()

@@ -20,6 +20,9 @@ function getSeverityTag(advisory) {
 // Used defaults as examples instead
 // It should make writing more detailed views easy
 module.exports = {
+    printDecision(text=''){
+        console.log(`Selected: ${text}`)
+    },
     printChoices(choices = [{ key: "", name: "" }]) {
         console.log('_');
         console.log(
@@ -109,7 +112,59 @@ module.exports = {
         );
         console.log(resolutionsGroup.join('\n'));
     },
+    printDetailsOfAdvisory({ advisory = {
+        "findings": [
+            {
+                "version": "",
+                "paths": [
+                    ""
+                ],
+                "dev": false,
+                "optional": false,
+                "bundled": false
+            }
+        ],
+        "id": 0,
+        "created": "",//"2015-10-17T19:41:46.382Z",
+        "updated": "",
+        "deleted": null,
+        "title": "",
+        "found_by": {
+            "name": ""
+        },
+        "reported_by": {
+            "name": ""
+        },
+        "module_name": "",
+        "cves": [
+            ""
+        ],
+        "vulnerable_versions": "",
+        "patched_versions": "",
+        "overview": "",
+        "recommendation": "",
+        "references": "",
+        "access": "",
+        "severity": "",
+        "cwe": "",
+        "metadata": {
+            "module_type": "",
+            "exploitability": 2,
+            "affected_components": ""
+        },
+        "url": ""
+    }
+    }) {
+        const versions = advisory.findings.map(f => f.version).join();
+        console.log(`${chalk.bold(advisory.module_name)} versions installed: ${chalk.bold(versions)}
+${advisory.overview}
+${advisory.recommendation}
+${advisory.references}`);
+    },
     printLowSeverityHint() {
         console.log(chalk.greenBright(` ✔ automatically ignore low severity issue`))
+    },
+    printIgnoreQuestion(){
+        console.log('\n You can ignore permanently or decide to revisit later')   
     }
 }

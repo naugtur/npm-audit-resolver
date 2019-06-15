@@ -1,14 +1,24 @@
 const promptly = require('./micro-promptly');
 const actions = require('./actions');
-const chalk = require('chalk')
-const argv = require('../shared/arguments').get()
+const argv = require('../core/arguments').get()
 const view = require('../views/decisions')
 const rules = require('../core/auditFile').getRules()
 
-function optionsPrompt({ action, advisories }, availableChoices = null) {
+function optionsPrompt({ action, advisories }, choices = null) {
     const actionName = action.action;
 
-    const choices = [
+    const mandatoryChoices = [
+        {
+            key: 's',
+            name: 'Skip this'
+        },
+        {
+            key: 'q',
+            name: 'Quit'
+        }
+    ];
+
+    const defaultChoices = [
         {
             key: 'd',
             name: 'show more details and ask me again'
@@ -24,36 +34,28 @@ function optionsPrompt({ action, advisories }, availableChoices = null) {
         {
             key: 'del',
             name: 'Remove all listed dependency paths'
-        },
-        {
-            key: 's',
-            name: 'Skip this'
-        },
-        {
-            key: 'q',
-            name: 'Quit'
         }
-    ];
+    ]
 
 
     if (['install', 'update'].includes(actionName)) {
-        choices.unshift({
+        defaultChoices.unshift({
             key: 'f',
             name: 'fix automatically'
         });
-    } else {
-        choices.unshift({
-            key: '?',
-            name: chalk.blueBright('investigate')
-        });
     }
+    //  else {
+    //     defaultChoices.unshift({
+    //         key: '?',
+    //         name: 'investigate'
+    //     });
+    // }
 
-    availableChoices = ['q', 's'].concat(availableChoices || choices.map(c => c.key))
+    choices = choices || defaultChoices
+    choices = choices.concat(mandatoryChoices)
 
     view.printChoices(
         choices
-            .filter(c => availableChoices.includes(c.key))
-
     );
 
     return promptly.choose(

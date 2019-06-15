@@ -66,6 +66,7 @@ module.exports = {
             rules,
             version: 1
         }
+        console.error(wrappedData)
         validate(versions[1].schema, wrappedData)
         fs.writeFileSync(defaultFilePath(pathOverride), JSON.stringify(wrappedData, null, 2))
     }

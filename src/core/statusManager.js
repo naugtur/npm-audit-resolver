@@ -35,9 +35,7 @@ function saveResolution(action, { resolution, reason, expiresAt }) {
     }
     action.resolves.map(re => auditFile.set(
         { id: re.id, path: re.path },
-        resolution,
-        reason,
-        expiresAt
+        { resolution, reason, expiresAt }
     ))
 
     return auditFile.flush()
