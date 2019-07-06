@@ -6,6 +6,7 @@ const RESOLUTIONS = require('../core/resolutions/RESOLUTIONS')
 const ONE_WEEK_LATER = Date.now() + 7 * 24 * 60 * 60 * 1000
 const TWO_WEEKS_LATER = Date.now() + 14 * 24 * 60 * 60 * 1000
 const MONTH_LATER = Date.now() + 30 * 24 * 60 * 60 * 1000
+const NEVER = undefined
 
 const strategies = {
     i: function ignore() {
@@ -32,7 +33,7 @@ const strategies = {
         return statusManager.saveResolution(action, { resolution: RESOLUTIONS.IGNORE, expiresAt: MONTH_LATER });
     },
     '!': function ignoreForever({ action, advisories }) {
-        return statusManager.saveResolution(action, { resolution: RESOLUTIONS.IGNORE, expiresAt: MONTH_LATER });
+        return statusManager.saveResolution(action, { resolution: RESOLUTIONS.IGNORE, expiresAt: NEVER });
     },
     r: function remindLater({ action, advisories }) {
         return statusManager.saveResolution(action, { resolution: RESOLUTIONS.POSTPONE });
