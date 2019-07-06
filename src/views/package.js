@@ -8,7 +8,7 @@ const severityNumber = {
 const view = {
     printSkipping(action) {
         console.log(
-            `skipping issues in ${action.module} based on decisions: ${action.resolves.map(re => re.decision).join()} from ${FILE.FILENAME}`
+            `skipping issues in ${action.module} based on decisions: "${Array.from(new Set(action.resolves.map(re => re.decision))).join()}" from ${FILE.FILENAME}`
         )
     },
     printIssue(issue) {
