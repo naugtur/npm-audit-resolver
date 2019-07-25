@@ -8,29 +8,35 @@ function auditOk(issues) {
 }
 
 function printHumanReadableReport(issues) {
-    if (auditOk(issues)) {
-        console.log("audit ok.");
-        return;
-    }
-    issues.forEach(issue => {
+    return new Promise((resolve) => {
+        if (auditOk(issues)) {
+            console.log("audit ok.");
+            return resolve(issues);
+        }
+        issues.forEach(issue => {
+            console.log(
+                `--------------------------------------------------`
+            );
+            console.log(`[${issue.severity}] ${issue.title}`);
+            console.log(issue.items.map(item => item.report).join("\n"));
+        });
+
         console.log(
             `--------------------------------------------------`
         );
-        console.log(`[${issue.severity}] ${issue.title}`);
-        console.log(issue.items.map(item => item.report).join("\n"));
-    });
+        console.error(" 😱   Unresolved issues found!");
+        console.log(
+            `--------------------------------------------------`
+        );
 
-    console.log(
-        `--------------------------------------------------`
-    );
-    console.error(" 😱   Unresolved issues found!");
-    console.log(
-        `--------------------------------------------------`
-    );
+        resolve(issues);
+    });
 }
 
 function printJsonReport(issues) {
-    console.log(JSON.stringify(issues));
+    return new Promise((resolve) => {
+        process.stdout.write(JSON.stringify(issues), () => resolve(issues));
+    });
 }
 
 npmFacade.runNpmCommand('audit', { ignoreExit: true })
@@ -46,14 +52,16 @@ npmFacade.runNpmCommand('audit', { ignoreExit: true })
     .then(result => {
         const { issues } = result;
         if (argv.json) {
-            printJsonReport(result);
+            return printJsonReport(result);
         } else {
-            printHumanReadableReport(issues);
+            return printHumanReadableReport(issues);
         }
+})
+    .then(issues => {
         if (!auditOk(issues)) {
             process.exit(1);
         }
-})
+    })
     .catch(e => {
         console.error(e);
         process.exit(2);
