@@ -1,7 +1,7 @@
 const auditFile = require('./auditFile');
 const RESOLUTIONS = require('./resolutions/RESOLUTIONS');
 
-const { printSkipping } = require('../views/package')
+const { printSkipping } = require('./views/main')
 
 
 function addStatusToAction(action) {

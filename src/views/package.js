@@ -1,4 +1,3 @@
-const FILE = require('../core/auditFile/FILE')
 const severityNumber = {
     low: 10,
     moderate: 20,
@@ -6,11 +5,6 @@ const severityNumber = {
     critical: 40
 }
 const view = {
-    printSkipping(action) {
-        console.log(
-            `skipping issues in ${action.module} based on decisions: "${Array.from(new Set(action.resolves.map(re => re.decision))).join()}" from ${FILE.FILENAME}`
-        )
-    },
     printIssue(issue) {
         console.log(
             `--------------------------------------------------`

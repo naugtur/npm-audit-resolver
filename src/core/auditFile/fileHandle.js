@@ -3,7 +3,7 @@ const djv = require('djv')
 const path = require('path')
 const fs = require('fs')
 const FILE = require('./FILE')
-const migrationView = require('../views/migration')
+const { printV1MigrationNotes } = require('../views/main')
 const versions = {
     0: require('./versions/v0'),
     1: require('./versions/v1')
@@ -23,7 +23,7 @@ function resolutionFilePath(pathOverride) {
 
     const filePath2 = path.resolve(argv.get().prefix || '.', FILE.FILENAME_DEPRECATED)
     if (fs.existsSync(filePath2)) {
-        migrationView.printV1MigrationNotes()
+        printV1MigrationNotes()
         return filePath2
     }
 
@@ -60,7 +60,7 @@ module.exports = {
         const rawdata = fs.readFileSync(resolutionFilePath(pathOverride));
         return parseResolutionsData(rawdata)
     },
-    save({decisions, rules}, pathOverride) {
+    save({ decisions, rules }, pathOverride) {
         const wrappedData = {
             decisions,
             rules,
