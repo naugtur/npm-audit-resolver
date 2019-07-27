@@ -1,4 +1,4 @@
-const { dropResolvedActions } = require('../core/statusManager');
+const { dropResolvedActions } = require('audit-resolve-core/statusManager');
 
 const prompter = require('./prompter');
 

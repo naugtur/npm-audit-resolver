@@ -1,8 +1,8 @@
 const promptly = require('./micro-promptly');
 const actions = require('./actions');
-const argv = require('../core/arguments').get()
+const argv = require('audit-resolve-core/arguments').get()
 const view = require('../views/decisions')
-const rules = require('../core/auditFile').getRules()
+const rules = require('audit-resolve-core/auditFile').getRules()
 
 function optionsPrompt({ action, advisories }, choices = null) {
     const actionName = action.action;

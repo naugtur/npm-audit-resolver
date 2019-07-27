@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-const pkgFacade = require('./src/core/pkgFacade');
+const pkgFacade = require('audit-resolve-core/pkgFacade');
 const view = require('./src/views/general')
-const argv = require('./src/core/arguments').get();
+const argv = require('audit-resolve-core/arguments').get();
 const auditResolver = require('./src/resolve/auditResolver')
 
 // MARK_YARN

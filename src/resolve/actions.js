@@ -1,8 +1,8 @@
-const statusManager = require('../core/statusManager');
-const pkgFacade = require('../core/pkgFacade')
+const statusManager = require('audit-resolve-core/statusManager');
+const pkgFacade = require('audit-resolve-core/pkgFacade')
 // const investigate = require('../investigate');
 const view = require('../views/decisions')
-const RESOLUTIONS = require('../core/resolutions/RESOLUTIONS')
+const RESOLUTIONS = require('audit-resolve-core/resolutions/RESOLUTIONS')
 const ONE_WEEK_LATER = Date.now() + 7 * 24 * 60 * 60 * 1000
 const TWO_WEEKS_LATER = Date.now() + 14 * 24 * 60 * 60 * 1000
 const MONTH_LATER = Date.now() + 30 * 24 * 60 * 60 * 1000

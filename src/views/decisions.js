@@ -1,5 +1,5 @@
 const chalk = require('chalk')
-const RESOLUTIONS = require('../core/resolutions/RESOLUTIONS')
+const RESOLUTIONS = require('audit-resolve-core/resolutions/RESOLUTIONS')
 function appendWarningLine(message, line) {
     return message + '\n     ' + chalk.bold(line);
 }
