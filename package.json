@@ -33,14 +33,12 @@
   "homepage": "https://github.com/naugtur/npm-audit-resolver#readme",
   "license": "Apache 2.0",
   "dependencies": {
-    "audit-resolve-core": "~1.1.0",
-    "chalk": "^2.4.1",
-    "concat-stream": "^1.6.2",
+    "audit-resolve-core": "^1.1.1",
+    "chalk": "^2.4.2",
     "djv": "^2.1.2",
     "read": "^1.0.7",
-    "semver": "^5.5.0",
     "spawn-shell": "^2.1.0",
-    "yargs-parser": "^10.0.0"
+    "yargs-parser": "^13.1.1"
   },
   "devDependencies": {}
 }
