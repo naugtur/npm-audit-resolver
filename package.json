@@ -11,7 +11,7 @@
     "add-vulns": "npm i -D base64url@2.0.0 lodash@2.0.0 dependo@0.2.0",
     "rm-vulns": "npm rm -D base64url lodash dependo",
     "test-exec": "rm -f audit-resolv.json && ! node check.js && node resolve.js && node check.js",
-    "testdrive": "npm run add-vulns && rm -f audit-resolv.json && ! node check.js && node resolve.js && node check.js && npm run rm-vulns",
+    "testdrive": "npm run add-vulns && rm -f audit-resolve.json && ! node check.js && node resolve.js && node check.js && npm run rm-vulns",
     "test": "sh test/e2e/test.sh"
   },
   "keywords": [
