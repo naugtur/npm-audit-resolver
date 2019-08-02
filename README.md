@@ -2,7 +2,7 @@
 
 `npm audit` is great. `npm audit fix` is also there if you didn't know. But sometimes you need to manage your security and make decisions about the dependencies you use.
 
-This tool creates a `audit-resolv.json` file in your app and interactively helps you manage security of your dependencies.
+This tool creates a `audit-resolve.json` file in your app and interactively helps you manage security of your dependencies.
 
 *This package is meant for early adopters. Anything can change, but my team uses it for maintaining over 20 apps so there's likely to be a migration path.*
 
@@ -10,7 +10,7 @@ I'm working on getting it built into npm. See [the RFC](https://github.com/npm/r
 
 ## Install
 
-Requires npm v6.1.0 installed alongside
+Requires npm v6.1.0+ installed alongside
 
 ```
 npm install -g npm-audit-resolver
@@ -25,7 +25,7 @@ resolve-audit
 ```
 
 It goes through the results of `npm audit` and lets you decide what to do with the issues.
-The decisions you make are stored in `audit-resolv.json` to keep track of it in version control and have a log of who decided to do what and when.
+The decisions you make are stored in `audit-resolve.json` to keep track of it in version control and have a log of who decided to do what and when.
 
 ### Arguments 
 
@@ -43,7 +43,7 @@ Run
 check-audit
 ```
 
-This command will only exit with an error if a human needs to make new decisions about vulnerabilities and commit the `audit-resolv.json` file. If all issues are addressed, your build can pass.
+This command will only exit with an error if a human needs to make new decisions about vulnerabilities and commit the `audit-resolve.json` file. If all issues are addressed, your build can pass.
 
 For JSON output (similar to `npm audit --json`), run
 ```
@@ -52,19 +52,18 @@ check-audit --json
 
 ## Features
 
-Want to give it a go? Download this repo and run `npm test`
+Want to give it a go? Download this repo and run `npm run testdrive`
 
 When a vulnerability is found, you get to choose between the following options:
 
 - fix - Runs the fix proposed by npm audit and makes a note. If the same issue comes back because someone else on the team changed package-lock.json, you'll get a warning about that.
-- investigate - If npm audit doesn't suggest a fix, resolver will help you find where the fix could be introduced.
 - show details - Prints more information about the issues form the audit and asks what to do again
 - remind in 24h - Lets you ignore an issue temporarily to make the build pass until a fix is known
-- ignore - Adds the particular dependency paths and advisories to be ignored in the future. If the same issue in the same package comes up, but it's a dependency of another package, it won't get ignored. If a new issue is found in the package, it doesn't get ignored.
+- ignore - Adds the particular dependency paths and advisories to be ignored in the future. If the same issue in the same package comes up, but it's a dependency of another package, it won't get ignored. If a new issue is found in the package, it doesn't get ignored. You can decide if the decision expires.
 - delete - Removes your dependency that brought the vulnerability in its dependencies.
 - skip and quit, obviously
 
-audit-resolv.json is formatted, so git history has a trace of who addressed which vulnerability, when and how.
+audit-resolve.json is formatted, so git history has a trace of who addressed which vulnerability, when and how.
 
 ### Why would I ignore security vulnerabilities?
 
