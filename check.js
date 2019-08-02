@@ -24,11 +24,14 @@ pkgFacade.getAudit({ shellOptions: { ignoreExit: true } })
     .then(result => {
         const { issues } = result;
         if (argv.json) {
-            view.printJsonReport(result);
+            return view.printJsonReportAsync(result)
+                .then(() => auditOk(issues));
         } else {
             view.printHumanReadableReport(auditOk(issues), issues);
+            return auditOk(issues)
         }
-        if (!auditOk(issues)) {
+    }).then(isOk => {
+        if (!isOk) {
             process.exit(1);
         }
     })

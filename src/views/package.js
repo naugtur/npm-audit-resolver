@@ -1,3 +1,5 @@
+const util = require('util')
+const safePrint = util.promisify(process.stdout.write.bind(process.stdout))
 const severityNumber = {
     low: 10,
     moderate: 20,
@@ -37,8 +39,8 @@ const view = {
 
         view.printOhnoes()
     },
-    printJsonReport(issues) {
-        console.log(JSON.stringify(issues, null, 2));
+    printJsonReportAsync(issues) {
+        return safePrint(JSON.stringify(issues, null, 2));
     }
 
 }
