@@ -1,4 +1,5 @@
 # npm audit resolver
+*Now with yarn support too*
 
 `npm audit` is great. `npm audit fix` is also there if you didn't know. But sometimes you need to manage your security and make decisions about the dependencies you use.
 
@@ -31,6 +32,7 @@ The decisions you make are stored in `audit-resolve.json` to keep track of it in
 
 ```
 --ignoreLow automatically resolve issue to ignored if severity of all vulnerabilities in that dependency is low
+--yarn switched to yarn package manager as the command to support
 ```
 
 ### Running in CI
