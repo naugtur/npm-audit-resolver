@@ -8,6 +8,18 @@ if [ $? -gt 0 ]; then
   exit 1
 fi
 
+echo 'migrates from old format to new'
+rm ./audit-resolve.json
+cp test/e2e/deprecatedResolvFormat.json ./audit-resolv.json
+node check.js --mock=test/e2e/emptyAudit.json --json > /dev/null
+EXITCODE=$?
+rm ./audit-resolv.json
+
+if [ $EXITCODE -gt 0 ]; then
+  echo 'FAILED'
+  exit 1
+fi
+
 echo 'run check and get it to exit 1 for vulns found'
 node check.js --mock=test/e2e/bigAudit.json --json > /dev/null
 
