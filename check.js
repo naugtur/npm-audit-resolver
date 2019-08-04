@@ -8,11 +8,13 @@ function auditOk(issues) {
     return !(issues && issues.length);
 }
 
-// MARK_YARN
-// register your implementation
-pkgFacade.addImplementation('npm', require('./src/pkgmanagers/npm'))
-// add detection or some sort of selection here
-pkgFacade.setActiveImplementation('npm')
+if (argv.yarn) {
+    pkgFacade.addImplementation('yarn', require('./src/pkgmanagers/yarn'))
+    pkgFacade.setActiveImplementation('yarn')
+} else {
+    pkgFacade.addImplementation('npm', require('./src/pkgmanagers/npm'))
+    pkgFacade.setActiveImplementation('npm')
+}
 
 pkgFacade.getAudit({ shellOptions: { ignoreExit: true } })
     .then(input => {
