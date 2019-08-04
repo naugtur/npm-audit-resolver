@@ -8,35 +8,17 @@ const fs = require('fs')
 function addPackageLockFromYarnIfNecessary() {
     console.error('Creating package-lock.json from yarn.lock')
     const stringifiedPackageLock = yarnToNpm('.')
-    return new Promise((resolve, reject) => {
-        fs.writeFile('./package-lock.json', stringifiedPackageLock, (error) => {
-            if (error) {
-                return reject(error)
-            }
-            resolve()
-        })
-    })
+    fs.writeFileSync('./package-lock.json', stringifiedPackageLock)
 }
 
-function removePackageLockIfNecessary(input) {
+function removePackageLockIfNecessary() {
     // Do nothing if package-lock does not exist
     try {
         fs.statSync('./package-lock.json')
-    } catch (e) {
-        return input;
-    }
+    } catch (e) { }
 
     console.error('Removing package-lock.json')
-    return new Promise((resolve, reject) => {
-        fs.unlink('./package-lock.json', (error) => {
-            if (error) {
-                return reject(error)
-            }
-
-            // Pass through original arguments
-            resolve(input)
-        })
-    })
+    fs.unlinkSync('./package-lock.json')
 }
 
 module.exports = {
