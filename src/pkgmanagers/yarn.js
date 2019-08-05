@@ -25,14 +25,15 @@ module.exports = {
     version: 1,
     getAudit({ promiseCommand, argv, shellOptions }) {
         console.error('WARNING: yarn support is experimental')
-        return addPackageLockFromYarnIfNecessary()
+        return Promise.resolve()
+            .then(addPackageLockFromYarnIfNecessary)
             .then(() => promiseCommand(`npm audit --json ${argv.registry ? `--registry ${argv.registry}` : ''}`, shellOptions))
             .finally(removePackageLockIfNecessary)
     },
     fix({ promiseCommand, argv, shellOptions, action }) {
         console.error('WARNING: yarn support for fixing dependencies is experimental.')
         if (action.action === 'install') {
-            const isDev = packageJSON.devDependencies[action.module] !== undefined;
+            const isDev = packageJSON.devDependencies && packageJSON.devDependencies[action.module] !== undefined;
             return promiseCommand(`yarn add ${isDev ? '--dev ' : ''}${action.module}@${action.target}`, shellOptions)
         } else {
             return promiseCommand(`yarn upgrade ${action.module}`, shellOptions)

@@ -46,7 +46,6 @@ const strategies = {
     },
     del: function del({ action, advisories }) {
         view.printDecision('Remove');
-        pkgFacade.removeAll({ action })
         const uniqueNames = action.resolves.reduce((mem, re) => {
             const topModule = re.path.split('>')[0]
             if (topModule) {
