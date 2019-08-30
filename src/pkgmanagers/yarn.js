@@ -1,34 +1,59 @@
-// All credit for this code goes to https://github.com/clement-escolano
-// I just put it here because he didn't seem to have time anymore.
-
 const packageJSON = require(require('path').resolve('./package.json'))
-const yarnToNpm = require('synp').yarnToNpm
-const fs = require('fs')
+const jsonlines = require('jsonlines')
 
-function addPackageLockFromYarnIfNecessary() {
-    console.error('Creating package-lock.json from yarn.lock')
-    const stringifiedPackageLock = yarnToNpm('.')
-    fs.writeFileSync('./package-lock.json', stringifiedPackageLock)
+function aggregateActions(audit, entry) {
+    const modulename = entry.data.advisory.module_name
+    if (!audit.actions[modulename]) {
+        audit.actions[modulename] = {
+            //TODO: dig through npm audit to find the logic of getting those
+            action: 'update', //no idea what's the difference between update and install really
+            target: 'noidea', //derive from entr.data.advisory.patched_versions 
+            module: modulename,
+            depth: 0,
+            resolves: []
+        }
+    }
+
+    audit.actions[modulename].depth = Math.max(audit.actions[modulename].depth, entry.data.resolution.path.split('>').length)
+    audit.actions[modulename].resolves.push(entry.data.resolution)
+    audit.advisories[entry.data.advisory.id] = entry.data.advisory
+
+    return entry.data
 }
 
-function removePackageLockIfNecessary() {
-    // Do nothing if package-lock does not exist
-    try {
-        fs.statSync('./package-lock.json')
-    } catch (e) { }
-
-    console.error('Removing package-lock.json')
-    fs.unlinkSync('./package-lock.json')
+function reformat(result) {
+    return {
+        actions: Object.keys(result.actions).map(key => result.actions[key]),
+        advisories: result.advisories
+    }
 }
+
 
 module.exports = {
     version: 1,
     getAudit({ promiseCommand, argv, shellOptions }) {
         console.error('WARNING: yarn support is experimental')
-        return Promise.resolve()
-            .then(addPackageLockFromYarnIfNecessary)
-            .then(() => promiseCommand(`npm audit --json ${argv.registry ? `--registry ${argv.registry}` : ''}`, shellOptions))
-            .finally(removePackageLockIfNecessary)
+        return promiseCommand(`npm audit --json ${argv.registry ? `--registry ${argv.registry}` : ''}`, shellOptions)
+            .then(output => {
+                const result = { actions: {}, advisories: {} }
+                const parser = jsonlines.parse()
+
+                const parsing = new Promise((resolve, reject) => {
+                    parser.on('data', (line) => {
+                        if (line.type === 'auditAdvisory') {
+                            aggregateActions(result, line)
+                        }
+                    })
+
+                    parser.on('end', () => resolve(reformat(result)))
+                    parser.on('error', reject)
+                })
+
+                parser.write(output)
+                parser.end()
+
+                return parsing
+            })
     },
     fix({ promiseCommand, argv, shellOptions, action }) {
         console.error('WARNING: yarn support for fixing dependencies is experimental.')
