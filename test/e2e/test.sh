@@ -9,7 +9,7 @@ if [ $? -gt 0 ]; then
 fi
 
 echo 'migrates from old format to new'
-rm ./audit-resolve.json
+rm ./audit-resolve.json 2>/dev/null
 cp test/e2e/deprecatedResolvFormat.json ./audit-resolv.json
 node check.js --mock=test/e2e/emptyAudit.json --json > /dev/null
 EXITCODE=$?
