@@ -12,15 +12,30 @@ function getCommand(action) {
 
 module.exports = {
     version: 1,
-    getAudit({ promiseCommand, argv,  shellOptions }) {
+    getAudit({ promiseCommand, argv, shellOptions }) {
         return promiseCommand(`npm audit --json ${argv.registry ? `--registry ${argv.registry}` : ''}`, shellOptions)
+            .then(output => {
+                try {
+                    return JSON.parse(output)
+                } catch (e) {
+                    console.error('failed to parse output')
+                    console.error(output)
+                    throw e;
+                }
+            })
+            .then(parsed => {
+                if (parsed.error) {
+                    throw Error(`'npm audit' failed with ${input.error.code}. Check the log above for more details.`);
+                }
+                return parsed
+            })
         //TODO: retries on ENOAUDIT
     },
-    fix({ promiseCommand, argv,  shellOptions, action }){
-        
+    fix({ promiseCommand, argv, shellOptions, action }) {
+
         return promiseCommand(getCommand(action), shellOptions)
     },
-    remove({ promiseCommand, argv,  shellOptions, names }){
+    remove({ promiseCommand, argv, shellOptions, names }) {
         //TODO: include the fact that some of them are dev dependencies and we don't know which, because we shouldn't have to at this point
         //FIXME: this command might not delete everything as expected
         return promiseCommand(`npm rm ${names.join(' ')}`, shellOptions)
