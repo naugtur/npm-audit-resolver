@@ -33,7 +33,7 @@ module.exports = {
     version: 1,
     getAudit({ promiseCommand, argv, shellOptions }) {
         console.error('WARNING: yarn support is experimental')
-        return promiseCommand(`npm audit --json ${argv.registry ? `--registry ${argv.registry}` : ''}`, shellOptions)
+        return promiseCommand(`yarn audit --json ${argv.registry ? `--registry ${argv.registry}` : ''}`, shellOptions)
             .then(output => {
                 const result = { actions: {}, advisories: {} }
                 const parser = jsonlines.parse()
