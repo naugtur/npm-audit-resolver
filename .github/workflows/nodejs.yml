@@ -3,13 +3,13 @@ name: Node CI
 on: [push]
 
 jobs:
-  build:
+  teste2e:
 
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [6.x, 8.x, 10.x, 12.x]
+        node-version: [8.x, 10.x, 12.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -19,7 +19,24 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: test
       run: |
-        npm ci || npm install
+        npm ci
+        npm test
+      env:
+        CI: true
+  node6support:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 6
+      uses: actions/setup-node@v1
+      with:
+        node-version: 6.x
+    - name: test
+      run: |
+        npm i -g npm
+        npm install
         npm test
       env:
         CI: true
