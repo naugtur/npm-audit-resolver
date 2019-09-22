@@ -47,4 +47,25 @@ if [ $RESULT -ne 4799 ]; then
 fi
 
 
-echo 'OK'
+echo '- Mocks ----------------------- OK'
+
+
+echo 'runs on npm'
+node check.js > /dev/null
+
+EXITCODE=$?
+if [ $EXITCODE -ne 0 ]; then
+  echo "FAILED, expected exit code 0, got $EXITCODE"
+  exit 1
+fi
+
+echo 'runs on yarn'
+node check.js --yarn > /dev/null
+
+EXITCODE=$?
+if [ $EXITCODE -ne 0 ]; then
+  echo "FAILED, expected exit code 0, got $EXITCODE"
+  exit 1
+fi
+
+echo '- Runs ----------------------- OK'
