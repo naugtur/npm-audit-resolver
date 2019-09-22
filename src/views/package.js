@@ -1,5 +1,10 @@
-const util = require('util')
-const safePrint = util.promisify(process.stdout.write.bind(process.stdout))
+const safePrint = message => new Promise((resolve, reject) => process.stdout.write(message, (err) => {
+    if (err) { reject(err) }
+    resolve()
+}));
+
+// FIXME: drop Node.js v6 support
+// const safePrint = require('util').promisify(process.stdout.write.bind(process.stdout))
 const severityNumber = {
     low: 10,
     moderate: 20,
