@@ -50,8 +50,8 @@ fi
 echo '- Mocks ----------------------- OK'
 
 
-echo 'runs on npm'
-node check.js > /dev/null
+echo 'runs check on npm'
+node check.js > /dev/null 
 
 EXITCODE=$?
 if [ $EXITCODE -ne 0 ]; then
@@ -59,8 +59,27 @@ if [ $EXITCODE -ne 0 ]; then
   exit 1
 fi
 
-echo 'runs on yarn'
-node check.js --yarn > /dev/null
+echo 'runs check on yarn'
+node check.js --yarn > /dev/null 
+
+EXITCODE=$?
+if [ $EXITCODE -ne 0 ]; then
+  echo "FAILED, expected exit code 0, got $EXITCODE"
+  exit 1
+fi
+
+
+echo 'runs resolve on npm'
+echo q | node resolve.js > /dev/null 
+
+EXITCODE=$?
+if [ $EXITCODE -ne 0 ]; then
+  echo "FAILED, expected exit code 0, got $EXITCODE"
+  exit 1
+fi
+
+echo 'runs resolve on yarn'
+echo q | node resolve.js --yarn > /dev/null 
 
 EXITCODE=$?
 if [ $EXITCODE -ne 0 ]; then
