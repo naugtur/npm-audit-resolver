@@ -52,6 +52,11 @@ For JSON output (similar to `npm audit --json`), run
 check-audit --json
 ```
 
+For JSON output (similar to `npm audit --json`), run
+```
+check-audit --json
+```
+
 ## Features
 
 Want to give it a go? Download this repo and run `npm run testdrive`
