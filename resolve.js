@@ -14,9 +14,6 @@ if (argv.yarn) {
 
 pkgFacade.getAudit({ shellOptions: { ignoreExit: true } })
     .then(input => {
-        if (!argv.json) {
-            view.totalActions(input.actions.length)
-        }
         return auditResolver.askForResolutions(input)
     })
     .catch(e => {
