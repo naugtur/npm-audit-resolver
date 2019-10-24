@@ -25,7 +25,7 @@ module.exports = {
             })
             .then(parsed => {
                 if (parsed.error) {
-                    throw Error(`'npm audit' failed with ${input.error.code}. Check the log above for more details.`);
+                    throw Error(`'npm audit' failed with ${parsed.error.code}. Check the log above for more details.`);
                 }
                 return parsed
             })
