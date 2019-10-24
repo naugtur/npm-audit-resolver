@@ -53,11 +53,6 @@ For JSON output (similar to `npm audit --json`), run
 check-audit --json
 ```
 
-For JSON output (similar to `npm audit --json`), run
-```
-check-audit --json
-```
-
 ## Features
 
 Want to give it a go? Download this repo and run `npm run testdrive`
@@ -67,13 +62,15 @@ When a vulnerability is found, you get to choose between the following options:
 - fix - Runs the fix proposed by npm audit and makes a note. If the same issue comes back because someone else on the team changed package-lock.json, you'll get a warning about that.
 - show details - Prints more information about the issues form the audit and asks what to do again
 - remind in 24h - Lets you ignore an issue temporarily to make the build pass until a fix is known
-- ignore - Adds the particular dependency paths and advisories to be ignored in the future. If the same issue in the same package comes up, but it's a dependency of another package, it won't get ignored. If a new issue is found in the package, it doesn't get ignored. You can decide if the decision expires.
+- ignore - Adds the particular dependency paths and advisories to be ignored in the future. If the same issue in the same package comes up, but it's a dependency of another package, it won't get ignored. If a new issue is found in the package, it doesn't get ignored. You can decide if the decision expires or not.
 - delete - Removes your dependency that brought the vulnerability in its dependencies.
 - skip and quit, obviously
 
 audit-resolve.json is formatted, so git history has a trace of who addressed which vulnerability, when and how.
 
 ### Why would I ignore security vulnerabilities?
+
+Because otherwise running `npm audit` as part of your CI is not practical.
 
 - dev dependencies! a DOS vulnerability in your test runner's dependency is not a showstopper
 - build tooling vulnerability
