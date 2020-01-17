@@ -40,7 +40,8 @@
     "jsonlines": "^0.1.1",
     "read": "^1.0.7",
     "spawn-shell": "^2.1.0",
-    "yargs-parser": "^13.1.1"
+    "yargs-parser": "^13.1.1",
+    "yargs-unparser": "^1.5.0"
   },
   "devDependencies": {}
 }

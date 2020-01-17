@@ -1,3 +1,4 @@
+const unparse = require('../unparse');
 
 function getCommand(action) {
     // Derived from npm-audit-report
@@ -13,7 +14,9 @@ function getCommand(action) {
 module.exports = {
     version: 1,
     getAudit({ promiseCommand, argv, shellOptions }) {
-        return promiseCommand(`npm audit --json ${argv.registry ? `--registry ${argv.registry}` : ''}`, shellOptions)
+        const unparsed = unparse(argv, ['json']);
+        
+        return promiseCommand(`npm audit --json ${unparsed}`, shellOptions)
             .then(output => {
                 try {
                     return JSON.parse(output)
