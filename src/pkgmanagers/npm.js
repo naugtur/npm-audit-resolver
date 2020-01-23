@@ -1,4 +1,5 @@
-const unparse = require('../unparse');
+const unparse = require('../unparse')
+const skipArgs = require('../skipArgs')
 
 function getCommand(action) {
     // Derived from npm-audit-report
@@ -14,7 +15,7 @@ function getCommand(action) {
 module.exports = {
     version: 1,
     getAudit({ promiseCommand, argv, shellOptions }) {
-        const unparsed = unparse(argv, ['json']);
+        const unparsed = unparse(argv, skipArgs)
         
         return promiseCommand(`npm audit --json ${unparsed}`, shellOptions)
             .then(output => {

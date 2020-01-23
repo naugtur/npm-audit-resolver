@@ -87,4 +87,22 @@ if [ $EXITCODE -ne 0 ]; then
   exit 1
 fi
 
+
+echo 'runs check on npm with extra args'
+RESULT1=`node check.js --production --XbookmarkX --migrate | grep XbookmarkX | wc -l`  
+RESULT2=`node check.js --production --XbookmarkX --migrate | grep XbookmarkX | grep migrate | wc -l` 
+
+if [ $RESULT1 -ne 1 ] || [ $RESULT2 -ne 0 ]; then
+  echo "FAILED, expected passing arguments down to work, expected filtering out arguments to work"
+  exit 1
+fi
+
+echo 'runs check on yarn with extra args'
+RESULT1=`node check.js --yarn --production --XbookmarkX --migrate | grep XbookmarkX | wc -l`  
+RESULT2=`node check.js --yarn --production --XbookmarkX --migrate | grep XbookmarkX | grep migrate | wc -l` 
+
+if [ $RESULT1 -ne 1 ] || [ $RESULT2 -ne 0 ]; then
+  echo "FAILED, expected passing arguments down to work, expected filtering out arguments to work"
+  exit 1
+fi
 echo '- Runs ----------------------- OK'

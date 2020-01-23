@@ -31,10 +31,11 @@ The decisions you make are stored in `audit-resolve.json` to keep track of it in
 ### Arguments 
 
 ```
---ignoreLow automatically resolve issue to ignored if severity of all vulnerabilities in that dependency is low
 --yarn switched to yarn package manager as the command to support
 --migrate forces migration to a new file and format even if no modifications are made to decisions
 ```
+
+All other arguments are passed down to the npm/yarn audit call
 
 ### Running in CI
 
@@ -52,6 +53,8 @@ For JSON output (similar to `npm audit --json`), run
 ```
 check-audit --json
 ```
+
+All other arguments are passed down to the npm/yarn audit call
 
 ## Features
 

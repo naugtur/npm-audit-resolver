@@ -1,5 +1,8 @@
 const packageJSON = require(require('path').resolve('./package.json'))
 const jsonlines = require('jsonlines')
+const unparse = require('../unparse')
+const skipArgs = require('../skipArgs')
+
 
 function aggregateActions(audit, entry) {
     const modulename = entry.data.advisory.module_name
@@ -33,7 +36,7 @@ module.exports = {
     version: 1,
     getAudit({ promiseCommand, argv, shellOptions }) {
         console.error('WARNING: yarn support is experimental')
-        const unparsed = unparse(argv, ['json']);
+        const unparsed = unparse(argv, skipArgs)
         
         return promiseCommand(`yarn audit --json ${unparsed}`, shellOptions)
             .then(output => {

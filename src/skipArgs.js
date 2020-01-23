@@ -1,0 +1,1 @@
+module.exports = ['json', 'migrate', 'yarn', 'mock', 'fix']

@@ -43,5 +43,7 @@
     "yargs-parser": "^13.1.1",
     "yargs-unparser": "^1.5.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "pre-commit": "^1.2.2"
+  }
 }
