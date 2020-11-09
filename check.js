@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const pkgFacade = require('audit-resolve-core/pkgFacade');
+const pkgFacade = require('./src/pkgFacade');
 const view = Object.assign({}, require('./src/views/package'), require('./src/views/general'))
 const argv = require('audit-resolve-core/arguments').get();
 const auditChecker = require('./src/check/auditChecker')

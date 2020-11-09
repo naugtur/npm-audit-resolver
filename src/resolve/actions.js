@@ -1,5 +1,5 @@
 const statusManager = require('audit-resolve-core/statusManager');
-const pkgFacade = require('audit-resolve-core/pkgFacade')
+const pkgFacade = require('../pkgFacade')
 // const investigate = require('../investigate');
 const view = require('../views/decisions')
 const RESOLUTIONS = require('audit-resolve-core/resolutions/RESOLUTIONS')
