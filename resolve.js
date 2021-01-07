@@ -7,6 +7,9 @@ const auditResolver = require('./src/resolve/auditResolver')
 if (argv.yarn) {
     pkgFacade.addImplementation('yarn', require('./src/pkgmanagers/yarn'))
     pkgFacade.setActiveImplementation('yarn')
+} else if (argv.pnpm) {
+    pkgFacade.addImplementation('pnpm', require('./src/pkgmanagers/pnpm'))
+    pkgFacade.setActiveImplementation('pnpm')
 } else {
     pkgFacade.addImplementation('npm', require('./src/pkgmanagers/npm'))
     pkgFacade.setActiveImplementation('npm')
