@@ -16,7 +16,7 @@ if (argv.yarn) {
     pkgFacade.setActiveImplementation('npm')
 }
 
-pkgFacade.getAudit({ shellOptions: { ignoreExit: true } })
+pkgFacade.getAudit({ argv, shellOptions: { ignoreExit: true } })
     .then(input => {
         if (!argv.json) {
             view.totalActions(input.actions.length)
