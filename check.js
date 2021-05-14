@@ -18,6 +18,7 @@ if (argv.yarn) {
 
 pkgFacade.getAudit({ argv, shellOptions: { ignoreExit: true } })
     .then(input => {
+        console.log(input)
         if (!argv.json) {
             view.totalActions(input.actions.length)
         }

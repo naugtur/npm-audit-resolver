@@ -16,5 +16,9 @@ If only a is a direct dependency, I need the a>b>c in audit-resolve file.
 If both a and b are installed, I need a>b>c AND b>c. 
 There's no way to tell which items in npm7 audit output are direct dependencies so I have to run `npm ls --depth=0 --json` to get that information. 
 
-An indicatoin of thta fact with a simple boolean or `.depth` field would do a lot to help.
+ASK1: An indicatoin of thta fact with a simple boolean or `.depth` field would do a lot to help.
 I thought of using the "nodes" field, but it seems with deduplication they often land at the top.
+
+
+Current audit doesn't seem to have enough information available in it to construct a valid fix command - install or update, dev dependency or not, depth, that's missing from the audit output in npm7 and audit-resolver doesn't have a command to run to fix an individual issue and record the fact it was fixed. 
+ASK2: add a `.command` field to fixAvailable or share/expose the algorithm with which npm audit fix decides what to do.

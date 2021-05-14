@@ -138,7 +138,6 @@ module.exports = {
                 handleOutput('npm audit',audit),
                 handleOutput('npm ls',ls)
             ))
-            .then(console.log)
         //TODO: retries on ENOAUDIT
     },
     fix({ promiseCommand, argv, shellOptions, action }) {
