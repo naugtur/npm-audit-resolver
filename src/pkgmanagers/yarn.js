@@ -39,7 +39,7 @@ module.exports = {
                         }
                     })
 
-                    parser.on('end', () => resolve(reindex))
+                    parser.on('end', () => resolve(Object.values(reindex)))
                     parser.on('error', reject)
                 })
 

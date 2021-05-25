@@ -51,7 +51,7 @@ function reformatFromV2(input, ls){
     }
     // start with direct dependencies and only then move down the 'via' tree. vulnerabilities are a flat list of also transitive dependencies
     Object.keys(vulns).filter(a => !!ls.dependencies[a]).forEach(name => indexPaths(name))
-    return reindex;
+    return Object.values(reindex);
     // .
     // {
     // "name": "base64url",
@@ -97,7 +97,7 @@ function reformatFromLegacy(input) {
             }
         })
     })
-    return reindex
+    return Object.values(reindex);
 }
 
 function reformat(input, ls){

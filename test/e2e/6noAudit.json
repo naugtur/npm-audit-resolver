@@ -1,0 +1,4 @@
+{
+    "npm audit --json": {},
+    "npm ls --depth=0 --json": {}
+}

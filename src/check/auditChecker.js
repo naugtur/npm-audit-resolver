@@ -2,34 +2,32 @@ const { getResolution, RESOLUTIONS } = require('audit-resolve-core');
 
 
 module.exports = {
-    dropResolvedActions,
     /**
      *
      *
      * @param {Array<Vuln>} audit
      * @returns {Array<VulnResolution} 
      */
-    getUnresolved(audit) {
+    getUnresolved(audit = []) {
         return audit.map(item => {
             let unresolved = false;
             item.resolutions = item.paths.map(path => {
-                const decision = getResolution({ id: item.id, path })
-                const status = resolution //todo - check how it maps
-                if (status) {
-                    if (status === RESOLUTIONS.FIX) {
+                const resolution = getResolution({ id: item.id, path })
+                if (resolution) {
+                    if (resolution === RESOLUTIONS.FIX) {
                         // should have been fixed!
                         unresolved = true
                     }
-                    if (status === RESOLUTIONS.EXPIRED) {
+                    if (resolution === RESOLUTIONS.EXPIRED) {
                         unresolved = true
                     }
-                    if (status === RESOLUTIONS.NONE) {
+                    if (resolution === RESOLUTIONS.NONE) {
                         unresolved = true
                     }
                 } else {
                     unresolved = true
                 }
-                return { path, decision }
+                return { path, resolution }
 
             })
             if (unresolved) {

@@ -14,10 +14,13 @@ const severityNumber = {
     critical: 40
 }
 
-function reportDecision(decision){
-    //TODO: print message based on decision
-    // was already fixed, postpone ran out etc
-    return decision
+reportMessages = {
+    [RESOLUTIONS.FIX]: "! was fixed before",
+    [RESOLUTIONS.EXPIRED]: "! decision to ignore expired"
+}
+
+function reportResolution(resolution) {
+    return reportMessages[resolution] || ""
 }
 const view = {
     /**
@@ -29,14 +32,14 @@ const view = {
         console.log(
             `--------------------------------------------------`
         );
-        console.log(`[${issue.severity}] ${issue.name}: ${issue.title}`);
-        console.log(issue.resolutions.map(({path, decision}) => `${path} ${reportDecision(decision)}`));
+        console.log(`[${issue.severity}] ${issue.name}: ${issue.title} (${issue.id})`);
+        console.log(issue.resolutions.map(({ path, resolution }) => `  ${path} ${reportResolution(resolution)}`).join("\n"));
     },
     printOhnoes() {
         console.log(
             `--------------------------------------------------`
         );
-        console.error(" 😱   Unresolved issues found!");
+        console.log(" 😱   Unresolved issues found!");
         console.log(
             `--------------------------------------------------`
         );

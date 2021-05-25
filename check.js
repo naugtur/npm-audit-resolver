@@ -18,7 +18,6 @@ if (argv.yarn) {
 
 pkgFacade.getAudit({ argv, shellOptions: { ignoreExit: true } })
     .then(input => {
-        console.log(input)
         if (!argv.json) {
             view.totalActions(Object.keys(input).length)
         }
@@ -26,7 +25,7 @@ pkgFacade.getAudit({ argv, shellOptions: { ignoreExit: true } })
     })
     .then(issues => {
         if (argv.json) {
-            return view.printJsonReportAsync(result)
+            return view.printJsonReportAsync(issues)
                 .then(() => auditOk(issues));
         } else {
             view.printHumanReadableReport(auditOk(issues), issues);
