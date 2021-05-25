@@ -111,7 +111,7 @@ function reformat(input, ls){
 
 const handleOutput = (of,output) => {
     let parsed
-    console.log(`>>${of} ${output.substr(0,10)}`)
+    // console.log(`>>${of} ${output.substr(0,10)}`)
     try {
         parsed =  JSON.parse(output)
     } catch (e) {

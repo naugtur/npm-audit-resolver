@@ -4,8 +4,14 @@ const argv = require('audit-resolve-core/arguments').get()
 const view = require('../views/decisions')
 const rules = require('audit-resolve-core/auditFile').getRules()
 
-function optionsPrompt({ action, advisories }, choices = null) {
-    const actionName = action.action;
+/**
+ *
+ *
+ * @param {{vuln:VulnResolution}} { vuln }
+ * @param {*} [choices=null]
+ * @returns
+ */
+function optionsPrompt({ vuln }, choices = null) {
 
     const mandatoryChoices = [
         {
@@ -19,10 +25,6 @@ function optionsPrompt({ action, advisories }, choices = null) {
     ];
 
     const defaultChoices = [
-        {
-            key: 'd',
-            name: 'show more details and ask me again'
-        },
         {
             key: 'r',
             name: 'remind me in 24h'
@@ -38,7 +40,7 @@ function optionsPrompt({ action, advisories }, choices = null) {
     ]
 
 
-    if (['install', 'update'].includes(actionName)) {
+    if (vuln.fixAvailable) {
         defaultChoices.unshift({
             key: 'f',
             name: 'fix automatically'
@@ -63,10 +65,10 @@ function optionsPrompt({ action, advisories }, choices = null) {
         choices.map(c => c.key),
         { trim: true, retry: true }
     )
-        .then(answer => actions.takeAction(answer, { action, advisories }))
+        .then(answer => actions.takeAction(answer, { vuln }))
         .then(choicesAvailableNow => {
             if (choicesAvailableNow !== undefined) {
-                return optionsPrompt({ action, advisories }, choicesAvailableNow)
+                return optionsPrompt({ vuln }, choicesAvailableNow)
             }
         })
 }
@@ -75,26 +77,20 @@ function optionsPrompt({ action, advisories }, choices = null) {
 
 
 module.exports = {
-    handleAction(action, advisories) {
-        view.printActionIntro(action)
-        const groupedResolutions = action.resolves.reduce((groups, re) => {
-            groups[re.id] = groups[re.id] || [];
-            groups[re.id].push(view.buildEntryForResolution(re));
-            return groups;
-        }, {});
-        let onlyLow = true;
-        Object.keys(groupedResolutions).forEach(reId => {
-            const adv = advisories[reId];
-            if (adv.severity !== 'low') {
-                onlyLow = false
-            }
-            view.printResolutionGroupInfo(groupedResolutions[reId], adv)
-        });
-        if ((argv.ignoreLow || rules.ignoreLowSeverity) && onlyLow) {
+    /**
+     *
+     *
+     * @param {VulnResolution} vuln
+     * @returns
+     */
+    handleVuln(vuln) {
+        view.printIntro(vuln)
+        
+        if ((argv.ignoreLow || rules.ignoreLowSeverity) && vuln.severity === 'low') {
             view.printLowSeverityHint()
-            return actions.takeAction('i', { action, advisories });
+            return actions.takeAction('i', { vuln });
         }
 
-        return optionsPrompt({ action, advisories })
+        return optionsPrompt({ vuln })
     }
 };

@@ -17,6 +17,6 @@ interface Vuln {
 interface VulnResolution extends Vuln {
     resolutions: Arry<{
         path: string,
-        decision: any
+        resolution: any
     }>
 }
