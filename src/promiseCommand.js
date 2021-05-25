@@ -45,9 +45,6 @@ module.exports = function promiseCommand(command, opts = {}) {
     pSpawn.exitPromise
       .then((exitCode) => {
         if (opts.ignoreExit || exitCode === 0) {
-          if (!argv.json) {
-            console.log('>>>> exit:', exitCode)
-          }
           return
         } else {
           throw Error('Exit ' + exitCode)

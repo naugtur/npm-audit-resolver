@@ -75,8 +75,8 @@ fi
 
 echo 'long output pipes correctly'
 RESULT=`node check.js --mock=test/e2e/6bigAudit.json --json | wc -l`
-if [ $RESULT -ne 512 ]; then
-  echo "piped output truncated. expected 512 got $RESULT"
+if [ $RESULT -ne 510 ]; then
+  echo "piped output truncated. expected 510 got $RESULT"
   echo 'FAILED'
   exit 1
 fi
@@ -127,7 +127,7 @@ echo 'runs check on npm with extra args'
 RESULT1=`node check.js --production --XbookmarkX --migrate | grep XbookmarkX | wc -l`  
 RESULT2=`node check.js --production --XbookmarkX --migrate | grep XbookmarkX | grep migrate | wc -l` 
 
-if [ $RESULT1 -ne 1 ] || [ $RESULT2 -ne 0 ]; then
+if [ $RESULT1 -lt 1 ] || [ $RESULT2 -ne 0 ]; then
   echo "FAILED, expected passing arguments down to work, expected filtering out arguments to work"
   exit 1
 fi
@@ -136,7 +136,7 @@ echo 'runs check on yarn with extra args'
 RESULT1=`node check.js --yarn --production --XbookmarkX --migrate | grep XbookmarkX | wc -l`  
 RESULT2=`node check.js --yarn --production --XbookmarkX --migrate | grep XbookmarkX | grep migrate | wc -l` 
 
-if [ $RESULT1 -ne 1 ] || [ $RESULT2 -ne 0 ]; then
+if [ $RESULT1 -lt 1 ] || [ $RESULT2 -ne 0 ]; then
   echo "FAILED, expected passing arguments down to work, expected filtering out arguments to work"
   exit 1
 fi
