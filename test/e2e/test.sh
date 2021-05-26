@@ -74,9 +74,9 @@ if [ $EXITCODE -ne 2 ]; then
 fi
 
 echo 'long output pipes correctly'
-RESULT=`node check.js --mock=test/e2e/6bigAudit.json --json | wc -l`
-if [ $RESULT -ne 510 ]; then
-  echo "piped output truncated. expected 510 got $RESULT"
+RESULT=`node check.js --mock=test/e2e/hugeAudit.json --json | wc -l`
+if [ $RESULT -ne 1235 ]; then
+  echo "piped output truncated. expected 1235 got $RESULT"
   echo 'FAILED'
   exit 1
 fi

@@ -51,7 +51,7 @@ module.exports = {
 
         vuln.resolutions.forEach(({ resolution, path }) => console.log(` - ${path} ${reportResolution(resolution)}`))
 
-        if (vuln.fixAvailable?.isSemVerMajor) {
+        if (vuln.fixAvailable && vuln.fixAvailable.isSemVerMajor) {
             console.log(chalk.yellow(`\n  warning: fix is a major version upgrade`));
         }
     },

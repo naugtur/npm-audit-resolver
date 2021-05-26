@@ -1,5 +1,4 @@
 # npm audit resolver
-*Now with yarn support too*
 
 `npm audit` is great. `npm audit fix` is also there if you didn't know. But sometimes you need to manage your security and make decisions about the dependencies you use.
 
@@ -11,7 +10,8 @@ I'm working on getting it built into npm. See [the RFC](https://github.com/npm/r
 
 ## Install
 
-Requires npm v6.1.0+ installed alongside
+Requires npm v6.1.0+ or yarn 1.x installed alongside  
+Works with node 8+
 
 ```
 npm install -g npm-audit-resolver
