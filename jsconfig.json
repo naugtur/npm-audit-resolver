@@ -1,0 +1,6 @@
+{
+    "allowJs":true,
+    "checkJs":true,
+    "include": ["*.d.ts","*"],
+    "exclude": ["node_modules"]
+}

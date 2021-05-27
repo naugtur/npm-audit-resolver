@@ -1,0 +1,2042 @@
+{
+  "npm ls --depth=0 --json": {
+    "name": "d",
+    "version": "1.0.0",
+    "problems": [
+      "peer dep missing: @babel/core@^7.0.0-0, required by @babel/cli@7.14.3",
+      "peer dep missing: eslint@>= 4.12.1, required by babel-eslint@10.1.0"
+    ],
+    "dependencies": {
+      "@babel/cli": {
+        "version": "7.14.3",
+        "from": "@babel/cli",
+        "resolved": "https://registry.npmjs.org/@babel/cli/-/cli-7.14.3.tgz"
+      },
+      "babel-eslint": {
+        "version": "10.1.0",
+        "from": "babel-eslint",
+        "resolved": "https://registry.npmjs.org/babel-eslint/-/babel-eslint-10.1.0.tgz"
+      },
+      "babel-plugin-transform-class-properties": {
+        "version": "6.24.1",
+        "from": "babel-plugin-transform-class-properties",
+        "resolved": "https://registry.npmjs.org/babel-plugin-transform-class-properties/-/babel-plugin-transform-class-properties-6.24.1.tgz"
+      },
+      "babel-plugin-transform-decorators-legacy": {
+        "version": "1.3.5",
+        "from": "babel-plugin-transform-decorators-legacy",
+        "resolved": "https://registry.npmjs.org/babel-plugin-transform-decorators-legacy/-/babel-plugin-transform-decorators-legacy-1.3.5.tgz"
+      },
+      "babel-preset-es2017": {
+        "version": "6.24.1",
+        "from": "babel-preset-es2017",
+        "resolved": "https://registry.npmjs.org/babel-preset-es2017/-/babel-preset-es2017-6.24.1.tgz"
+      },
+      "babel-preset-react": {
+        "version": "6.24.1",
+        "from": "babel-preset-react",
+        "resolved": "https://registry.npmjs.org/babel-preset-react/-/babel-preset-react-6.24.1.tgz"
+      },
+      "babel-register": {
+        "version": "6.26.0",
+        "from": "babel-register",
+        "resolved": "https://registry.npmjs.org/babel-register/-/babel-register-6.26.0.tgz"
+      },
+      "@babel/core": {
+        "required": {
+          "_id": "@babel/core@^7.0.0-0",
+          "name": "@babel/core",
+          "version": "^7.0.0-0",
+          "peerMissing": [
+            {
+              "requiredBy": "@babel/cli@7.14.3",
+              "requires": "@babel/core@^7.0.0-0"
+            }
+          ],
+          "dependencies": {}
+        },
+        "peerMissing": true
+      },
+      "eslint": {
+        "required": {
+          "_id": "eslint@>= 4.12.1",
+          "name": "eslint",
+          "version": ">= 4.12.1",
+          "peerMissing": [
+            {
+              "requiredBy": "babel-eslint@10.1.0",
+              "requires": "eslint@>= 4.12.1"
+            }
+          ],
+          "dependencies": {}
+        },
+        "peerMissing": true
+      }
+    }
+  },  
+  "npm audit --json": {
+    "actions": [
+      {
+        "action": "update",
+        "resolves": [
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>braces>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>braces>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>braces>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>extglob>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>extglob>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>nanomatch>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>nanomatch>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          }
+        ],
+        "module": "set-value",
+        "target": "2.0.1",
+        "depth": 10
+      },
+      {
+        "action": "update",
+        "resolves": [
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>braces>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>braces>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>braces>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>extglob>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>extglob>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>nanomatch>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>nanomatch>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          }
+        ],
+        "module": "union-value",
+        "target": "1.0.1",
+        "depth": 10
+      },
+      {
+        "action": "update",
+        "resolves": [
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>braces>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>braces>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>braces>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>extglob>expand-brackets>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>extglob>expand-brackets>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>extglob>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>extglob>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>nanomatch>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>nanomatch>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          }
+        ],
+        "module": "mixin-deep",
+        "target": "1.3.2",
+        "depth": 9
+      },
+      {
+        "action": "update",
+        "resolves": [
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-helper-get-function-arity>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-helper-get-function-arity>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-helper-get-function-arity>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-decorators-legacy>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-helpers>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-helper-call-delegate>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-exponentiation-operator>babel-helper-builder-binary-assignment-operator-visitor>babel-helper-explode-assignable-expression>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-decorators-legacy>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-helpers>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-plugin-transform-strict-mode>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-strict-mode>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-helper-call-delegate>babel-helper-hoist-variables>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-helper-call-delegate>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-sticky-regex>babel-helper-regex>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-unicode-regex>babel-helper-regex>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-sticky-regex>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-exponentiation-operator>babel-helper-builder-binary-assignment-operator-visitor>babel-helper-explode-assignable-expression>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-exponentiation-operator>babel-helper-builder-binary-assignment-operator-visitor>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-react>babel-plugin-transform-react-jsx>babel-helper-builder-react-jsx>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-generator>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-decorators-legacy>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-helpers>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-helper-call-delegate>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-exponentiation-operator>babel-helper-builder-binary-assignment-operator-visitor>babel-helper-explode-assignable-expression>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-decorators-legacy>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-helpers>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-sticky-regex>babel-helper-regex>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-unicode-regex>babel-helper-regex>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-generator>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>@babel/generator>@babel/types>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>@babel/helper-function-name>@babel/helper-get-function-arity>@babel/types>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>@babel/helper-function-name>@babel/template>@babel/types>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>@babel/helper-function-name>@babel/types>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>@babel/helper-split-export-declaration>@babel/types>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>@babel/types>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/types>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>@babel/generator>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          }
+        ],
+        "module": "lodash",
+        "target": "4.17.15",
+        "depth": 8
+      },
+      {
+        "action": "update",
+        "resolves": [
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>braces>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>braces>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>braces>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>extglob>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>extglob>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>nanomatch>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>nanomatch>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>snapdragon>base>cache-base>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          }
+        ],
+        "module": "set-value",
+        "target": "2.0.1",
+        "depth": 10
+      },
+      {
+        "action": "update",
+        "resolves": [
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>braces>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>braces>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>braces>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>extglob>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>extglob>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>nanomatch>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>nanomatch>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1012,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>snapdragon>base>cache-base>union-value>set-value",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          }
+        ],
+        "module": "union-value",
+        "target": "1.0.1",
+        "depth": 10
+      },
+      {
+        "action": "update",
+        "resolves": [
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>braces>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>braces>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>braces>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>extglob>expand-brackets>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>extglob>expand-brackets>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>extglob>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>extglob>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>nanomatch>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>nanomatch>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>anymatch>micromatch>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1013,
+            "path": "@babel/cli>chokidar>readdirp>micromatch>snapdragon>base>mixin-deep",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          }
+        ],
+        "module": "mixin-deep",
+        "target": "1.3.2",
+        "depth": 9
+      },
+      {
+        "action": "update",
+        "resolves": [
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-helper-get-function-arity>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-helper-get-function-arity>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-helper-get-function-arity>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-decorators-legacy>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-helpers>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-template>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-helper-call-delegate>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-exponentiation-operator>babel-helper-builder-binary-assignment-operator-visitor>babel-helper-explode-assignable-expression>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-traverse>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-decorators-legacy>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-helpers>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-template>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-plugin-transform-strict-mode>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-strict-mode>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-helper-call-delegate>babel-helper-hoist-variables>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-helper-call-delegate>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-sticky-regex>babel-helper-regex>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-unicode-regex>babel-helper-regex>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-sticky-regex>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-exponentiation-operator>babel-helper-builder-binary-assignment-operator-visitor>babel-helper-explode-assignable-expression>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-exponentiation-operator>babel-helper-builder-binary-assignment-operator-visitor>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-react>babel-plugin-transform-react-jsx>babel-helper-builder-react-jsx>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-generator>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-types>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-decorators-legacy>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-helpers>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-template>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-helper-call-delegate>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-exponentiation-operator>babel-helper-builder-binary-assignment-operator-visitor>babel-helper-explode-assignable-expression>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-traverse>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-helper-function-name>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-class-properties>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-plugin-transform-decorators-legacy>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-helpers>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-template>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-sticky-regex>babel-helper-regex>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-preset-es2017>babel-plugin-transform-es2015-unicode-regex>babel-helper-regex>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>babel-generator>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>babel-core>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-register>lodash",
+            "dev": false,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>@babel/generator>@babel/types>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>@babel/helper-function-name>@babel/helper-get-function-arity>@babel/types>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>@babel/helper-function-name>@babel/template>@babel/types>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>@babel/helper-function-name>@babel/types>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>@babel/helper-split-export-declaration>@babel/types>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>@babel/types>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/types>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>@babel/generator>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          },
+          {
+            "id": 1065,
+            "path": "babel-eslint>@babel/traverse>lodash",
+            "dev": true,
+            "optional": false,
+            "bundled": false
+          }
+        ],
+        "module": "lodash",
+        "target": "4.17.15",
+        "depth": 8
+      }
+    ],
+    "advisories": {
+      "1012": {
+        "findings": [
+          {
+            "version": "2.0.0",
+            "paths": [
+              "@babel/cli>chokidar>anymatch>micromatch>braces>snapdragon>base>cache-base>set-value",
+              "@babel/cli>chokidar>readdirp>micromatch>braces>snapdragon>base>cache-base>set-value",
+              "@babel/cli>chokidar>braces>snapdragon>base>cache-base>set-value",
+              "@babel/cli>chokidar>anymatch>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>set-value",
+              "@babel/cli>chokidar>readdirp>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>set-value",
+              "@babel/cli>chokidar>anymatch>micromatch>extglob>snapdragon>base>cache-base>set-value",
+              "@babel/cli>chokidar>readdirp>micromatch>extglob>snapdragon>base>cache-base>set-value",
+              "@babel/cli>chokidar>anymatch>micromatch>nanomatch>snapdragon>base>cache-base>set-value",
+              "@babel/cli>chokidar>readdirp>micromatch>nanomatch>snapdragon>base>cache-base>set-value",
+              "@babel/cli>chokidar>anymatch>micromatch>snapdragon>base>cache-base>set-value",
+              "@babel/cli>chokidar>readdirp>micromatch>snapdragon>base>cache-base>set-value"
+            ]
+          },
+          {
+            "version": "0.4.3",
+            "paths": [
+              "@babel/cli>chokidar>anymatch>micromatch>braces>snapdragon>base>cache-base>union-value>set-value",
+              "@babel/cli>chokidar>readdirp>micromatch>braces>snapdragon>base>cache-base>union-value>set-value",
+              "@babel/cli>chokidar>braces>snapdragon>base>cache-base>union-value>set-value",
+              "@babel/cli>chokidar>anymatch>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>union-value>set-value",
+              "@babel/cli>chokidar>readdirp>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>union-value>set-value",
+              "@babel/cli>chokidar>anymatch>micromatch>extglob>snapdragon>base>cache-base>union-value>set-value",
+              "@babel/cli>chokidar>readdirp>micromatch>extglob>snapdragon>base>cache-base>union-value>set-value",
+              "@babel/cli>chokidar>anymatch>micromatch>nanomatch>snapdragon>base>cache-base>union-value>set-value",
+              "@babel/cli>chokidar>readdirp>micromatch>nanomatch>snapdragon>base>cache-base>union-value>set-value",
+              "@babel/cli>chokidar>anymatch>micromatch>snapdragon>base>cache-base>union-value>set-value",
+              "@babel/cli>chokidar>readdirp>micromatch>snapdragon>base>cache-base>union-value>set-value"
+            ]
+          }
+        ],
+        "id": 1012,
+        "created": "2019-06-20T14:35:11.974Z",
+        "updated": "2019-07-12T21:43:14.145Z",
+        "deleted": null,
+        "title": "Prototype Pollution",
+        "found_by": {
+          "link": "",
+          "name": "Jon Schlinkert"
+        },
+        "reported_by": {
+          "link": "",
+          "name": "Jon Schlinkert"
+        },
+        "module_name": "set-value",
+        "cves": [
+          "CVE-2019-10747"
+        ],
+        "vulnerable_versions": "<2.0.1 || >=3.0.0 <3.0.1",
+        "patched_versions": ">=2.0.1 <3.0.0 || >=3.0.1",
+        "overview": "Versions of `set-value` prior to 3.0.1 or 2.0.1 are vulnerable to Prototype Pollution. The `set` function fails to validate which Object properties it updates. This allows attackers to modify the prototype of Object, causing the addition or modification of an existing property on all objects.\n\n",
+        "recommendation": "If you are using `set-value` 3.x, upgrade to version 3.0.1 or later.\nIf you are using `set-value` 2.x, upgrade to version 2.0.1 or later.\n",
+        "references": "- [Snyk Report](https://snyk.io/vuln/SNYK-JS-SETVALUE-450213)",
+        "access": "public",
+        "severity": "high",
+        "cwe": "CWE-471",
+        "metadata": {
+          "module_type": "",
+          "exploitability": 5,
+          "affected_components": ""
+        },
+        "url": "https://npmjs.com/advisories/1012"
+      },
+      "1013": {
+        "findings": [
+          {
+            "version": "1.3.1",
+            "paths": [
+              "@babel/cli>chokidar>anymatch>micromatch>braces>snapdragon>base>mixin-deep",
+              "@babel/cli>chokidar>readdirp>micromatch>braces>snapdragon>base>mixin-deep",
+              "@babel/cli>chokidar>braces>snapdragon>base>mixin-deep",
+              "@babel/cli>chokidar>anymatch>micromatch>extglob>expand-brackets>snapdragon>base>mixin-deep",
+              "@babel/cli>chokidar>readdirp>micromatch>extglob>expand-brackets>snapdragon>base>mixin-deep",
+              "@babel/cli>chokidar>anymatch>micromatch>extglob>snapdragon>base>mixin-deep",
+              "@babel/cli>chokidar>readdirp>micromatch>extglob>snapdragon>base>mixin-deep",
+              "@babel/cli>chokidar>anymatch>micromatch>nanomatch>snapdragon>base>mixin-deep",
+              "@babel/cli>chokidar>readdirp>micromatch>nanomatch>snapdragon>base>mixin-deep",
+              "@babel/cli>chokidar>anymatch>micromatch>snapdragon>base>mixin-deep",
+              "@babel/cli>chokidar>readdirp>micromatch>snapdragon>base>mixin-deep"
+            ]
+          }
+        ],
+        "id": 1013,
+        "created": "2019-06-20T14:51:39.425Z",
+        "updated": "2019-07-12T18:53:21.152Z",
+        "deleted": null,
+        "title": "Prototype Pollution",
+        "found_by": {
+          "link": "",
+          "name": "Snyk Security Team"
+        },
+        "reported_by": {
+          "link": "",
+          "name": "Snyk Security Team"
+        },
+        "module_name": "mixin-deep",
+        "cves": [
+          "CVE-2019-10746"
+        ],
+        "vulnerable_versions": "<1.3.2 || >=2.0.0 <2.0.1",
+        "patched_versions": ">=1.3.2 <2.0.0 || >=2.0.1",
+        "overview": "Versions of `mixin-deep` prior to 2.0.1 or 1.3.2 are vulnerable to Prototype Pollution. The `mixinDeep` function fails to validate which Object properties it updates. This allows attackers to modify the prototype of Object, causing the addition or modification of an existing property on all objects.\n\n",
+        "recommendation": "If you are using `mixin-deep` 2.x, upgrade to version 2.0.1 or later.\nIf you are using `mixin-deep` 1.x, upgrade to version 1.3.2 or later.",
+        "references": "- [Snyk Report](https://snyk.io/vuln/SNYK-JS-MIXINDEEP-450212)",
+        "access": "public",
+        "severity": "high",
+        "cwe": "CWE-471",
+        "metadata": {
+          "module_type": "",
+          "exploitability": 5,
+          "affected_components": ""
+        },
+        "url": "https://npmjs.com/advisories/1013"
+      },
+      "1065": {
+        "findings": [
+          {
+            "version": "4.17.11",
+            "paths": [
+              "babel-plugin-transform-class-properties>babel-helper-function-name>babel-helper-get-function-arity>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-helper-get-function-arity>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-helper-get-function-arity>babel-types>lodash",
+              "babel-plugin-transform-class-properties>babel-helper-function-name>babel-template>babel-traverse>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-template>babel-traverse>babel-types>lodash",
+              "babel-plugin-transform-class-properties>babel-template>babel-traverse>babel-types>lodash",
+              "babel-plugin-transform-decorators-legacy>babel-template>babel-traverse>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-template>babel-traverse>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-template>babel-traverse>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-template>babel-traverse>babel-types>lodash",
+              "babel-register>babel-core>babel-helpers>babel-template>babel-traverse>babel-types>lodash",
+              "babel-register>babel-core>babel-template>babel-traverse>babel-types>lodash",
+              "babel-plugin-transform-class-properties>babel-helper-function-name>babel-traverse>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-traverse>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-traverse>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-helper-call-delegate>babel-traverse>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-traverse>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-exponentiation-operator>babel-helper-builder-binary-assignment-operator-visitor>babel-helper-explode-assignable-expression>babel-traverse>babel-types>lodash",
+              "babel-register>babel-core>babel-traverse>babel-types>lodash",
+              "babel-plugin-transform-class-properties>babel-helper-function-name>babel-template>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-template>babel-types>lodash",
+              "babel-plugin-transform-class-properties>babel-template>babel-types>lodash",
+              "babel-plugin-transform-decorators-legacy>babel-template>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-template>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-template>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-template>babel-types>lodash",
+              "babel-register>babel-core>babel-helpers>babel-template>babel-types>lodash",
+              "babel-register>babel-core>babel-template>babel-types>lodash",
+              "babel-plugin-transform-class-properties>babel-helper-function-name>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-plugin-transform-strict-mode>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-strict-mode>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-helper-call-delegate>babel-helper-hoist-variables>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-helper-call-delegate>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-sticky-regex>babel-helper-regex>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-unicode-regex>babel-helper-regex>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-sticky-regex>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-exponentiation-operator>babel-helper-builder-binary-assignment-operator-visitor>babel-helper-explode-assignable-expression>babel-types>lodash",
+              "babel-preset-es2017>babel-plugin-transform-exponentiation-operator>babel-helper-builder-binary-assignment-operator-visitor>babel-types>lodash",
+              "babel-preset-react>babel-plugin-transform-react-jsx>babel-helper-builder-react-jsx>babel-types>lodash",
+              "babel-register>babel-core>babel-generator>babel-types>lodash",
+              "babel-register>babel-core>babel-types>lodash",
+              "babel-plugin-transform-class-properties>babel-helper-function-name>babel-template>babel-traverse>lodash",
+              "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-template>babel-traverse>lodash",
+              "babel-plugin-transform-class-properties>babel-template>babel-traverse>lodash",
+              "babel-plugin-transform-decorators-legacy>babel-template>babel-traverse>lodash",
+              "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-template>babel-traverse>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-template>babel-traverse>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-template>babel-traverse>lodash",
+              "babel-register>babel-core>babel-helpers>babel-template>babel-traverse>lodash",
+              "babel-register>babel-core>babel-template>babel-traverse>lodash",
+              "babel-plugin-transform-class-properties>babel-helper-function-name>babel-traverse>lodash",
+              "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-traverse>lodash",
+              "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-traverse>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-helper-call-delegate>babel-traverse>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-traverse>lodash",
+              "babel-preset-es2017>babel-plugin-transform-exponentiation-operator>babel-helper-builder-binary-assignment-operator-visitor>babel-helper-explode-assignable-expression>babel-traverse>lodash",
+              "babel-register>babel-core>babel-traverse>lodash",
+              "babel-plugin-transform-class-properties>babel-helper-function-name>babel-template>lodash",
+              "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-helper-function-name>babel-template>lodash",
+              "babel-plugin-transform-class-properties>babel-template>lodash",
+              "babel-plugin-transform-decorators-legacy>babel-template>lodash",
+              "babel-preset-es2017>babel-plugin-transform-async-to-generator>babel-helper-remap-async-to-generator>babel-template>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-modules-commonjs>babel-template>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-parameters>babel-template>lodash",
+              "babel-register>babel-core>babel-helpers>babel-template>lodash",
+              "babel-register>babel-core>babel-template>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-sticky-regex>babel-helper-regex>lodash",
+              "babel-preset-es2017>babel-plugin-transform-es2015-unicode-regex>babel-helper-regex>lodash",
+              "babel-register>babel-core>babel-generator>lodash",
+              "babel-register>babel-core>lodash",
+              "babel-register>lodash",
+              "babel-eslint>@babel/traverse>@babel/generator>@babel/types>lodash",
+              "babel-eslint>@babel/traverse>@babel/helper-function-name>@babel/helper-get-function-arity>@babel/types>lodash",
+              "babel-eslint>@babel/traverse>@babel/helper-function-name>@babel/template>@babel/types>lodash",
+              "babel-eslint>@babel/traverse>@babel/helper-function-name>@babel/types>lodash",
+              "babel-eslint>@babel/traverse>@babel/helper-split-export-declaration>@babel/types>lodash",
+              "babel-eslint>@babel/traverse>@babel/types>lodash",
+              "babel-eslint>@babel/types>lodash",
+              "babel-eslint>@babel/traverse>@babel/generator>lodash",
+              "babel-eslint>@babel/traverse>lodash"
+            ]
+          }
+        ],
+        "id": 1065,
+        "created": "2019-07-15T17:22:56.990Z",
+        "updated": "2019-07-15T17:25:05.721Z",
+        "deleted": null,
+        "title": "Prototype Pollution",
+        "found_by": {
+          "link": "",
+          "name": "Snyk Security Team"
+        },
+        "reported_by": {
+          "link": "",
+          "name": "Snyk Security Team"
+        },
+        "module_name": "lodash",
+        "cves": [
+          "CVE-2019-10744"
+        ],
+        "vulnerable_versions": "<4.17.12",
+        "patched_versions": ">=4.17.12",
+        "overview": "Versions of `lodash` before 4.17.12 are vulnerable to Prototype Pollution.  The function `defaultsDeep` allows a malicious user to modify the prototype of `Object` via `{constructor: {prototype: {...}}}` causing the addition or modification of an existing property that will exist on all objects.\n\n",
+        "recommendation": "Update to version 4.17.12 or later.",
+        "references": "- [Snyk Advisory](https://snyk.io/vuln/SNYK-JS-LODASH-450202)",
+        "access": "public",
+        "severity": "high",
+        "cwe": "CWE-471",
+        "metadata": {
+          "module_type": "",
+          "exploitability": 3,
+          "affected_components": ""
+        },
+        "url": "https://npmjs.com/advisories/1065"
+      }
+    },
+    "muted": [],
+    "metadata": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 117,
+        "critical": 0
+      },
+      "dependencies": 1019,
+      "devDependencies": 2283,
+      "optionalDependencies": 2114,
+      "totalDependencies": 3302
+    },
+    "runId": "3f2e791f-1128-418b-8ad8-20d913692482"
+  }
+}

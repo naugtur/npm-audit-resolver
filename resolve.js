@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-const pkgFacade = require('audit-resolve-core/pkgFacade');
+const pkgFacade = require('./src/pkgFacade');
 const view = require('./src/views/general')
-const argv = require('audit-resolve-core/arguments').get();
+const argv = require('./src/arguments').get();
 const auditResolver = require('./src/resolve/auditResolver')
 
 if (argv.yarn) {
