@@ -1,17 +1,26 @@
-# npm audit resolver
-*Now with yarn support too*
 
-`npm audit` is great. `npm audit fix` is also there if you didn't know. But sometimes you need to manage your security and make decisions about the dependencies you use.
+A tool for building a responsible but practical supply chain security practice.
 
-This tool creates a `audit-resolve.json` file in your app and interactively helps you manage security of your dependencies.
+`npm audit` is great. `npm audit fix` is also there if you didn't know. But not everything can be fixed right away and you need to manage your security and make decisions about the dependencies you use.
+
+> I built audit-resolver after a few weeks of trying to run audit as a step in CI and failing each time there's a vulnerability. There were just too many irrelevant or unfixed ones and my team needed a way to manage the situation. 
+
+Audit resolver creates a `audit-resolve.json` file in your app and interactively helps you manage security of your dependencies.  
+You can decide what to ignore and for how long, or track what's been fixed before.  
+The `audit-resolve.json` file sits in the repository and you can see who decided to ignore what and when.
 
 *This package is meant for early adopters. Anything can change, but my team uses it for maintaining over 20 apps so there's likely to be a migration path.*
 
-I'm working on getting it built into npm. See [the RFC](https://github.com/npm/rfcs/pull/18)
+I'm working on getting it built into npm. See [the RFC](https://github.com/npm/rfcs/pull/18)  
+I'm participating in [Package Vulnerability Management & Reporting Collaboration Space](https://github.com/openjs-foundation/pkg-vuln-collab-space) where I intend to donate parts of the audit-resolver's core.
 
+## 👷 🚧
+
+npm7 has introduced significant changes to the audit output. Support for that is in a release candidate for v3. 
+You can try it out by installing `npm-audit-resolver@next`
 ## Install
 
-Requires npm v6.1.0+ installed alongside
+Requires npm v6.1.0+ or yarn installed alongside
 
 ```
 npm install -g npm-audit-resolver
@@ -31,7 +40,7 @@ The decisions you make are stored in `audit-resolve.json` to keep track of it in
 ### Arguments 
 
 ```
---yarn switched to yarn package manager as the command to support
+--yarn switch to calling yarn audit instead of npm audit.
 --migrate forces migration to a new file and format even if no modifications are made to decisions
 ```
 
