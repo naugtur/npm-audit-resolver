@@ -1,1 +1,1 @@
-module.exports = ['json', 'migrate', 'yarn', 'mock', 'fix']
+module.exports = ['json', 'migrate', 'yarn', 'pnpm', 'mock', 'fix']
