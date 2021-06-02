@@ -34,7 +34,7 @@
   "homepage": "https://github.com/naugtur/npm-audit-resolver#readme",
   "license": "Apache 2.0",
   "dependencies": {
-    "audit-resolve-core": "https://github.com/naugtur/audit-resolve-core.git#v3.0.0-1",
+    "audit-resolve-core": "^3.0.0-2",
     "chalk": "^2.4.2",
     "djv": "^2.1.4",
     "jsonlines": "^0.1.1",
