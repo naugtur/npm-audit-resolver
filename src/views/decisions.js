@@ -30,8 +30,7 @@ module.exports = {
         console.log(`Selected: ${text}`)
     },
     printChoices(choices = [{ key: "", name: "" }]) {
-        console.log('_');
-        console.log(
+        console.log('\n' +
             choices
                 .map(c => ` ${chalk.bold(c.key)}) ${c.name}`).join('\n')
         );
@@ -44,7 +43,7 @@ module.exports = {
     printIntro(vuln) {
         const severityTag = getSeverityTag(vuln);
         console.log(`\n------------------------------------------------------`);
-        console.log(`${severityTag} ${chalk.bold.black.bgWhite(vuln.name)}    ${vuln.url}`);
+        console.log(`${severityTag} ${chalk.bold(vuln.name)}  ${vuln.url}`);
         console.log(`  ${vuln.title}`);
 
         console.log(`\nvulnerable versions ${vuln.range} found in:`);
