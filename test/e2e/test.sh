@@ -23,28 +23,6 @@ if [ $RESULT -ne 1235 ]; then
 fi
 
 
-echo '- Mocks ----------------------- OK'
-
-
-echo 'runs check on npm'
-node check.js > /dev/null 
-
-EXITCODE=$?
-if [ $EXITCODE -ne 0 ]; then
-  echo "FAILED, expected exit code 0, got $EXITCODE"
-  exit 1
-fi
-
-echo 'runs check on yarn'
-node check.js --yarn > /dev/null 
-
-EXITCODE=$?
-if [ $EXITCODE -ne 0 ]; then
-  echo "FAILED, expected exit code 0, got $EXITCODE"
-  exit 1
-fi
-
-
 echo 'runs resolve on npm'
 echo q | node resolve.js > /dev/null 
 

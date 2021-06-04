@@ -12,7 +12,7 @@
     "rm-vulns": "npm rm -D base64url lodash dependo",
     "test-exec": "rm -f audit-resolv.json && ! node check.js && node resolve.js && node check.js",
     "testdrive": "npm run add-vulns && rm -f audit-resolve.json && ! node check.js && node resolve.js && node check.js && npm run rm-vulns",
-    "test": "sh test/e2e/test.sh"
+    "test": " node test/e2e/test.js && sh test/e2e/test.sh"
   },
   "keywords": [
     "npm",

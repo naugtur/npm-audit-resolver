@@ -61,6 +61,21 @@ async function run() {
         mock: '7noAudit',
         exitCode: 2
     })
+
+
+
+    await test.command({
+        title: 'runs check on npm',
+        command: 'node check.js'
+    })
+
+    await test.command({
+        title: 'runs check on yarn',
+        command: 'node check.js --yarn'
+    })
+
+
+    console.log('all passed')
 }
 run()
 

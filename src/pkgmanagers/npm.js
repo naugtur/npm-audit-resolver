@@ -77,30 +77,32 @@ function reformatFromV2(input, ls) {
 
 function reformatFromLegacy(input) {
     const reindex = {}
-    input.actions.forEach(action => {
-        action.resolves.forEach(re => {
-            const key = `${re.id}|${action.module}`;
-            if (reindex[key]) {
-                reindex[key].paths.push(re.path)
-            } else {
-                const adv = input.advisories[re.id]
-                reindex[key] = {
-                    id: re.id,
-                    name: action.module,
-                    title: adv.title,
-                    url: adv.url,
-                    severity: adv.severity,
-                    range: adv.vulnerable_versions,
-                    fixAvailable: !!action.target && {
+    if (input.actions) {
+        input.actions.forEach(action => {
+            action.resolves.forEach(re => {
+                const key = `${re.id}|${action.module}`;
+                if (reindex[key]) {
+                    reindex[key].paths.push(re.path)
+                } else {
+                    const adv = input.advisories[re.id]
+                    reindex[key] = {
+                        id: re.id,
                         name: action.module,
-                        version: action.target,
-                        isSemVerMajor: action.isMajor
-                    },
-                    paths: [re.path]
+                        title: adv.title,
+                        url: adv.url,
+                        severity: adv.severity,
+                        range: adv.vulnerable_versions,
+                        fixAvailable: !!action.target && {
+                            name: action.module,
+                            version: action.target,
+                            isSemVerMajor: action.isMajor
+                        },
+                        paths: [re.path]
+                    }
                 }
-            }
+            })
         })
-    })
+    }
     return Object.values(reindex);
 }
 
