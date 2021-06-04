@@ -47,7 +47,9 @@ module.exports = function promiseCommand(command, opts = {}) {
         if (opts.ignoreExit || exitCode === 0) {
           return
         } else {
-          throw Error('Exit ' + exitCode)
+          const error = Error('Exit ' + exitCode)
+          error.exitCode = exitCode
+          throw error
         }
       }),
     pOutput]).then(arr => arr[1])
