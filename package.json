@@ -44,9 +44,6 @@
     "yargs-unparser": "^1.6.4"
   },
   "devDependencies": {
-    "base64url": "^2.0.0",
-    "dependo": "^0.2.0",
-    "lodash": "^2.0.0",
     "pre-commit": "^1.2.2"
   }
 }
