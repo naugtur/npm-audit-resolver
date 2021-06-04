@@ -13,13 +13,14 @@ function getCommand(action) {
 }
 
 
-function reformatFromV2(input, ls){
+function reformatFromV2(input, ls) {
     const vulns = input.vulnerabilities;
     const reindex = {}
-    const recordPath = (via, fixAvailable, acc) => {
+    const recordPath = (via, fixAvailable, accumulator) => {
+        const acc = accumulator.join('>');
         const key = `${via.source}|${via.name}`;
-        if(!reindex[key]){
-            reindex[key]={
+        if (!reindex[key]) {
+            reindex[key] = {
                 id: via.source,
                 name: via.name,
                 title: via.title,
@@ -35,10 +36,13 @@ function reformatFromV2(input, ls){
     }
     const indexPaths = (name, accumulator) => {
         const vuln = vulns[name]
-        if(accumulator){
-            accumulator+=`>${name}`
+        if (accumulator) {
+            if (accumulator.includes(name)) {
+                return; //breaking a cycle
+            }
+            accumulator.push(name)
         } else {
-            accumulator = name
+            accumulator = [name]
         }
 
         vuln.via.forEach(via => {
@@ -60,9 +64,9 @@ function reformatFromV2(input, ls){
     //   "title": "Out-of-bounds Read",
     //       "url": "https://npmjs.com/advisories/658",
     //       "severity": "moderate",
-          
+
     //   "range": "<3.0.0",
-      
+
     //   "fixAvailable": {
     //     "name": "base64url", //module
     //     "version": "3.0.1", //target
@@ -76,11 +80,11 @@ function reformatFromLegacy(input) {
     input.actions.forEach(action => {
         action.resolves.forEach(re => {
             const key = `${re.id}|${action.module}`;
-            if(reindex[key]){
+            if (reindex[key]) {
                 reindex[key].paths.push(re.path)
             } else {
                 const adv = input.advisories[re.id]
-                reindex[key]={
+                reindex[key] = {
                     id: re.id,
                     name: action.module,
                     title: adv.title,
@@ -100,20 +104,20 @@ function reformatFromLegacy(input) {
     return Object.values(reindex);
 }
 
-function reformat(input, ls){
-    switch(input.auditReportVersion){
+function reformat(input, ls) {
+    switch (input.auditReportVersion) {
         case 2:
             return reformatFromV2(input, ls)
-        default: 
+        default:
             return reformatFromLegacy(input)
-    } 
+    }
 }
 
-const handleOutput = (of,output) => {
+const handleOutput = (of, output) => {
     let parsed
     // console.log(`>>${of} ${output.substr(0,10)}`)
     try {
-        parsed =  JSON.parse(output)
+        parsed = JSON.parse(output)
     } catch (e) {
         console.error(`failed to parse output of ${of}`)
         console.error(output)
@@ -129,14 +133,14 @@ module.exports = {
     version: 1,
     getAudit({ promiseCommand, argv, shellOptions }) {
         const unparsed = unparse(argv, skipArgs)
-        
+
         return Promise.all([
             promiseCommand(`npm audit --json ${unparsed}`, shellOptions),
             promiseCommand(`npm ls --depth=0 --json ${unparsed}`, shellOptions),
         ])
-            .then(([audit,ls]) => reformat(
-                handleOutput('npm audit',audit),
-                handleOutput('npm ls',ls)
+            .then(([audit, ls]) => reformat(
+                handleOutput('npm audit', audit),
+                handleOutput('npm ls', ls)
             ))
         //TODO: retries on ENOAUDIT
     },

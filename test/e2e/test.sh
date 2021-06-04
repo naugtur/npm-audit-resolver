@@ -45,6 +45,14 @@ if [ $EXITCODE -ne 1 ]; then
   echo "FAILED, expected exit code 1, got $EXITCODE"
   exit 1
 fi
+echo 'run check witn npm7 output where "via" form a cyclic graph'
+node check.js --mock=test/e2e/7cycleAudit.json --json > /dev/null
+
+EXITCODE=$?
+if [ $EXITCODE -ne 1 ]; then
+  echo "FAILED, expected exit code 1, got $EXITCODE"
+  exit 1
+fi
 
 echo 'run check and get it to exit 1 for vulns found yarn'
 node check.js --yarn --mock=test/e2e/ybigAudit.json --json > /dev/null
