@@ -18,7 +18,11 @@ const test = {
         }
         return await promiseCommand(`node check.js --mock=test/e2e/${mock}.json`, shellOptions || {}).catch(e => {
             assert.strictEqual(e.exitCode, exitCode, `Expected exit code to be ${exitCode}, got ${e.exitCode}`)
+            return e
         })
+    },
+    mockNoAssert: async ({ title, mock, exitCode, shellOptions }) => {
+        return await promiseCommand(`node check.js --mock=test/e2e/${mock}.json`, shellOptions || {})
     },
 }
 
@@ -61,7 +65,7 @@ async function run() {
         mock: '7noAudit',
         exitCode: 2
     })
-
+   
 
 
     await test.command({
@@ -72,6 +76,14 @@ async function run() {
     await test.command({
         title: 'runs check on yarn',
         command: 'node check.js --yarn'
+    })
+
+    await test.mockNoAssert({
+        title: 'run check on difficult tree',
+        mock: 'mgdodge',
+        shellOptions: { ignoreExit: true }
+    }).then(output => {
+        assert.match(output, /^Total of 14 actions to process/, 'Should have found 14 actions')
     })
 
 

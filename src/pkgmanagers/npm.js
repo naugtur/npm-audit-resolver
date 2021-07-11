@@ -53,26 +53,14 @@ function reformatFromV2(input, ls) {
             }
         })
     }
+    const effectsNoOther = (name) => {
+        const vuln = vulns[name]
+        return vuln.effects.length === 0
+    }
     // start with direct dependencies and only then move down the 'via' tree. vulnerabilities are a flat list of also transitive dependencies
-    Object.keys(vulns).filter(a => !!ls.dependencies[a]).forEach(name => indexPaths(name))
+    // include items that would not otherwise be found since there's nothing pointing to them
+    Object.keys(vulns).filter(a => !!ls.dependencies[a] || effectsNoOther(a)).forEach(name => indexPaths(name))
     return Object.values(reindex);
-    // .
-    // {
-    // "name": "base64url",
-    //   path: "", //index paths form via 
-    //   id: input..via.source,
-    //   "title": "Out-of-bounds Read",
-    //       "url": "https://npmjs.com/advisories/658",
-    //       "severity": "moderate",
-
-    //   "range": "<3.0.0",
-
-    //   "fixAvailable": {
-    //     "name": "base64url", //module
-    //     "version": "3.0.1", //target
-    //     "isSemVerMajor": true //isMajor
-    //   }
-    // }
 }
 
 function reformatFromLegacy(input) {

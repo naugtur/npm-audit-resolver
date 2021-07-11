@@ -1,0 +1,741 @@
+{
+    "npm audit --json": {
+        "auditReportVersion": 2,
+        "vulnerabilities": {
+            "@intervolga/optimize-cssnano-plugin": {
+                "name": "@intervolga/optimize-cssnano-plugin",
+                "severity": "high",
+                "via": [
+                    "cssnano-preset-default"
+                ],
+                "effects": [
+                    "@vue/cli-service"
+                ],
+                "range": ">=1.0.2",
+                "nodes": [
+                    "node_modules/@intervolga/optimize-cssnano-plugin"
+                ],
+                "fixAvailable": {
+                    "name": "@vue/cli-service",
+                    "version": "3.12.1",
+                    "isSemVerMajor": true
+                }
+            },
+            "@vue/cli-plugin-typescript": {
+                "name": "@vue/cli-plugin-typescript",
+                "severity": "moderate",
+                "via": [
+                    "globby"
+                ],
+                "effects": [],
+                "range": "<=5.0.0-alpha.1",
+                "nodes": [
+                    "node_modules/@vue/cli-plugin-typescript"
+                ],
+                "fixAvailable": false
+            },
+            "@vue/cli-service": {
+                "name": "@vue/cli-service",
+                "severity": "high",
+                "via": [
+                    "@intervolga/optimize-cssnano-plugin",
+                    "copy-webpack-plugin",
+                    "cssnano",
+                    "globby",
+                    "webpack-dev-server"
+                ],
+                "effects": [],
+                "range": "*",
+                "nodes": [
+                    "node_modules/@vue/cli-service"
+                ],
+                "fixAvailable": {
+                    "name": "@vue/cli-service",
+                    "version": "3.12.1",
+                    "isSemVerMajor": true
+                }
+            },
+            "@vue/component-compiler": {
+                "name": "@vue/component-compiler",
+                "severity": "high",
+                "via": [
+                    "pug"
+                ],
+                "effects": [],
+                "range": "4.0.0 - 4.2.3",
+                "nodes": [
+                    "node_modules/@vue/component-compiler"
+                ],
+                "fixAvailable": true
+            },
+            "browserslist": {
+                "name": "browserslist",
+                "severity": "moderate",
+                "via": [
+                    {
+                        "source": 1747,
+                        "name": "browserslist",
+                        "dependency": "browserslist",
+                        "title": "Regular Expression Denial of Service",
+                        "url": "https://npmjs.com/advisories/1747",
+                        "severity": "moderate",
+                        "range": ">=4.0.0 <4.16.5"
+                    }
+                ],
+                "effects": [],
+                "range": "4.0.0 - 4.16.4",
+                "nodes": [
+                    "node_modules/browserslist"
+                ],
+                "fixAvailable": true
+            },
+            "chokidar": {
+                "name": "chokidar",
+                "severity": "moderate",
+                "via": [
+                    "glob-parent"
+                ],
+                "effects": [
+                    "watchpack-chokidar2",
+                    "webpack-dev-server"
+                ],
+                "range": "1.0.0-rc1 - 2.1.8",
+                "nodes": [
+                    "node_modules/watchpack-chokidar2/node_modules/chokidar",
+                    "node_modules/webpack-dev-server/node_modules/chokidar"
+                ],
+                "fixAvailable": {
+                    "name": "@vue/cli-service",
+                    "version": "3.12.1",
+                    "isSemVerMajor": true
+                }
+            },
+            "copy-webpack-plugin": {
+                "name": "copy-webpack-plugin",
+                "severity": "moderate",
+                "via": [
+                    "glob-parent"
+                ],
+                "effects": [
+                    "@vue/cli-service"
+                ],
+                "range": "5.0.1 - 5.1.2",
+                "nodes": [
+                    "node_modules/copy-webpack-plugin"
+                ],
+                "fixAvailable": {
+                    "name": "@vue/cli-service",
+                    "version": "3.12.1",
+                    "isSemVerMajor": true
+                }
+            },
+            "css-select": {
+                "name": "css-select",
+                "severity": "high",
+                "via": [
+                    "css-what"
+                ],
+                "effects": [
+                    "renderkid",
+                    "svgo"
+                ],
+                "range": "<=3.1.2",
+                "nodes": [
+                    "node_modules/css-select",
+                    "node_modules/renderkid/node_modules/css-select"
+                ],
+                "fixAvailable": {
+                    "name": "@vue/cli-service",
+                    "version": "3.12.1",
+                    "isSemVerMajor": true
+                }
+            },
+            "css-what": {
+                "name": "css-what",
+                "severity": "high",
+                "via": [
+                    {
+                        "source": 1754,
+                        "name": "css-what",
+                        "dependency": "css-what",
+                        "title": "Denial of Service",
+                        "url": "https://npmjs.com/advisories/1754",
+                        "severity": "high",
+                        "range": "<5.0.1"
+                    }
+                ],
+                "effects": [
+                    "css-select"
+                ],
+                "range": "<5.0.1",
+                "nodes": [
+                    "node_modules/css-what",
+                    "node_modules/renderkid/node_modules/css-what"
+                ],
+                "fixAvailable": {
+                    "name": "@vue/cli-service",
+                    "version": "3.12.1",
+                    "isSemVerMajor": true
+                }
+            },
+            "cssnano": {
+                "name": "cssnano",
+                "severity": "high",
+                "via": [
+                    "cssnano-preset-default"
+                ],
+                "effects": [
+                    "@vue/cli-service"
+                ],
+                "range": "4.0.0-nightly.2020.1.9 - 4.1.11",
+                "nodes": [
+                    "node_modules/cssnano"
+                ],
+                "fixAvailable": {
+                    "name": "@vue/cli-service",
+                    "version": "3.12.1",
+                    "isSemVerMajor": true
+                }
+            },
+            "cssnano-preset-default": {
+                "name": "cssnano-preset-default",
+                "severity": "high",
+                "via": [
+                    "postcss-svgo"
+                ],
+                "effects": [
+                    "@intervolga/optimize-cssnano-plugin",
+                    "cssnano"
+                ],
+                "range": "<=4.0.8",
+                "nodes": [
+                    "node_modules/cssnano-preset-default"
+                ],
+                "fixAvailable": {
+                    "name": "@vue/cli-service",
+                    "version": "3.12.1",
+                    "isSemVerMajor": true
+                }
+            },
+            "dns-packet": {
+                "name": "dns-packet",
+                "severity": "high",
+                "via": [
+                    {
+                        "source": 1745,
+                        "name": "dns-packet",
+                        "dependency": "dns-packet",
+                        "title": "Memory Exposure",
+                        "url": "https://npmjs.com/advisories/1745",
+                        "severity": "high",
+                        "range": "<1.3.2 || >=2.0.0 <5.2.2"
+                    }
+                ],
+                "effects": [],
+                "range": "<1.3.2 || >=2.0.0 <5.2.2",
+                "nodes": [
+                    "node_modules/dns-packet"
+                ],
+                "fixAvailable": true
+            },
+            "elliptic": {
+                "name": "elliptic",
+                "severity": "moderate",
+                "via": [
+                    {
+                        "source": 1648,
+                        "name": "elliptic",
+                        "dependency": "elliptic",
+                        "title": "Use of a Broken or Risky Cryptographic Algorithm",
+                        "url": "https://npmjs.com/advisories/1648",
+                        "severity": "moderate",
+                        "range": "<6.5.4"
+                    }
+                ],
+                "effects": [],
+                "range": "<6.5.4",
+                "nodes": [
+                    "node_modules/elliptic"
+                ],
+                "fixAvailable": true
+            },
+            "fast-glob": {
+                "name": "fast-glob",
+                "severity": "moderate",
+                "via": [
+                    "glob-parent"
+                ],
+                "effects": [
+                    "globby"
+                ],
+                "range": "<=2.2.7",
+                "nodes": [
+                    "node_modules/fast-glob"
+                ],
+                "fixAvailable": {
+                    "name": "@vue/cli-service",
+                    "version": "3.12.1",
+                    "isSemVerMajor": true
+                }
+            },
+            "glob-parent": {
+                "name": "glob-parent",
+                "severity": "moderate",
+                "via": [
+                    {
+                        "source": 1751,
+                        "name": "glob-parent",
+                        "dependency": "glob-parent",
+                        "title": "Regular expression denial of service",
+                        "url": "https://npmjs.com/advisories/1751",
+                        "severity": "moderate",
+                        "range": "<5.1.2"
+                    }
+                ],
+                "effects": [
+                    "chokidar",
+                    "copy-webpack-plugin",
+                    "fast-glob"
+                ],
+                "range": "<5.1.2",
+                "nodes": [
+                    "node_modules/copy-webpack-plugin/node_modules/glob-parent",
+                    "node_modules/fast-glob/node_modules/glob-parent",
+                    "node_modules/glob-parent",
+                    "node_modules/watchpack-chokidar2/node_modules/glob-parent",
+                    "node_modules/webpack-dev-server/node_modules/glob-parent"
+                ],
+                "fixAvailable": {
+                    "name": "@vue/cli-service",
+                    "version": "3.12.1",
+                    "isSemVerMajor": true
+                }
+            },
+            "globby": {
+                "name": "globby",
+                "severity": "moderate",
+                "via": [
+                    "fast-glob"
+                ],
+                "effects": [
+                    "@vue/cli-plugin-typescript",
+                    "@vue/cli-service"
+                ],
+                "range": "8.0.0 - 9.2.0",
+                "nodes": [
+                    "node_modules/globby"
+                ],
+                "fixAvailable": {
+                    "name": "@vue/cli-service",
+                    "version": "3.12.1",
+                    "isSemVerMajor": true
+                }
+            },
+            "hosted-git-info": {
+                "name": "hosted-git-info",
+                "severity": "moderate",
+                "via": [
+                    {
+                        "source": 1677,
+                        "name": "hosted-git-info",
+                        "dependency": "hosted-git-info",
+                        "title": "Regular Expression Denial of Service",
+                        "url": "https://npmjs.com/advisories/1677",
+                        "severity": "moderate",
+                        "range": "<2.8.9 || >=3.0.0 <3.0.8"
+                    }
+                ],
+                "effects": [],
+                "range": "<2.8.9 || >=3.0.0 <3.0.8",
+                "nodes": [
+                    "node_modules/hosted-git-info"
+                ],
+                "fixAvailable": true
+            },
+            "lodash": {
+                "name": "lodash",
+                "severity": "high",
+                "via": [
+                    {
+                        "source": 1673,
+                        "name": "lodash",
+                        "dependency": "lodash",
+                        "title": "Command Injection",
+                        "url": "https://npmjs.com/advisories/1673",
+                        "severity": "high",
+                        "range": "<4.17.21"
+                    }
+                ],
+                "effects": [],
+                "range": "<4.17.21",
+                "nodes": [
+                    "node_modules/lodash"
+                ],
+                "fixAvailable": true
+            },
+            "postcss": {
+                "name": "postcss",
+                "severity": "moderate",
+                "via": [
+                    {
+                        "source": 1693,
+                        "name": "postcss",
+                        "dependency": "postcss",
+                        "title": "Regular Expression Denial of Service",
+                        "url": "https://npmjs.com/advisories/1693",
+                        "severity": "moderate",
+                        "range": ">=7.0.0 <7.0.36 || >=8.0.0 <8.2.10"
+                    }
+                ],
+                "effects": [],
+                "range": "7.0.0 - 7.0.35 || 8.0.0 - 8.2.9",
+                "nodes": [
+                    "node_modules/postcss"
+                ],
+                "fixAvailable": true
+            },
+            "postcss-svgo": {
+                "name": "postcss-svgo",
+                "severity": "high",
+                "via": [
+                    "svgo"
+                ],
+                "effects": [
+                    "cssnano-preset-default"
+                ],
+                "range": "4.0.0-nightly.2020.1.9 - 5.0.0-rc.2",
+                "nodes": [
+                    "node_modules/postcss-svgo"
+                ],
+                "fixAvailable": {
+                    "name": "@vue/cli-service",
+                    "version": "3.12.1",
+                    "isSemVerMajor": true
+                }
+            },
+            "pug": {
+                "name": "pug",
+                "severity": "high",
+                "via": [
+                    {
+                        "source": 1643,
+                        "name": "pug",
+                        "dependency": "pug",
+                        "title": "Remote Code Execution",
+                        "url": "https://npmjs.com/advisories/1643",
+                        "severity": "high",
+                        "range": "<3.0.1"
+                    }
+                ],
+                "effects": [
+                    "@vue/component-compiler"
+                ],
+                "range": "<3.0.1",
+                "nodes": [
+                    "node_modules/pug"
+                ],
+                "fixAvailable": true
+            },
+            "pug-code-gen": {
+                "name": "pug-code-gen",
+                "severity": "high",
+                "via": [
+                    {
+                        "source": 1644,
+                        "name": "pug-code-gen",
+                        "dependency": "pug-code-gen",
+                        "title": "Remote Code Execution",
+                        "url": "https://npmjs.com/advisories/1644",
+                        "severity": "high",
+                        "range": "<2.0.3||>=3.0.0 <3.0.2"
+                    }
+                ],
+                "effects": [],
+                "range": "<2.0.3||>=3.0.0 <3.0.2",
+                "nodes": [
+                    "node_modules/pug-code-gen"
+                ],
+                "fixAvailable": true
+            },
+            "renderkid": {
+                "name": "renderkid",
+                "severity": "high",
+                "via": [
+                    "css-select"
+                ],
+                "effects": [],
+                "range": "1.0.0 - 2.0.5",
+                "nodes": [
+                    "node_modules/renderkid"
+                ],
+                "fixAvailable": true
+            },
+            "ssri": {
+                "name": "ssri",
+                "severity": "moderate",
+                "via": [
+                    {
+                        "source": 565,
+                        "name": "ssri",
+                        "dependency": "ssri",
+                        "title": "Regular Expression Denial of Service",
+                        "url": "https://npmjs.com/advisories/565",
+                        "severity": "moderate",
+                        "range": ">=5.2.2 <6.0.2 || >=7.0.0 <7.1.1 || =8.0.0"
+                    }
+                ],
+                "effects": [],
+                "range": "5.2.2 - 6.0.1 || 7.0.0 - 7.1.0 || 8.0.0",
+                "nodes": [
+                    "node_modules/@vue/cli-service/node_modules/ssri",
+                    "node_modules/ssri"
+                ],
+                "fixAvailable": true
+            },
+            "svgo": {
+                "name": "svgo",
+                "severity": "high",
+                "via": [
+                    "css-select"
+                ],
+                "effects": [
+                    "postcss-svgo"
+                ],
+                "range": "1.0.0 - 2.3.0",
+                "nodes": [
+                    "node_modules/svgo"
+                ],
+                "fixAvailable": {
+                    "name": "@vue/cli-service",
+                    "version": "3.12.1",
+                    "isSemVerMajor": true
+                }
+            },
+            "url-parse": {
+                "name": "url-parse",
+                "severity": "high",
+                "via": [
+                    {
+                        "source": 1678,
+                        "name": "url-parse",
+                        "dependency": "url-parse",
+                        "title": "Path traversal",
+                        "url": "https://npmjs.com/advisories/1678",
+                        "severity": "high",
+                        "range": "<1.5.0"
+                    }
+                ],
+                "effects": [],
+                "range": "<1.5.0",
+                "nodes": [
+                    "node_modules/url-parse"
+                ],
+                "fixAvailable": true
+            },
+            "watchpack": {
+                "name": "watchpack",
+                "severity": "moderate",
+                "via": [
+                    "watchpack-chokidar2"
+                ],
+                "effects": [
+                    "webpack"
+                ],
+                "range": "1.7.2 - 1.7.5",
+                "nodes": [
+                    "node_modules/watchpack"
+                ],
+                "fixAvailable": true
+            },
+            "watchpack-chokidar2": {
+                "name": "watchpack-chokidar2",
+                "severity": "moderate",
+                "via": [
+                    "chokidar"
+                ],
+                "effects": [
+                    "watchpack"
+                ],
+                "range": "*",
+                "nodes": [
+                    "node_modules/watchpack-chokidar2"
+                ],
+                "fixAvailable": true
+            },
+            "webpack": {
+                "name": "webpack",
+                "severity": "moderate",
+                "via": [
+                    "watchpack"
+                ],
+                "effects": [],
+                "range": "4.44.0 - 4.46.0",
+                "nodes": [
+                    "node_modules/webpack"
+                ],
+                "fixAvailable": true
+            },
+            "webpack-dev-server": {
+                "name": "webpack-dev-server",
+                "severity": "moderate",
+                "via": [
+                    "chokidar"
+                ],
+                "effects": [
+                    "@vue/cli-service"
+                ],
+                "range": "2.0.0-beta - 3.11.2",
+                "nodes": [
+                    "node_modules/webpack-dev-server"
+                ],
+                "fixAvailable": {
+                    "name": "@vue/cli-service",
+                    "version": "3.12.1",
+                    "isSemVerMajor": true
+                }
+            },
+            "ws": {
+                "name": "ws",
+                "severity": "moderate",
+                "via": [
+                    {
+                        "source": 1748,
+                        "name": "ws",
+                        "dependency": "ws",
+                        "title": "Regular Expression Denial of Service",
+                        "url": "https://npmjs.com/advisories/1748",
+                        "severity": "moderate",
+                        "range": ">=5.0.0 <5.2.3 || >=6.0.0 <6.2.2 || >=7.0.0 <7.4.6"
+                    }
+                ],
+                "effects": [],
+                "range": "5.0.0 - 5.2.2 || 6.0.0 - 6.2.1 || 7.0.0 - 7.4.5",
+                "nodes": [
+                    "node_modules/ws"
+                ],
+                "fixAvailable": true
+            },
+            "y18n": {
+                "name": "y18n",
+                "severity": "high",
+                "via": [
+                    {
+                        "source": 1654,
+                        "name": "y18n",
+                        "dependency": "y18n",
+                        "title": "Prototype Pollution",
+                        "url": "https://npmjs.com/advisories/1654",
+                        "severity": "high",
+                        "range": "<3.2.2||=4.0.0||>=5.0.0 <5.0.5"
+                    }
+                ],
+                "effects": [],
+                "range": "<3.2.2||=4.0.0||>=5.0.0 <5.0.5",
+                "nodes": [
+                    "node_modules/y18n"
+                ],
+                "fixAvailable": true
+            }
+        },
+        "metadata": {
+            "vulnerabilities": {
+                "info": 0,
+                "low": 0,
+                "moderate": 16,
+                "high": 16,
+                "critical": 0,
+                "total": 32
+            },
+            "dependencies": {
+                "prod": 1,
+                "dev": 1415,
+                "optional": 108,
+                "peer": 0,
+                "peerOptional": 0,
+                "total": 1415
+            }
+        }
+    },
+    "npm ls --depth=0 --json": {
+        "version": "1.0.0",
+        "name": "demolib",
+        "dependencies": {
+            "@babel/core": {
+                "version": "7.12.3",
+                "resolved": "https://registry.npmjs.org/@babel/core/-/core-7.12.3.tgz"
+            },
+            "@babel/preset-env": {
+                "version": "7.12.1",
+                "resolved": "https://registry.npmjs.org/@babel/preset-env/-/preset-env-7.12.1.tgz"
+            },
+            "@babel/preset-typescript": {
+                "version": "7.12.1",
+                "resolved": "https://registry.npmjs.org/@babel/preset-typescript/-/preset-typescript-7.12.1.tgz"
+            },
+            "@rollup/plugin-alias": {
+                "version": "3.1.1",
+                "resolved": "https://registry.npmjs.org/@rollup/plugin-alias/-/plugin-alias-3.1.1.tgz"
+            },
+            "@rollup/plugin-babel": {
+                "version": "5.2.1",
+                "resolved": "https://registry.npmjs.org/@rollup/plugin-babel/-/plugin-babel-5.2.1.tgz"
+            },
+            "@rollup/plugin-commonjs": {
+                "version": "14.0.0",
+                "resolved": "https://registry.npmjs.org/@rollup/plugin-commonjs/-/plugin-commonjs-14.0.0.tgz"
+            },
+            "@rollup/plugin-node-resolve": {
+                "version": "9.0.0",
+                "resolved": "https://registry.npmjs.org/@rollup/plugin-node-resolve/-/plugin-node-resolve-9.0.0.tgz"
+            },
+            "@rollup/plugin-replace": {
+                "version": "2.3.3",
+                "resolved": "https://registry.npmjs.org/@rollup/plugin-replace/-/plugin-replace-2.3.3.tgz"
+            },
+            "@vue/cli-plugin-babel": {
+                "version": "4.5.8",
+                "resolved": "https://registry.npmjs.org/@vue/cli-plugin-babel/-/cli-plugin-babel-4.5.8.tgz"
+            },
+            "@vue/cli-plugin-typescript": {
+                "version": "4.5.8",
+                "resolved": "https://registry.npmjs.org/@vue/cli-plugin-typescript/-/cli-plugin-typescript-4.5.8.tgz"
+            },
+            "@vue/cli-service": {
+                "version": "4.5.8",
+                "resolved": "https://registry.npmjs.org/@vue/cli-service/-/cli-service-4.5.8.tgz"
+            },
+            "cross-env": {
+                "version": "7.0.2",
+                "resolved": "https://registry.npmjs.org/cross-env/-/cross-env-7.0.2.tgz"
+            },
+            "minimist": {
+                "version": "1.2.5",
+                "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.5.tgz"
+            },
+            "rollup-plugin-terser": {
+                "version": "7.0.2",
+                "resolved": "https://registry.npmjs.org/rollup-plugin-terser/-/rollup-plugin-terser-7.0.2.tgz"
+            },
+            "rollup-plugin-vue": {
+                "version": "5.1.9",
+                "resolved": "https://registry.npmjs.org/rollup-plugin-vue/-/rollup-plugin-vue-5.1.9.tgz"
+            },
+            "rollup": {
+                "version": "2.32.0",
+                "resolved": "https://registry.npmjs.org/rollup/-/rollup-2.32.0.tgz"
+            },
+            "typescript": {
+                "version": "3.9.7",
+                "resolved": "https://registry.npmjs.org/typescript/-/typescript-3.9.7.tgz"
+            },
+            "vue-template-compiler": {
+                "version": "2.6.12",
+                "resolved": "https://registry.npmjs.org/vue-template-compiler/-/vue-template-compiler-2.6.12.tgz"
+            },
+            "vue": {
+                "version": "2.6.12",
+                "resolved": "https://registry.npmjs.org/vue/-/vue-2.6.12.tgz"
+            }
+        }
+    }
+}
