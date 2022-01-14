@@ -42,7 +42,7 @@
     "read": "^1.0.7",
     "spawn-shell": "^2.1.0",
     "yargs-parser": "^18.1.3",
-    "yargs-unparser": "^1.6.4"
+    "yargs-unparser": "^2.0.0"
   },
   "devDependencies": {
     "pre-commit": "^1.2.2"
