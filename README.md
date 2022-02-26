@@ -18,7 +18,7 @@ Due to changes introduced by npm7 the option to fix an individual package is no 
 You can run `npm audit fix` before running the interactive `resolve-audit` command.
 
 Requires npm v7.24.2+ or yarn 1 installed alongside    
-Works with node 10+  
+Works with node 12+ (could run on older, but my dependencies dropped them)  
 *You can use audit recolver v2.x with npm6*  
 *Yarn support was not heavily tested across versions*  
 ## Install
