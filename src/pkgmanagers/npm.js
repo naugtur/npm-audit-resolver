@@ -13,7 +13,7 @@ function getCommand(action) {
 }
 
 
-function reformatFromV2(input, ls) {
+function reformatFromV2(input) {
     const vulns = input.vulnerabilities;
     const reindex = {}
     const recordPath = (via, fixAvailable, accumulator) => {
@@ -59,7 +59,7 @@ function reformatFromV2(input, ls) {
     }
     // start with direct dependencies and only then move down the 'via' tree. vulnerabilities are a flat list of also transitive dependencies
     // include items that would not otherwise be found since there's nothing pointing to them
-    Object.keys(vulns).filter(a => !!ls.dependencies[a] || effectsNoOther(a)).forEach(name => indexPaths(name))
+    Object.keys(vulns).filter(a => vulns[a].isDirect || effectsNoOther(a)).forEach(name => indexPaths(name))
     return Object.values(reindex);
 }
 
@@ -124,13 +124,9 @@ module.exports = {
     getAudit({ promiseCommand, argv, shellOptions }) {
         const unparsed = unparse(argv, skipArgs)
 
-        return Promise.all([
-            promiseCommand(`npm audit --json ${unparsed}`, shellOptions),
-            promiseCommand(`npm ls --depth=0 --json ${unparsed}`, shellOptions),
-        ])
-            .then(([audit, ls]) => reformat(
-                handleOutput('npm audit', audit),
-                handleOutput('npm ls', ls)
+        return promiseCommand(`npm audit --json ${unparsed}`, shellOptions)
+            .then((audit) => reformat(
+                handleOutput('npm audit', audit)
             ))
         //TODO: retries on ENOAUDIT
     },

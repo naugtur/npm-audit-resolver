@@ -16,11 +16,12 @@ I'm participating in [Package Vulnerability Management & Reporting Collaboration
 
 Due to changes introduced by npm7 the option to fix an individual package is no longer available from npm and wasn't always working correctly anyway. By virtue of "doing one thing and one thing well" this package will no longer provide that option. 
 You can run `npm audit fix` before running the interactive `resolve-audit` command.
-## Install
 
-Requires npm v6.1.0+ or yarn 1 installed alongside   
-Works with node 8+  
-*Yarn support was not heavily tested across versions*
+Requires npm v7.24.2+ or yarn 1 installed alongside    
+Works with node 10+  
+*You can use audit recolver v2.x with npm6*  
+*Yarn support was not heavily tested across versions*  
+## Install
 
 ```
 npm install -g npm-audit-resolver
