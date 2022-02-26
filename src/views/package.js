@@ -1,12 +1,6 @@
 const { RESOLUTIONS } = require('audit-resolve-core');
 
-const safePrint = message => new Promise((resolve, reject) => process.stdout.write(message, (err) => {
-    if (err) { reject(err) }
-    resolve()
-}));
-
-// FIXME: drop Node.js v6 support
-// const safePrint = require('util').promisify(process.stdout.write.bind(process.stdout))
+const safePrint = require('util').promisify(process.stdout.write.bind(process.stdout))
 const severityNumber = {
     low: 10,
     moderate: 20,
@@ -15,7 +9,6 @@ const severityNumber = {
 }
 
 reportMessages = {
-    [RESOLUTIONS.FIX]: "! was fixed before",
     [RESOLUTIONS.EXPIRED]: "! decision to ignore expired"
 }
 

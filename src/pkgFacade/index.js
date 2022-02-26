@@ -55,15 +55,6 @@ module.exports = {
         })
         //TODO: assert valid output format
     },
-    fix({ pkgmanager, shellOptions, action, command }) {
-        return runner(pkgmanager).fix({
-            promiseCommand,
-            argv: Object.assign({}, argv),
-            shellOptions,
-            action,
-            command
-        })
-    },
     remove({ pkgmanager, shellOptions, names }) {
         return runner(pkgmanager).remove({
             promiseCommand,

@@ -134,9 +134,6 @@ module.exports = {
             ))
         //TODO: retries on ENOAUDIT
     },
-    fix({ promiseCommand, argv, shellOptions, action }) {
-        return promiseCommand(getCommand(action), shellOptions)
-    },
     remove({ promiseCommand, argv, shellOptions, names }) {
         //TODO: include the fact that some of them are dev dependencies and we don't know which, because we shouldn't have to at this point
         //FIXME: this command might not delete everything as expected

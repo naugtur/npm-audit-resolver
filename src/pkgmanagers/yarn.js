@@ -49,11 +49,6 @@ module.exports = {
                 return parsing
             })
     },
-    fix({ promiseCommand, argv, shellOptions, action }) {
-        console.error('WARNING: yarn support for fixing dependencies not provided, just running yarn upgrade in case it works.')
-        return promiseCommand(`yarn upgrade ${action.module}`, shellOptions)
-
-    },
     remove({ promiseCommand, argv, shellOptions, names }) {
         return promiseCommand(`yarn remove ${names.join(' ')}`, shellOptions)
     }

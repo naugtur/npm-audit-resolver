@@ -17,7 +17,6 @@ function getSeverityTag(item) {
 
 
 reportMessages = {
-    [RESOLUTIONS.FIX]: chalk.yellow("! this item was marked as fixed earlier"),
     [RESOLUTIONS.EXPIRED]: chalk.magenta("! decision to ignore expired"),
 }
 
@@ -58,6 +57,9 @@ module.exports = {
         console.log(chalk.greenBright(` ✔ automatically ignore low severity issue`))
     },
     printIgnoreQuestion() {
-        console.log('\n You can ignore permanently or decide to revisit later')
-    }
+        console.log('\n You can ignore permanently or decide to revisit later.')
+    },
+    printFixAvailable() {
+        console.log('\n Fix is available. Are you sure you want to ignore?')
+    },
 }

@@ -1,4 +1,4 @@
-# audit resolver
+# Audit Resolver
 
 A tool for building a responsible but practical supply chain security practice.
 
@@ -10,18 +10,15 @@ Audit resolver creates a `audit-resolve.json` file in your app and interactively
 You can decide what to ignore and for how long, or track what's been fixed before.  
 The `audit-resolve.json` file sits in the repository and you can see who decided to ignore what and when.
 
-*This package is meant for early adopters. Anything can change, but my team uses it for maintaining over 20 apps so there's likely to be a migration path.*
-
-I'm working on getting it built into npm. See [the RFC](https://github.com/npm/rfcs/pull/18)  
 I'm participating in [Package Vulnerability Management & Reporting Collaboration Space](https://github.com/openjs-foundation/pkg-vuln-collab-space) where I intend to donate parts of the audit-resolver's core.
 
-## 👷 🚧
-Due to changes introduced by npm7 the option to fix an individual package is not supported, temporarily - while I work it out.  
-You can run `npm audit fix` after marking all relevant issues as fixed.  
-I'm considering putting a fix-all in place that'd run the fix on entire node_modules and mark all fixed items when done. Feedback welcome!
+## Changes in version 3
+
+Due to changes introduced by npm7 the option to fix an individual package is no longer available from npm and wasn't always working correctly anyway. By virtue of "doing one thing and one thing well" this package will no longer provide that option. 
+You can run `npm audit fix` before running the interactive `resolve-audit` command.
 ## Install
 
-Requires npm v6.1.0+ or yarn installed alongside   
+Requires npm v6.1.0+ or yarn 1 installed alongside   
 Works with node 8+  
 *Yarn support was not heavily tested across versions*
 
@@ -73,7 +70,6 @@ All other arguments are passed down to the npm/yarn audit call
 
 When a vulnerability is found, you get to choose between the following options:
 
-- fix - Runs the fix proposed by npm audit and makes a note. If the same issue comes back because someone else on the team changed package-lock.json, you'll get a warning about that.
 - remind in 24h - Lets you ignore an issue temporarily to make the build pass until a fix is known
 - ignore - Adds the particular dependency paths and advisories to be ignored in the future. If the same issue in the same package comes up, but it's a dependency of another package, it won't get ignored. If a new issue is found in the package, it doesn't get ignored. You can decide if the decision expires or not.
 - delete - Removes your dependency that brought the vulnerability in its dependencies.

@@ -14,10 +14,6 @@ module.exports = {
             item.resolutions = item.paths.map(path => {
                 const resolution = getResolution({ id: item.id, path })
                 if (resolution) {
-                    if (resolution === RESOLUTIONS.FIX) {
-                        // should have been fixed!
-                        unresolved = true
-                    }
                     if (resolution === RESOLUTIONS.EXPIRED) {
                         unresolved = true
                     }
