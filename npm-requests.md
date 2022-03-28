@@ -18,7 +18,7 @@ If only a is a direct dependency, I need the a>b>c in audit-resolve file.
 If both a and b are installed, I need a>b>c AND b>c. 
 There's no way to tell which items in npm7 audit output are direct dependencies so I have to run `npm ls --depth=0 --json` to get that information. 
 
-**ASK1**: An indicatoin of thta fact with a simple boolean or `.depth` field would do a lot to help.
+**ASK1**: An indication of that fact with a simple boolean or `.depth` field would do a lot to help.
 I thought of using the "nodes" field, but it seems with deduplication they often land at the top.
 
 
