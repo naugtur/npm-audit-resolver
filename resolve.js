@@ -7,6 +7,9 @@ const auditResolver = require('./src/resolve/auditResolver')
 if (argv.yarn) {
     pkgFacade.addImplementation('yarn', require('./src/pkgmanagers/yarn'))
     pkgFacade.setActiveImplementation('yarn')
+} else if (argv["yarn-berry"]) {
+    pkgFacade.addImplementation('yarn-berry', require('./src/pkgmanagers/yarnBerry'))
+    pkgFacade.setActiveImplementation('yarn-berry')
 } else {
     pkgFacade.addImplementation('npm', require('./src/pkgmanagers/npm'))
     pkgFacade.setActiveImplementation('npm')
