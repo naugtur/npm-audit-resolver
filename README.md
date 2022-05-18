@@ -42,6 +42,7 @@ The decisions you make are stored in `audit-resolve.json` to keep track of it in
 
 ```
 --yarn switches to yarn instead of npm.
+--yarn-berry switches to yarn2 or yarn3 instead of npm.
 --migrate forces migration to the new audit-resolve.json file and format even if no modifications are made to decisions
 --mock used in tests
 ```
