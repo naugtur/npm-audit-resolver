@@ -20,6 +20,12 @@ module.exports = {
                     if (resolution === RESOLUTIONS.NONE) {
                         unresolved = true
                     }
+                    if (resolution === RESOLUTIONS.REASON_MISSING) {
+                        unresolved = true
+                    }
+                    if (resolution === RESOLUTIONS.REASON_MISMATCH) {
+                        unresolved = true
+                    }
                 } else {
                     unresolved = true
                 }

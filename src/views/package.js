@@ -9,7 +9,9 @@ const severityNumber = {
 }
 
 reportMessages = {
-    [RESOLUTIONS.EXPIRED]: "! decision to ignore expired"
+    [RESOLUTIONS.EXPIRED]: "! decision to ignore expired",
+    [RESOLUTIONS.REASON_MISSING]: "! 'reason' field missing",
+    [RESOLUTIONS.REASON_MISMATCH]: "! 'reason' field doesn't respect regex specified in audit-resolve file / rules.requiresReasonMatch"
 }
 
 function reportResolution(resolution) {
