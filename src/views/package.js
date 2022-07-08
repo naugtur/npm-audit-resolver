@@ -9,7 +9,7 @@ const severityNumber = {
 }
 
 reportMessages = {
-    [RESOLUTIONS.EXPIRED]: "! decision to ignore expired",
+    [RESOLUTIONS.EXPIRED]: "! decision to ignore expired"
 }
 
 validationMessages = {
