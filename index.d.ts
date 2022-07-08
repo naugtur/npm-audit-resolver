@@ -14,9 +14,15 @@ interface Vuln {
     paths: Array<string>
 }
 
+enum VulnResolutionValidationError {
+    REASON_MISSING = 'reasonMissing',
+    REASON_MISMATCH = 'reasonMismatch',
+};
+
 interface VulnResolution extends Vuln {
     resolutions: Array<{
         path: string,
-        resolution: any
+        resolution: any,
+        validationError: VulnResolutionValidationError | undefined
     }>
 }

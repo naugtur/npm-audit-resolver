@@ -1,4 +1,4 @@
-const { RESOLUTIONS } = require('audit-resolve-core');
+const { RESOLUTIONS, VALIDATIONS } = require('audit-resolve-core');
 
 const safePrint = require('util').promisify(process.stdout.write.bind(process.stdout))
 const severityNumber = {
@@ -10,13 +10,17 @@ const severityNumber = {
 
 reportMessages = {
     [RESOLUTIONS.EXPIRED]: "! decision to ignore expired",
-    [RESOLUTIONS.REASON_MISSING]: "! 'reason' field missing",
-    [RESOLUTIONS.REASON_MISMATCH]: "! 'reason' field doesn't respect regex specified in audit-resolve file / rules.requiresReasonMatch"
+}
+
+validationMessages = {
+    [VALIDATIONS.REASON_MISSING]: "'reason' field missing",
+    [VALIDATIONS.REASON_MISMATCH]: "'reason' field doesn't respect regex specified in audit-resolve file / rules.requiresReasonMatch"
 }
 
 function reportResolution(resolution) {
     return reportMessages[resolution] || ""
 }
+
 const view = {
     /**
      *
@@ -28,7 +32,10 @@ const view = {
             `--------------------------------------------------`
         );
         console.log(`[${issue.severity}] ${issue.name}: ${issue.title} (${issue.id})`);
-        console.log(issue.resolutions.map(({ path, resolution }) => `  ${path} ${reportResolution(resolution)}`).join("\n"));
+        console.log(issue.resolutions.map(({ path, resolution, validationError }) => {
+            const validationErrorMsg = validationError ? (`\n  Invalid resolution: ${validationMessages[validationError]}` || '') : ''
+            return `  ${path} ${reportResolution(resolution)}${validationErrorMsg}`
+        }).join("\n"));
     },
     printOhnoes() {
         console.log(
