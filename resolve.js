@@ -16,6 +16,14 @@ if (argv.yarn) {
 }
 
 pkgFacade.getAudit({ shellOptions: { ignoreExit: true } })
+    .then(async input => {
+        const choice = await auditResolver.askForFix(input)
+        if (choice === 'f') {
+            return pkgFacade.getAudit({ shellOptions: { ignoreExit: true } })
+        } else {
+            return input
+        }
+    })
     .then(input => {
         return auditResolver.askForResolutions(input)
     })

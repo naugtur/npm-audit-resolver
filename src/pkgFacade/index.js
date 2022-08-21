@@ -62,5 +62,12 @@ module.exports = {
             shellOptions,
             names
         })
+    },
+    fix({ pkgmanager, shellOptions } = {}) {
+        return runner(pkgmanager).fix({
+            promiseCommand,
+            argv: Object.assign({}, argv),
+            shellOptions
+        })
     }
 }

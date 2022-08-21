@@ -70,7 +70,9 @@ All other arguments are passed down to the npm/yarn audit call
 
 ## Features
 
-When a vulnerability is found, you get to choose between the following options:
+If `npm audit fix` can help, you'll be prompted to run it first. 
+
+For all vulnerabilities found, you get to choose between the following options:
 
 - remind in 24h - Lets you ignore an issue temporarily to make the build pass until a fix is known
 - ignore - Adds the particular dependency paths and advisories to be ignored in the future. If the same issue in the same package comes up, but it's a dependency of another package, it won't get ignored. If a new issue is found in the package, it doesn't get ignored. You can decide if the decision expires or not.

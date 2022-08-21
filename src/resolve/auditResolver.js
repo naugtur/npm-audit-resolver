@@ -9,7 +9,7 @@ module.exports = {
      *
      *
      * @param {Array<Vuln>} audit
-     * @returns
+     * @returns {Promise}
      */
     askForResolutions(audit) {
         if(argv.migrate){
@@ -23,5 +23,12 @@ module.exports = {
                     ),
                 Promise.resolve()
             )
+    },
+    askForFix(audit) {
+        const unresolved = getUnresolved(audit)
+        
+        if(unresolved && unresolved.length>0 && unresolved.some(vuln => vuln.fixAvailable)) {
+            return prompter.askToFix(unresolved)
+        }
     }
 }

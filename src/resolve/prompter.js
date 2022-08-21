@@ -9,9 +9,9 @@ const rules = require('audit-resolve-core/auditFile').getRules()
  *
  * @param {{vuln:VulnResolution}} { vuln }
  * @param {*} [choices=null]
- * @returns
+ * @returns {Promise}
  */
-function optionsPrompt({ vuln }, choices = null) {
+async function optionsPrompt({ vuln }, choices = null) {
 
     const mandatoryChoices = [
         {
@@ -40,12 +40,12 @@ function optionsPrompt({ vuln }, choices = null) {
     ]
 
 
-    if (vuln.fixAvailable) {
-        defaultChoices.unshift({
-            key: 'f',
-            name: 'fix automatically'
-        });
-    }
+    // if (vuln.fixAvailable) {
+    //     defaultChoices.unshift({
+    //         key: 'f',
+    //         name: 'fix automatically'
+    //     });
+    // }
     //  else {
     //     defaultChoices.unshift({
     //         key: '?',
@@ -60,21 +60,19 @@ function optionsPrompt({ vuln }, choices = null) {
         choices
     );
 
-    return promptly.choose(
+    const answer = await promptly.choose(
         'What would you like to do? ',
         choices.map(c => c.key),
         { trim: true, retry: true }
     )
-        .then(answer => actions.takeAction(answer, { vuln }))
-        .then(choicesAvailableNow => {
-            if (choicesAvailableNow !== undefined) {
-                return optionsPrompt({ vuln }, choicesAvailableNow)
-            }
-        })
+    const choicesAvailableNow = await actions.takeAction(answer, { vuln })
+
+    if (choicesAvailableNow !== undefined) {
+        return optionsPrompt({ vuln }, choicesAvailableNow)
+    } else {
+        return answer
+    }
 }
-
-
-
 
 module.exports = {
     /**
@@ -85,12 +83,22 @@ module.exports = {
      */
     handleVuln(vuln) {
         view.printIntro(vuln)
-        
+
         if ((argv.ignoreLow || rules.ignoreLowSeverity) && vuln.severity === 'low') {
             view.printLowSeverityHint()
             return actions.takeAction('i', { vuln });
         }
 
         return optionsPrompt({ vuln })
+    },
+    askToFix(vulns) {
+        view.printFixPrompt(vulns.filter(vuln => vuln.fixAvailable).length)
+
+        return optionsPrompt({ vuln: vulns }, [{
+            key: 'f',
+            name: 'Run: npm/yarn audit fix'
+        }])
+
+
     }
 };

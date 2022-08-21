@@ -1,17 +1,6 @@
 const unparse = require('../unparse')
 const skipArgs = require('../skipArgs')
 
-function getCommand(action) {
-    // Derived from npm-audit-report
-    // TODO: share the code
-    if (action.action === 'install') {
-        const isDev = action.resolves[0].dev
-        return `npm install ${isDev ? '--save-dev ' : ''}${action.module}@${action.target}`
-    } else {
-        return `npm update ${action.module} --depth ${action.depth}`
-    }
-}
-
 
 function reformatFromV2(input) {
     const vulns = input.vulnerabilities;
@@ -134,5 +123,8 @@ module.exports = {
         //TODO: include the fact that some of them are dev dependencies and we don't know which, because we shouldn't have to at this point
         //FIXME: this command might not delete everything as expected
         return promiseCommand(`npm rm ${names.join(' ')}`, shellOptions)
+    },
+    fix({ promiseCommand, argv, shellOptions }) {
+        return promiseCommand(`npm audit fix`, { ignoreExit: true, ...shellOptions})
     }
 }

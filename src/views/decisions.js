@@ -49,9 +49,16 @@ module.exports = {
 
         vuln.resolutions.forEach(({ resolution, path }) => console.log(` - ${path} ${reportResolution(resolution)}`))
 
-        if (vuln.fixAvailable && vuln.fixAvailable.isSemVerMajor) {
-            console.log(chalk.yellow(`\n  warning: fix is a major version upgrade`));
+        if (vuln.fixAvailable) {
+            console.log(chalk.bold(`\n  npm audit fix`), 'handles this');
+
+            if(vuln.fixAvailable.isSemVerMajor) {
+            console.log(chalk.yellow(`  warning: fix is a major version upgrade, use `), chalk.bold(`npm audit fix --force`));
+            }
         }
+    },
+    printFixPrompt(count) {
+        console.log(`\n There's ${count} fixable vulnerabilities that running 'npm audit fix' could address.`)
     },
     printLowSeverityHint() {
         console.log(chalk.greenBright(` ✔ automatically ignore low severity issue`))

@@ -86,7 +86,7 @@ async function run() {
     
     await test.command({
         title: 'runs check on yarn',
-        command: 'node check.js --yarn3',
+        command: 'node check.js --yarn-berry',
         prepare: {
             command: 'yarn set version berry'
         }

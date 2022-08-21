@@ -51,5 +51,9 @@ module.exports = {
     },
     remove({ promiseCommand, argv, shellOptions, names }) {
         return promiseCommand(`yarn remove ${names.join(' ')}`, shellOptions)
+    },
+    fix({ promiseCommand, argv, shellOptions }) {
+        console.log('For this to work, yarn-audit-fix package is needed.')
+        return promiseCommand(`yarn audit fix`, shellOptions)
     }
 }

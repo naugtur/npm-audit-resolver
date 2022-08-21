@@ -66,6 +66,11 @@ const strategies = {
     q: function abort() {
         view.printDecision('Bye!');
         process.exit(1);
+    },
+    f: async function fixAll() {
+        view.printDecision('Fix all');
+        // TODO: add marking all fixed items as fixed
+        await pkgFacade.fix()
     }
 };
 
