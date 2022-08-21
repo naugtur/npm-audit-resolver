@@ -1,5 +1,8 @@
 #!/bin/sh
 
+echo '+++++++++++++++++++++++++++++++++++++++'
+echo '+  Integration tests (test.sh)        +'
+echo '+++++++++++++++++++++++++++++++++++++++'
 
 echo 'migrates from old format to new'
 rm ./audit-resolve.json 2>/dev/null
@@ -59,4 +62,6 @@ if [ $RESULT1 -lt 1 ] || [ $RESULT2 -ne 0 ]; then
   echo "FAILED, expected passing arguments down to work, expected filtering out arguments to work"
   exit 1
 fi
-echo '- Runs ----------------------- OK'
+echo '+++++++++++++++++++++++++++++++++++++++'
+echo '+  test.sh - all passed               +'
+echo '+++++++++++++++++++++++++++++++++++++++'

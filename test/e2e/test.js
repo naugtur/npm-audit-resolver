@@ -1,9 +1,18 @@
 const promiseCommand = require('../../src/promiseCommand')
 const assert = require('assert');
 
+function announce(title) {
+    console.log(`\n╭${'─'.repeat(title.length+2)}╮\n│`, title,`│\n╰${'─'.repeat(title.length+2)}╯\n`)
+}
+
 const test = {
-    command: async ({ title, command, exitCode, shellOptions }) => {
-        console.log(title)
+    command: async ({ title, command, exitCode, shellOptions, prepare }) => {
+        announce(title)
+        if(prepare) {
+            console.log('[prepare]')
+            await promiseCommand(prepare.command, prepare.shellOptions || {})
+        }
+        console.log('[run]')
         if (!exitCode) {
             return assert.doesNotReject(async () => await promiseCommand(command, shellOptions || {}))
         }
@@ -12,7 +21,7 @@ const test = {
         })
     },
     mock: async ({ title, mock, exitCode, shellOptions }) => {
-        console.log(title)
+        announce(title)
         if (!exitCode) {
             return assert.doesNotReject(async () => await promiseCommand(`node check.js --mock=test/e2e/${mock}.json`, shellOptions || {}))
         }
@@ -22,6 +31,7 @@ const test = {
         })
     },
     mockNoAssert: async ({ title, mock, exitCode, shellOptions }) => {
+        announce(title)
         return await promiseCommand(`node check.js --mock=test/e2e/${mock}.json`, shellOptions || {})
     },
 }
@@ -73,9 +83,20 @@ async function run() {
         command: 'node check.js'
     })
 
+    
     await test.command({
         title: 'runs check on yarn',
-        command: 'node check.js --yarn'
+        command: 'node check.js --yarn3',
+        prepare: {
+            command: 'yarn set version berry'
+        }
+    })
+    await test.command({
+        title: 'runs check on yarn',
+        command: 'node check.js --yarn',
+        prepare: {
+            command: 'yarn set version classic'
+        }
     })
 
     await test.mockNoAssert({
@@ -87,7 +108,7 @@ async function run() {
     })
 
 
-    console.log('all passed')
+    announce(' test.js - all passed  ')
 }
 run()
 

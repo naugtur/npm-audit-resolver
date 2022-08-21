@@ -3,8 +3,8 @@
   "version": "3.0.0-7",
   "description": "Aids humans and automation in managing npm audit results",
   "bin": {
-    "resolve-audit": "resolve.js",
-    "check-audit": "check.js"
+    "check-audit": "check.js",
+    "resolve-audit": "resolve.js"
   },
   "main": "index.js",
   "scripts": {
