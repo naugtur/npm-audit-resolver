@@ -44,6 +44,9 @@ module.exports = function promiseCommand(command, opts = {}) {
   return Promise.all([
     pSpawn.exitPromise
       .then((exitCode) => {
+        if (opts.handleExit) {
+          opts.handleExit(exitCode)
+        }
         if (opts.ignoreExit || exitCode === 0) {
           return
         } else {

@@ -47,6 +47,5 @@
   "devDependencies": {
     "@npmcli/arborist": "^5.0.0",
     "pre-commit": "^1.2.2"
-  },
-  "packageManager": "yarn@3.2.2"
+  }
 }

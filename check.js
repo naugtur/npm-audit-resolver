@@ -19,7 +19,8 @@ if (argv.yarn) {
     pkgFacade.setActiveImplementation('npm')
 }
 
-pkgFacade.getAudit({ argv, shellOptions: { ignoreExit: true } })
+let auditExit;
+pkgFacade.getAudit({ argv, shellOptions: { ignoreExit: true, handleExit: (ex) => { auditExit = ex }} })
     .then(input => {
         if (!argv.json) {
             view.totalActions(Object.keys(input).length)
@@ -35,6 +36,9 @@ pkgFacade.getAudit({ argv, shellOptions: { ignoreExit: true } })
             return auditOk(issues)
         }
     }).then(isOk => {
+        if (auditExit === 0) {
+            process.exit(0);
+        }
         if (!isOk) {
             process.exit(1);
         }

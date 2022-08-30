@@ -2,23 +2,34 @@ const promiseCommand = require('../../src/promiseCommand')
 const assert = require('assert');
 
 function announce(title) {
-    console.log(`\n╭${'─'.repeat(title.length+2)}╮\n│`, title,`│\n╰${'─'.repeat(title.length+2)}╯\n`)
+    console.log(`\n╭${'─'.repeat(title.length + 2)}╮\n│`, title, `│\n╰${'─'.repeat(title.length + 2)}╯\n`)
+}
+
+async function commandSequence(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        await promiseCommand(arr[i])
+    }
 }
 
 const test = {
-    command: async ({ title, command, exitCode, shellOptions, prepare }) => {
+    command: async ({ title, command, exitCode, shellOptions, prepare, teardown }) => {
         announce(title)
-        if(prepare) {
+        if (prepare) {
             console.log('[prepare]')
-            await promiseCommand(prepare.command, prepare.shellOptions || {})
+            await commandSequence(prepare)
         }
         console.log('[run]')
         if (!exitCode) {
-            return assert.doesNotReject(async () => await promiseCommand(command, shellOptions || {}))
+            assert.doesNotReject(async () => await promiseCommand(command, shellOptions || {}))
+        } else {
+            await promiseCommand(command, shellOptions || {}).catch(e => {
+                assert.strictEqual(e.exitCode, exitCode, `Expected exit code to be ${exitCode}, got ${e.exitCode}`)
+            })
         }
-        return await promiseCommand(command, shellOptions || {}).catch(e => {
-            assert.strictEqual(e.exitCode, exitCode, `Expected exit code to be ${exitCode}, got ${e.exitCode}`)
-        })
+        if (teardown) {
+            console.log('[teardown]')
+            await commandSequence(teardown)
+        }
     },
     mock: async ({ title, mock, exitCode, shellOptions }) => {
         announce(title)
@@ -75,28 +86,37 @@ async function run() {
         mock: '7noAudit',
         exitCode: 2
     })
-   
 
 
     await test.command({
         title: 'runs check on npm',
         command: 'node check.js'
     })
+    await test.command({
+        title: 'runs check on npm with audit level',
+        command: 'node check.js --audit-level critical',
+        exitCode: 0,
+        prepare: ['npm i base64url@2.0.0'],
+        teardown: ['npm rm base64url']
+    })
+    await test.command({
+        title: 'runs check on npm with audit prod',
+        command: 'node check.js --omit=dev',
+        exitCode: 0,
+        prepare: ['npm i -D base64url@2.0.0'],
+        teardown: ['npm rm base64url']
+    })
 
-    
+
     await test.command({
         title: 'runs check on yarn',
         command: 'node check.js --yarn-berry',
-        prepare: {
-            command: 'yarn set version berry'
-        }
+        prepare: ['yarn set version berry', 'yarn']
     })
     await test.command({
         title: 'runs check on yarn',
         command: 'node check.js --yarn',
-        prepare: {
-            command: 'yarn set version classic'
-        }
+        prepare: ['yarn set version classic']
     })
 
     await test.mockNoAssert({
@@ -108,7 +128,7 @@ async function run() {
     })
 
 
-    announce(' test.js - all passed  ')
+    announce('               test.js - all passed                 ')
 }
 run()
 
