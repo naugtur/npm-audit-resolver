@@ -51,6 +51,7 @@ module.exports = function promiseCommand(command, opts = {}) {
           return
         } else {
           const error = Error('Exit ' + exitCode)
+          pSpawn.stderr.pipe(process.stderr)
           error.exitCode = exitCode
           throw error
         }

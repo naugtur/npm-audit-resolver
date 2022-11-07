@@ -5,9 +5,9 @@ function announce(title) {
     console.log(`\n╭${'─'.repeat(title.length + 2)}╮\n│`, title, `│\n╰${'─'.repeat(title.length + 2)}╯\n`)
 }
 
-async function commandSequence(arr) {
+async function commandSequence(arr, opts={}) {
     for (let i = 0; i < arr.length; i++) {
-        await promiseCommand(arr[i])
+        await promiseCommand(arr[i], opts)
     }
 }
 
@@ -16,7 +16,7 @@ const test = {
         announce(title)
         if (prepare) {
             console.log('[prepare]')
-            await commandSequence(prepare)
+            await commandSequence(prepare, { ignoreExit:true })
         }
         console.log('[run]')
         if (!exitCode) {
