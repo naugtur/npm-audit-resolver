@@ -27,7 +27,7 @@ module.exports = function promiseCommand(command, opts = {}) {
     console.log('>>>>', command);
   }
   const pSpawn = spawnShell(command, Object.assign({
-    stdio: [0, 'pipe', 2],
+    stdio: [0, 'pipe', 'inherit'],
     env: process.env
   }, opts))
 

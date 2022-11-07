@@ -5,9 +5,9 @@ function announce(title) {
     console.log(`\n╭${'─'.repeat(title.length + 2)}╮\n│`, title, `│\n╰${'─'.repeat(title.length + 2)}╯\n`)
 }
 
-async function commandSequence(arr) {
+async function commandSequence(arr, opts={}) {
     for (let i = 0; i < arr.length; i++) {
-        await promiseCommand(arr[i])
+        await promiseCommand(arr[i], opts)
     }
 }
 
@@ -20,7 +20,7 @@ const test = {
         }
         console.log('[run]')
         if (!exitCode) {
-            assert.doesNotReject(async () => await promiseCommand(command, shellOptions || {}))
+            await assert.doesNotReject(async () => await promiseCommand(command, shellOptions || {}))
         } else {
             await promiseCommand(command, shellOptions || {}).catch(e => {
                 assert.strictEqual(e.exitCode, exitCode, `Expected exit code to be ${exitCode}, got ${e.exitCode}`)
@@ -109,14 +109,14 @@ async function run() {
 
 
     await test.command({
-        title: 'runs check on yarn',
+        title: 'runs check on yarn3',
         command: 'node check.js --yarn-berry',
-        prepare: ['yarn set version berry', 'yarn']
+        prepare: ['rm yarn.lock', 'yarn set version berry', 'yarn install --mode update-lockfile']
     })
     await test.command({
-        title: 'runs check on yarn',
+        title: 'runs check on yarn1',
         command: 'node check.js --yarn',
-        prepare: ['yarn set version classic']
+        prepare: ['rm yarn.lock', 'yarn set version classic', 'yarn install --mode update-lockfile']
     })
 
     await test.mockNoAssert({
