@@ -20,7 +20,7 @@ const test = {
         }
         console.log('[run]')
         if (!exitCode) {
-            assert.doesNotReject(async () => await promiseCommand(command, shellOptions || {}))
+            await assert.doesNotReject(async () => await promiseCommand(command, shellOptions || {}))
         } else {
             await promiseCommand(command, shellOptions || {}).catch(e => {
                 assert.strictEqual(e.exitCode, exitCode, `Expected exit code to be ${exitCode}, got ${e.exitCode}`)
