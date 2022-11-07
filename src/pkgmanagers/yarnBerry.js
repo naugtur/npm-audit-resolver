@@ -40,7 +40,13 @@ module.exports = {
             `yarn npm audit --json ${unparsed}`,
             shellOptions
         ).then((output) => {
-            const parsedOutput = JSON.parse(output);
+            let parsedOutput
+            try {
+                parsedOutput = JSON.parse(output);
+            } catch (e) {
+                console.warn('yarn audit parse error', output)
+                throw e;
+            }
 
             Object.values(parsedOutput.advisories ?? {}).forEach(aggregate);
 
