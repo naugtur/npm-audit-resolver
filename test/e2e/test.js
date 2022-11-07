@@ -16,7 +16,7 @@ const test = {
         announce(title)
         if (prepare) {
             console.log('[prepare]')
-            await commandSequence(prepare, { ignoreExit:true })
+            await commandSequence(prepare)
         }
         console.log('[run]')
         if (!exitCode) {
@@ -28,7 +28,7 @@ const test = {
         }
         if (teardown) {
             console.log('[teardown]')
-            await commandSequence(teardown, { ignoreExit:true })
+            await commandSequence(teardown)
         }
     },
     mock: async ({ title, mock, exitCode, shellOptions }) => {
