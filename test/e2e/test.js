@@ -116,7 +116,7 @@ async function run() {
     await test.command({
         title: 'runs check on yarn1',
         command: 'node check.js --yarn',
-        prepare: ['yarn set version classic']
+        prepare: ['yarn set version classic', 'yarn']
     })
 
     await test.mockNoAssert({
