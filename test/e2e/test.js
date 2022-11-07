@@ -111,12 +111,12 @@ async function run() {
     await test.command({
         title: 'runs check on yarn3',
         command: 'node check.js --yarn-berry',
-        prepare: ['yarn set version berry', 'yarn']
+        prepare: ['rm yarn.lock', 'yarn set version berry', 'yarn']
     })
     await test.command({
         title: 'runs check on yarn1',
         command: 'node check.js --yarn',
-        prepare: ['yarn set version classic', 'yarn']
+        prepare: ['rm yarn.lock', 'yarn set version classic', 'yarn']
     })
 
     await test.mockNoAssert({
