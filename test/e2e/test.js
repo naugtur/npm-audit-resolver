@@ -28,7 +28,7 @@ const test = {
         }
         if (teardown) {
             console.log('[teardown]')
-            await commandSequence(teardown)
+            await commandSequence(teardown, { ignoreExit:true })
         }
     },
     mock: async ({ title, mock, exitCode, shellOptions }) => {
@@ -109,12 +109,12 @@ async function run() {
 
 
     await test.command({
-        title: 'runs check on yarn',
+        title: 'runs check on yarn3',
         command: 'node check.js --yarn-berry',
         prepare: ['yarn set version berry', 'yarn']
     })
     await test.command({
-        title: 'runs check on yarn',
+        title: 'runs check on yarn1',
         command: 'node check.js --yarn',
         prepare: ['yarn set version classic']
     })
