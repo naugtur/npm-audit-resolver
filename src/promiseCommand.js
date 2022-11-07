@@ -27,7 +27,7 @@ module.exports = function promiseCommand(command, opts = {}) {
     console.log('>>>>', command);
   }
   const pSpawn = spawnShell(command, Object.assign({
-    stdio: [0, 'pipe', 2],
+    stdio: [0, 'pipe', 'inherit'],
     env: process.env
   }, opts))
 
@@ -51,7 +51,6 @@ module.exports = function promiseCommand(command, opts = {}) {
           return
         } else {
           const error = Error('Exit ' + exitCode)
-          pSpawn.stderr.pipe(process.stderr)
           error.exitCode = exitCode
           throw error
         }
