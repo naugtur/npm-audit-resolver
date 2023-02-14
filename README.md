@@ -14,13 +14,13 @@ I'm participating in [Package Vulnerability Management & Reporting Collaboration
 
 ## Changes in version 3
 
-Due to changes introduced by npm7 the option to fix an individual package is no longer available from npm and wasn't always working correctly anyway. By virtue of "doing one thing and one thing well" this package will no longer provide that option. 
-You can run `npm audit fix` before running the interactive `resolve-audit` command.
+Due to changes introduced by npm7+ the option to fix an individual package is no longer available from npm and wasn't always working correctly anyway. By virtue of "doing one thing and one thing well" this package will no longer provide that option. 
+You can run `npm audit fix` before resolving unfixable issues. `resolve-audit` will offer you that option first before asking any questions about specific issues.
 
-Requires npm v7.24.2+ or yarn 1 installed alongside    
+Requires npm v7.24.2+ or yarn installed alongside    
 Works with node 12+ (could run on older, but my dependencies dropped them)  
-*You can use audit recolver v2.x with npm6*  
-*Yarn support was not heavily tested across versions*  
+*You can use audit recolver v2.x with npm6.*  
+*Yarn support was not heavily tested across versions, but seems to work well with yarn 1 and 3*  
 ## Install
 
 ```

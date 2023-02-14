@@ -1,8 +1,14 @@
 #!/usr/bin/env node
+const isCi = require('@npmcli/ci-detect')();
 const pkgFacade = require('./src/pkgFacade');
 const view = require('./src/views/general')
 const argv = require('./src/arguments').get();
 const auditResolver = require('./src/resolve/auditResolver')
+
+if (isCi) {
+    view.ciDetected()
+    process.exit(1)
+}
 
 if (argv.yarn) {
     pkgFacade.addImplementation('yarn', require('./src/pkgmanagers/yarn'))
