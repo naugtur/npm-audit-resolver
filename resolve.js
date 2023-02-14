@@ -5,7 +5,7 @@ const view = require('./src/views/general')
 const argv = require('./src/arguments').get();
 const auditResolver = require('./src/resolve/auditResolver')
 
-if (isCi) {
+if (isCi && !argv.trustmeitsnotci) {
     view.ciDetected()
     process.exit(1)
 }
