@@ -65,7 +65,7 @@ const strategies = {
     },
     q: function abort() {
         view.printDecision('Bye!');
-        process.exit(1);
+        process.exit(0);
     },
     f: async function fixAll() {
         view.printDecision('Fix all');

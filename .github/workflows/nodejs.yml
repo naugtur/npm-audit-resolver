@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x, 19.x]
+        node-version: [19.x, 18.x, 16.x, 14.x]
 
     steps:
     - uses: actions/checkout@v3
@@ -19,7 +19,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: test
       run: |
-        npm ci
-        npm test
+        npm ci || npm i ## npm6 and npm9 incompatibility
+        npm test --ignore-scripts=false
+      ## had to unignore scripts because some npm versions just skip the test
       env:
         CI: true

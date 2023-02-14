@@ -4,6 +4,10 @@ echo '+++++++++++++++++++++++++++++++++++++++'
 echo '+  Integration tests (test.sh)        +'
 echo '+++++++++++++++++++++++++++++++++++++++'
 
+echo 'regenerate lockfile compatible with current node and npm'
+rm -f ./package-lock.json
+npm install --package-lock-only
+
 echo 'migrates from old format to new'
 rm ./audit-resolve.json 2>/dev/null
 cp test/e2e/deprecatedResolvFormat.json ./audit-resolv.json
@@ -26,8 +30,18 @@ if [ $RESULT -ne 1235 ]; then
 fi
 
 
-echo 'runs resolve on npm'
+echo 'warns about running resolve in CI'
+export CI=true
 echo q | node resolve.js > /dev/null 
+
+EXITCODE=$?
+if [ $EXITCODE -ne 1 ]; then
+  echo "FAILED, expected exit code 1, got $EXITCODE"
+  exit 1
+fi
+
+echo 'runs resolve on npm'
+echo q | node resolve.js --trustmeitsnotci  
 
 EXITCODE=$?
 if [ $EXITCODE -ne 0 ]; then
@@ -36,7 +50,7 @@ if [ $EXITCODE -ne 0 ]; then
 fi
 
 echo 'runs resolve on yarn'
-echo q | node resolve.js --yarn > /dev/null 
+echo q | node resolve.js --yarn --trustmeitsnotci 
 
 EXITCODE=$?
 if [ $EXITCODE -ne 0 ]; then
