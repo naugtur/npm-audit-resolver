@@ -1,4 +1,7 @@
-# Audit Resolver
+# Audit Resolver 
+
+![](https://img.shields.io/npm/v/npm-audit-resolver.svg)
+![](https://img.shields.io/static/v1?label=finally&message=released&color=green&style=flat-square)
 
 A tool for building a responsible but practical supply chain security practice.
 
@@ -18,9 +21,10 @@ Due to changes introduced by npm7+ the option to fix an individual package is no
 You can run `npm audit fix` before resolving unfixable issues. `resolve-audit` will offer you that option first before asking any questions about specific issues.
 
 Requires npm v7.24.2+ or yarn installed alongside    
-Works with node 12+ (could run on older, but my dependencies dropped them)  
-*You can use audit recolver v2.x with npm6.*  
-*Yarn support was not heavily tested across versions, but seems to work well with yarn 1 and 3*  
+Works with node 14+ (could run on 12 and npm6 but no guarantees going forward)  
+*You can use audit resolver v2.x with npm6.*  
+*Yarn support was not heavily tested across versions, but works well with current yarn 1 and 3 at the time of writing*  
+
 ## Install
 
 ```
