@@ -1,15 +1,4 @@
 {
-  "npm ls --depth=0 --json": {
-    "name": "c",
-    "version": "1.0.0",
-    "dependencies": {
-      "show": {
-        "version": "0.0.1",
-        "from": "show",
-        "resolved": "https://registry.npmjs.org/show/-/show-0.0.1.tgz"
-      }
-    }
-  },
   "npm audit --json": {
     "auditReportVersion": 2,
     "vulnerabilities": {

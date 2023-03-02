@@ -21,7 +21,11 @@ There's no way to tell which items in npm7 audit output are direct dependencies 
 **ASK1**: An indication of that fact with a simple boolean or `.depth` field would do a lot to help.
 I thought of using the "nodes" field, but it seems with deduplication they often land at the top.
 
+**RESULT**: I've added `isDirect` field to arborist output and it propagates to `npm audit --json`, so this is addressed.
+
 
 Current audit doesn't seem to have enough information available in it to construct a valid fix command - install or update, dev dependency or not, depth, that's missing from the audit output in npm7 and audit-resolver doesn't have a command to run to fix an individual issue and record the fact it was fixed. 
 
 **ASK2**: add a `.command` field to fixAvailable or share/expose the algorithm with which npm audit fix decides what to do.
+
+**RESULT**: there was no feasible way to get the commands. They didn't always work while they were originally available.

@@ -793,21 +793,6 @@
             "total": 1948
           }
         }
-      },
-      "npm ls --depth=0 --json": {
-        "version": "1.0.0",
-        "name": "a",
-        "dependencies": {
-          "gatsby": {
-            "version": "2.32.13",
-            "resolved": "this list is actually fake"
-          },
-          "gatsby-plugin-utils": {
-            "version": "0.9.0",
-            "resolved": "this list is actually fake"
-          }
-
-        }
       }
       
 }
