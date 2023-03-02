@@ -1,9 +1,5 @@
 const chalk = require('chalk')
 const RESOLUTIONS = require('audit-resolve-core/resolutions/RESOLUTIONS')
-function appendWarningLine(message, line) {
-    return message + '\n     ' + chalk.bold(line);
-}
-
 
 const colors = {
     critical: chalk.bold.white.bgRedBright,

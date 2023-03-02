@@ -36,7 +36,7 @@
   "dependencies": {
     "@npmcli/ci-detect": "^3.0.2",
     "audit-resolve-core": "^3.0.0-3",
-    "chalk": "^2.4.2",
+    "chalk": "^4.1.2",
     "concat-stream": "^2.0.0",
     "djv": "^2.1.4",
     "jsonlines": "^0.1.1",
