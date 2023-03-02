@@ -1,6 +1,6 @@
 {
   "name": "npm-audit-resolver",
-  "version": "3.0.0-7",
+  "version": "3.0.0-8",
   "description": "Aids humans and automation in managing npm audit results",
   "bin": {
     "check-audit": "check.js",
@@ -48,5 +48,9 @@
   "devDependencies": {
     "pre-commit": "^1.2.2"
   },
-  "packageManager": "yarn@1.22.19"
+  "files":[
+    "src/*",
+    "check.js",
+    "resolve.js"
+  ]
 }
