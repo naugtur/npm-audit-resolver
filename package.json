@@ -40,7 +40,7 @@
     "concat-stream": "^2.0.0",
     "djv": "^2.1.4",
     "jsonlines": "^0.1.1",
-    "read": "^1.0.7",
+    "read": "^2.0.0",
     "spawn-shell": "^2.1.0",
     "yargs-parser": "^18.1.3",
     "yargs-unparser": "^2.0.0"
@@ -48,9 +48,10 @@
   "devDependencies": {
     "pre-commit": "^1.2.2"
   },
-  "files":[
+  "files": [
     "src/*",
     "check.js",
     "resolve.js"
-  ]
+  ],
+  "packageManager": "yarn@1.22.19"
 }
