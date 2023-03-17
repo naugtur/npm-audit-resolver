@@ -2,6 +2,8 @@ const pkgFacade = require('../pkgFacade')
 // const investigate = require('../investigate');
 const view = require('../views/decisions')
 const { RESOLUTIONS, saveResolution } = require('audit-resolve-core')
+// TODO: get rules from the file via core (I'd have to check if they're properly exposed now)
+
 const ONE_WEEK_LATER = Date.now() + 7 * 24 * 60 * 60 * 1000
 const TWO_WEEKS_LATER = Date.now() + 14 * 24 * 60 * 60 * 1000
 const MONTH_LATER = Date.now() + 30 * 24 * 60 * 60 * 1000
@@ -35,12 +37,15 @@ const strategies = {
         return subOptions
     },
     W: function ignoreWeek({ vuln }) {
+        // TODO: call a function verifying severity agains the rule, print a warning.
         return saveResolution(getIdentifiers(vuln), { resolution: RESOLUTIONS.IGNORE, expiresAt: ONE_WEEK_LATER });
     },
     M: function ignoreMonth({ vuln }) {
+        // TODO: call a function verifying severity agains the rule, print a warning.
         return saveResolution(getIdentifiers(vuln), { resolution: RESOLUTIONS.IGNORE, expiresAt: MONTH_LATER });
     },
     '!': function ignoreForever({ vuln }) {
+        // TODO: call a function verifying severity agains the rule, print a warning.
         return saveResolution(getIdentifiers(vuln), { resolution: RESOLUTIONS.IGNORE, expiresAt: NEVER });
     },
     r: function remindLater({ vuln }) {
