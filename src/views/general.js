@@ -11,4 +11,5 @@ const view = {
     }
 
 }
-module.exports = view
+
+export default view;

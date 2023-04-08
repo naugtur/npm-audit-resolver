@@ -1,10 +1,12 @@
-const { getUnresolved } = require('../check/auditChecker')
-const { load, flush } = require('audit-resolve-core/auditFile');
-const argv = require('audit-resolve-core/arguments').get();
+import auditFile from 'audit-resolve-core/auditFile/index.js';
+import _args from 'audit-resolve-core/arguments.js';
+import getUnresolved from '../check/auditChecker.js';
+import prompter from './prompter.js';
 
-const prompter = require('./prompter');
+const argv = _args.get();
+const { load, flush } = auditFile;
 
-module.exports = {
+export default {
     /**
      *
      *
@@ -26,7 +28,7 @@ module.exports = {
     },
     askForFix(audit) {
         const unresolved = getUnresolved(audit)
-        
+
         if(unresolved && unresolved.length>0 && unresolved.some(vuln => vuln.fixAvailable)) {
             return prompter.askToFix(unresolved)
         }

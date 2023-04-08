@@ -1,6 +1,9 @@
-const { RESOLUTIONS } = require('audit-resolve-core');
+import auditResolveCore from 'audit-resolve-core';
+import util from 'node:util';
 
-const safePrint = require('util').promisify(process.stdout.write.bind(process.stdout))
+const { RESOLUTIONS } = auditResolveCore;
+
+const safePrint = util.promisify(process.stdout.write.bind(process.stdout))
 const severityNumber = {
     low: 10,
     moderate: 20,
@@ -8,9 +11,9 @@ const severityNumber = {
     critical: 40
 }
 
-reportMessages = {
+const reportMessages = {
     [RESOLUTIONS.EXPIRED]: "! decision to ignore expired"
-}
+};
 
 function reportResolution(resolution) {
     return reportMessages[resolution] || ""
@@ -56,6 +59,6 @@ const view = {
     printJsonReportAsync(issues) {
         return safePrint(JSON.stringify(issues, null, 2));
     }
-
 }
-module.exports = view
+
+export default view;

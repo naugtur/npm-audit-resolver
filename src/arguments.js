@@ -1,6 +1,8 @@
-var argv = require('yargs-parser')(process.argv.slice(2));
+import yargsParser from 'yargs-parser';
 
-module.exports = {
+let argv = yargsParser(process.argv.slice(2));
+
+export default {
     get: () => argv,
     set: a => {
         if (a) { argv = a }

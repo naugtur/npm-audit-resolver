@@ -1,6 +1,6 @@
 // I wanted to use promptly, but it uses {...options} syntax, so it wouldn't work in node6
-// This implements the API subset I use 
-const read = require('read')
+// This implements the API subset I use
+import read from 'read';
 
 function validate(choices, resp) {
     if (choices.indexOf(resp) > -1) {
@@ -20,6 +20,6 @@ function choose(text, choices, options) {
         })
 }
 
-module.exports = {
+export default {
     choose
-}
+};

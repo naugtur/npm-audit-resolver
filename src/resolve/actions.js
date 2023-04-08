@@ -1,11 +1,16 @@
-const pkgFacade = require('../pkgFacade')
+import pkgFacade from '../pkgFacade/index.js';
 // const investigate = require('../investigate');
-const view = require('../views/decisions')
-const { RESOLUTIONS, saveResolution } = require('audit-resolve-core')
-const ONE_WEEK_LATER = Date.now() + 7 * 24 * 60 * 60 * 1000
-const TWO_WEEKS_LATER = Date.now() + 14 * 24 * 60 * 60 * 1000
-const MONTH_LATER = Date.now() + 30 * 24 * 60 * 60 * 1000
-const NEVER = undefined
+import view from '../views/decisions.js';
+import auditResolveCore from 'audit-resolve-core';
+import statusManager from 'audit-resolve-core/statusManager.js';
+
+const ONE_WEEK_LATER = Date.now() + 7 * 24 * 60 * 60 * 1000;
+const TWO_WEEKS_LATER = Date.now() + 14 * 24 * 60 * 60 * 1000;
+const MONTH_LATER = Date.now() + 30 * 24 * 60 * 60 * 1000;
+const NEVER = undefined;
+
+const { RESOLUTIONS } = auditResolveCore;
+const { saveResolution } = statusManager;
 
 function getIdentifiers(vuln) {
     return vuln.paths.map(path => ({ path, id: vuln.id }))
@@ -79,7 +84,7 @@ function strategyOf(choice) {
     return strategies[choice] || noop;
 }
 
-module.exports = {
+export default {
     /**
      *
      *

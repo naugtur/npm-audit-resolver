@@ -1,5 +1,7 @@
-const chalk = require('chalk')
-const RESOLUTIONS = require('audit-resolve-core/resolutions/RESOLUTIONS')
+import chalk from 'chalk';
+import auditResolveCore from 'audit-resolve-core';
+
+const { RESOLUTIONS } = auditResolveCore;
 
 const colors = {
     critical: chalk.bold.white.bgRedBright,
@@ -10,9 +12,7 @@ function getSeverityTag(item) {
     const color = colors[item.severity] || (a => a);
     return color(`[ ${item.severity} ]`)
 }
-
-
-reportMessages = {
+const reportMessages = {
     [RESOLUTIONS.EXPIRED]: chalk.magenta("! decision to ignore expired"),
 }
 
@@ -20,7 +20,7 @@ function reportResolution(resolution) {
     return reportMessages[resolution] || ""
 }
 
-module.exports = {
+export default {
     printDecision(text = '') {
         console.log(`Selected: ${text}`)
     },

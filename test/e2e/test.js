@@ -1,5 +1,5 @@
-const promiseCommand = require('../../src/promiseCommand')
-const assert = require('assert');
+import { promiseCommand } from '../../src/promiseCommand.js';
+import assert from 'node:assert/strict';
 
 function announce(title) {
     console.log(`\n╭${'─'.repeat(title.length + 2)}╮\n│`, title, `│\n╰${'─'.repeat(title.length + 2)}╯\n`)
@@ -7,7 +7,13 @@ function announce(title) {
 
 async function commandSequence(arr, opts={}) {
     for (let i = 0; i < arr.length; i++) {
-        await promiseCommand(arr[i], opts)
+        try {
+            await promiseCommand(arr[i], opts)
+        } catch(e) {
+            console.log(e);
+            throw e;
+        }
+
     }
 }
 
@@ -130,6 +136,7 @@ async function run() {
 
     announce('               test.js - all passed                 ')
 }
-run()
+
+run();
 
 

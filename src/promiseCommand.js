@@ -1,7 +1,9 @@
-const spawnShell = require('spawn-shell');
-const concat = require('concat-stream');
-const argv = require('./arguments').get();
-const fs = require('fs')
+import spawnShell from 'spawn-shell';
+import concat from 'concat-stream';
+import _args from 'audit-resolve-core/arguments.js';
+import fs from 'node:fs';
+
+const argv = _args.get();
 
 function readMock(file, command) {
   command = command.trim()
@@ -16,7 +18,8 @@ function readMock(file, command) {
     return JSON.stringify(commandOutput)
   }
 }
-module.exports = function promiseCommand(command, opts = {}) {
+
+export function promiseCommand(command, opts = {}) {
   if (argv.mock) {
     if (typeof argv.mock === 'string') {
       console.error(`>>mock>> '${command}'`);

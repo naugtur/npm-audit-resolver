@@ -1,8 +1,11 @@
-const promptly = require('./micro-promptly');
-const actions = require('./actions');
-const argv = require('audit-resolve-core/arguments').get()
-const view = require('../views/decisions')
-const rules = require('audit-resolve-core/auditFile').getRules()
+import promptly from './micro-promptly.js';
+import actions from './actions.js';
+import _args from 'audit-resolve-core/arguments.js';
+import view from '../views/decisions.js';
+import auditFile from 'audit-resolve-core/auditFile/index.js';
+
+const rules = auditFile.getRules()
+const argv = _args.get();
 
 /**
  *
@@ -74,7 +77,7 @@ async function optionsPrompt({ vuln }, choices = null) {
     }
 }
 
-module.exports = {
+export default {
     /**
      *
      *
@@ -98,7 +101,5 @@ module.exports = {
             key: 'f',
             name: 'Run: npm/yarn audit fix'
         }])
-
-
     }
 };

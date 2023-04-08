@@ -1,5 +1,7 @@
-const argv = require('../arguments').get()
-const promiseCommand = require('../promiseCommand');
+import _args from 'audit-resolve-core/arguments.js';
+import { promiseCommand } from '../promiseCommand.js';
+
+const argv = _args.get();
 
 let currentActiveRunner;
 function setActiveImplementation(name) {
@@ -8,12 +10,32 @@ function setActiveImplementation(name) {
 
 const runners = {
 }
+
 function runner(pkgmanager) {
     pkgmanager = pkgmanager || currentActiveRunner
     return runners[pkgmanager]
 }
 
-module.exports = {
+export default {
+    async init() {
+        if (argv.yarn) {
+            const { default: yarn } = await import('../pkgmanagers/yarn.js');
+
+            this.addImplementation('yarn', yarn)
+            this.setActiveImplementation('yarn')
+        } else if (argv["yarn-berry"]) {
+            const { default: yarnBerry } = await import('../pkgmanagers/yarnBerry.js');
+
+            this.addImplementation('yarn-berry', yarnBerry)
+            this.setActiveImplementation('yarn-berry')
+        } else {
+            const { default: npm } = await import('../pkgmanagers/npm.js');
+
+            this.addImplementation('npm', npm)
+            this.setActiveImplementation('npm')
+        }
+    },
+
     addImplementation(name, implementation) {
         if (!typeof implementation.getAudit === 'function') {
             throw Error('Package Manager implementation must expose a getAudit function returning a promise for audit data.')
@@ -21,6 +43,7 @@ module.exports = {
         if (!implementation.version === 1) {
             throw Error(`expected version to be set to 1 on implementation, got ${implementation.version} instead`)
         }
+
         runners[name] = implementation
         // enable first by default
         if (!currentActiveRunner) {
@@ -36,7 +59,7 @@ module.exports = {
      * @returns {Promise<Array<Vuln>>} list of vulnerabilities
      */
     getAudit({ pkgmanager, shellOptions }) {
-        return runner(pkgmanager).getAudit({
+        return this.init().then(() => runner(pkgmanager).getAudit({
             promiseCommand,
             argv: Object.assign({}, argv),
             shellOptions
@@ -52,7 +75,7 @@ module.exports = {
                 console.error(output)
                 throw e;
             }
-        })
+        }));
         //TODO: assert valid output format
     },
     remove({ pkgmanager, shellOptions, names }) {

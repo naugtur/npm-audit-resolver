@@ -1,27 +1,30 @@
 #!/usr/bin/env node
-const isCi = require('@npmcli/ci-detect')();
-const pkgFacade = require('./src/pkgFacade');
-const view = require('./src/views/general')
-const argv = require('./src/arguments').get();
-const auditResolver = require('./src/resolve/auditResolver')
+import ciDetect from '@npmcli/ci-detect';
+import pkgFacade from './src/pkgFacade/index.js';
+import view from './src/views/general.js';
+import _args from 'audit-resolve-core/arguments.js';
+import auditResolver from './src/resolve/auditResolver.js';
+
+const argv = _args.get();
+const isCi = ciDetect();
 
 if (isCi && !argv.trustmeitsnotci) {
     view.ciDetected()
     process.exit(1)
 }
 
-if (argv.yarn) {
-    pkgFacade.addImplementation('yarn', require('./src/pkgmanagers/yarn'))
-    pkgFacade.setActiveImplementation('yarn')
-} else if (argv["yarn-berry"]) {
-    pkgFacade.addImplementation('yarn-berry', require('./src/pkgmanagers/yarnBerry'))
-    pkgFacade.setActiveImplementation('yarn-berry')
-} else {
-    pkgFacade.addImplementation('npm', require('./src/pkgmanagers/npm'))
-    pkgFacade.setActiveImplementation('npm')
-}
+// if (argv.yarn) {
+//     pkgFacade.addImplementation('yarn', require('./src/pkgmanagers/yarn'))
+//     pkgFacade.setActiveImplementation('yarn')
+// } else if (argv["yarn-berry"]) {
+//     pkgFacade.addImplementation('yarn-berry', require('./src/pkgmanagers/yarnBerry'))
+//     pkgFacade.setActiveImplementation('yarn-berry')
+// } else {
+//     pkgFacade.addImplementation('npm', require('./src/pkgmanagers/npm'))
+//     pkgFacade.setActiveImplementation('npm')
+// }
 
-pkgFacade.getAudit({ shellOptions: { ignoreExit: true } })
+pkgFacade.init().then(() => pkgFacade.getAudit({ shellOptions: { ignoreExit: true } })
     .then(async input => {
         const choice = await auditResolver.askForFix(input)
         if (choice === 'f') {
@@ -36,4 +39,4 @@ pkgFacade.getAudit({ shellOptions: { ignoreExit: true } })
     .catch(e => {
         view.genericError(e);
         process.exit(2);
-    });
+    }));

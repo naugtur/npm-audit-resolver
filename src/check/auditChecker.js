@@ -1,34 +1,33 @@
-const { getResolution, RESOLUTIONS } = require('audit-resolve-core');
+import auditResolveCore from 'audit-resolve-core';
 
+const { getResolution, RESOLUTIONS } = auditResolveCore;
 
-module.exports = {
-    /**
-     *
-     *
-     * @param {Array<Vuln>} audit
-     * @returns {Array<VulnResolution} 
-     */
-    getUnresolved(audit = []) {
-        return audit.map(item => {
-            let unresolved = false;
-            item.resolutions = item.paths.map(path => {
-                const resolution = getResolution({ id: item.id, path })
-                if (resolution) {
-                    if (resolution === RESOLUTIONS.EXPIRED) {
-                        unresolved = true
-                    }
-                    if (resolution === RESOLUTIONS.NONE) {
-                        unresolved = true
-                    }
-                } else {
+/**
+ *
+ *
+ * @param {Array<Vuln>} audit
+ * @returns {Array<VulnResolution}
+ */
+export default function getUnresolved(audit = []) {
+    return audit.map(item => {
+        let unresolved = false;
+        item.resolutions = item.paths.map(path => {
+            const resolution = getResolution({ id: item.id, path })
+            if (resolution) {
+                if (resolution === RESOLUTIONS.EXPIRED) {
                     unresolved = true
                 }
-                return { path, resolution }
-
-            })
-            if (unresolved) {
-                return item
+                if (resolution === RESOLUTIONS.NONE) {
+                    unresolved = true
+                }
+            } else {
+                unresolved = true
             }
-        }).filter(a => a);
-    }
+            return { path, resolution }
+
+        })
+        if (unresolved) {
+            return item
+        }
+    }).filter(a => a);
 }
