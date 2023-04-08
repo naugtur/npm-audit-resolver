@@ -1,6 +1,5 @@
-const unparse = require('../unparse')
-const skipArgs = require('../skipArgs')
-
+import unparse from '../unparse.js';
+import skipArgs from '../skipArgs.js';
 
 function reformatFromV2(input) {
     const vulns = input.vulnerabilities;
@@ -108,7 +107,7 @@ const handleOutput = (of, output) => {
     return parsed
 }
 
-module.exports = {
+export default {
     version: 1,
     getAudit({ promiseCommand, argv, shellOptions }) {
         const unparsed = unparse(argv, skipArgs)

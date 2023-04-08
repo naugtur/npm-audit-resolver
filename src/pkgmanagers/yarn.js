@@ -1,9 +1,8 @@
-const jsonlines = require('jsonlines')
-const unparse = require('../unparse')
-const skipArgs = require('../skipArgs')
+import jsonlines from 'jsonlines';
+import unparse from '../unparse.js';
+import skipArgs from '../skipArgs.js';
 
-
-module.exports = {
+export default {
     version: 1,
     getAudit({ promiseCommand, argv, shellOptions }) {
         const unparsed = unparse(argv, skipArgs)

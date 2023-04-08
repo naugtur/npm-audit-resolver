@@ -1,6 +1,6 @@
-const yargsUnparse = require('yargs-unparser');
+import yargsUnparse from 'yargs-unparser';
 
-function unparse(argv, filteredKeys = []) {
+export default function unparse(argv, filteredKeys = []) {
     const filteredArgs = Object.assign({}, argv);
     
     filteredKeys.forEach(key => {
@@ -12,4 +12,3 @@ function unparse(argv, filteredKeys = []) {
     // I hope it doesn't hurt later :|
     return unparsed.replace('--omit ','--omit=');
 }
-module.exports = unparse;

@@ -1,23 +1,39 @@
 #!/usr/bin/env node
-const pkgFacade = require('./src/pkgFacade');
-const view = Object.assign({}, require('./src/views/package'), require('./src/views/general'))
-const argv = require('./src/arguments').get();
-const auditChecker = require('./src/check/auditChecker')
+import pkgFacade from './src/pkgFacade/index.js';
+import viewsPackage from './src/views/package.js';
+import viewsGeneral from './src/views/general.js';
+import args from 'audit-resolve-core/arguments.js';
+import getUnresolved from "./src/check/auditChecker.js";
+
+const view = {
+    ...viewsPackage,
+    ...viewsGeneral,
+};
+
+const argv = args.get();
 
 function auditOk(issues) {
     return !(issues && issues.length);
 }
 
-if (argv.yarn) {
-    pkgFacade.addImplementation('yarn', require('./src/pkgmanagers/yarn'))
-    pkgFacade.setActiveImplementation('yarn')
-} else if (argv["yarn-berry"]) {
-    pkgFacade.addImplementation('yarn-berry', require('./src/pkgmanagers/yarnBerry'))
-    pkgFacade.setActiveImplementation('yarn-berry')
-} else {
-    pkgFacade.addImplementation('npm', require('./src/pkgmanagers/npm'))
-    pkgFacade.setActiveImplementation('npm')
-}
+pkgFacade.init = async () => {
+    if (argv.yarn) {
+        const { default: yarn } = await import('./src/pkgmanagers/yarn.js');
+
+        pkgFacade.addImplementation('yarn', yarn)
+        pkgFacade.setActiveImplementation('yarn')
+    } else if (argv["yarn-berry"]) {
+        const { default: yarnBerry } = await import('./src/pkgmanagers/yarnBerry.js');
+
+        pkgFacade.addImplementation('yarn-berry', yarnBerry)
+        pkgFacade.setActiveImplementation('yarn-berry')
+    } else {
+        const { default: npm } = await import('./src/pkgmanagers/npm.js');
+
+        pkgFacade.addImplementation('npm', npm)
+        pkgFacade.setActiveImplementation('npm')
+    }
+};
 
 let auditExit;
 pkgFacade.getAudit({ argv, shellOptions: { ignoreExit: true, handleExit: (ex) => { auditExit = ex }} })
@@ -25,7 +41,7 @@ pkgFacade.getAudit({ argv, shellOptions: { ignoreExit: true, handleExit: (ex) =>
         if (!argv.json) {
             view.totalActions(Object.keys(input).length)
         }
-        return auditChecker.getUnresolved(input)
+        return getUnresolved(input)
     })
     .then(issues => {
         if (argv.json) {
