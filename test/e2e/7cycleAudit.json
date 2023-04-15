@@ -1,0 +1,798 @@
+{
+    "npm audit --json": {
+        "auditReportVersion": 2,
+        "vulnerabilities": {
+          "@graphql-tools/url-loader": {
+            "name": "@graphql-tools/url-loader",
+            "severity": "moderate",
+            "via": [
+              "subscriptions-transport-ws",
+              "ws"
+            ],
+            "effects": [],
+            "range": ">=6.0.2-alpha-10252a1.0",
+            "nodes": [
+              "node_modules/@graphql-tools/url-loader"
+            ],
+            "fixAvailable": true
+          },
+          "autoprefixer": {
+            "name": "autoprefixer",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [
+              "gatsby"
+            ],
+            "range": "9.0.0 - 9.8.6",
+            "nodes": [
+              "node_modules/autoprefixer"
+            ],
+            "fixAvailable": {
+              "name": "gatsby",
+              "version": "3.6.2",
+              "isSemVerMajor": true
+            }
+          },
+          "css-declaration-sorter": {
+            "name": "css-declaration-sorter",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0 - 5.1.2",
+            "nodes": [
+              "node_modules/css-declaration-sorter"
+            ],
+            "fixAvailable": true
+          },
+          "cssnano": {
+            "name": "cssnano",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [
+              "optimize-css-assets-webpack-plugin"
+            ],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.1.1 - 4.1.11",
+            "nodes": [
+              "node_modules/cssnano"
+            ],
+            "fixAvailable": {
+              "name": "gatsby",
+              "version": "3.6.2",
+              "isSemVerMajor": true
+            }
+          },
+          "cssnano-preset-default": {
+            "name": "cssnano-preset-default",
+            "severity": "moderate",
+            "via": [
+              "cssnano-util-raw-cache",
+              "postcss",
+              "postcss-calc"
+            ],
+            "effects": [],
+            "range": "<=4.0.0-rc.2 || 4.0.1 - 4.0.8",
+            "nodes": [
+              "node_modules/cssnano-preset-default"
+            ],
+            "fixAvailable": true
+          },
+          "cssnano-util-raw-cache": {
+            "name": "cssnano-util-raw-cache",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [
+              "cssnano-preset-default"
+            ],
+            "range": ">=4.0.1",
+            "nodes": [
+              "node_modules/cssnano-util-raw-cache"
+            ],
+            "fixAvailable": true
+          },
+          "gatsby": {
+            "name": "gatsby",
+            "severity": "high",
+            "via": [
+              "autoprefixer",
+              "gatsby-cli",
+              "gatsby-plugin-utils",
+              "optimize-css-assets-webpack-plugin",
+              "postcss-flexbugs-fixes",
+              "postcss-loader",
+              "webpack-dev-server"
+            ],
+            "effects": [
+              "gatsby-plugin-utils"
+            ],
+            "range": ">=2.0.118",
+            "nodes": [
+              "node_modules/gatsby"
+            ],
+            "fixAvailable": {
+              "name": "gatsby",
+              "version": "3.6.2",
+              "isSemVerMajor": true
+            }
+          },
+          "gatsby-cli": {
+            "name": "gatsby-cli",
+            "severity": "high",
+            "via": [
+              "gatsby-recipes"
+            ],
+            "effects": [
+              "gatsby"
+            ],
+            "range": "2.8.20-telemetry-test.2972 - 2.8.20-telemetry-test.2976 || 2.11.10-unifiedroutes.76 - 2.11.10-unifiedroutes-v2.135 || >=2.12.37",
+            "nodes": [
+              "node_modules/gatsby-cli"
+            ],
+            "fixAvailable": {
+              "name": "gatsby",
+              "version": "3.6.2",
+              "isSemVerMajor": true
+            }
+          },
+          "gatsby-plugin-utils": {
+            "name": "gatsby-plugin-utils",
+            "severity": "moderate",
+            "via": [
+              "gatsby"
+            ],
+            "effects": [
+              "gatsby"
+            ],
+            "range": "0.2.27-qod.19 - 0.2.27-qod.21 || 0.2.31-query-modules-debug-missing-sq.23 || 0.2.35 - 0.10.0-next.0",
+            "nodes": [
+              "node_modules/gatsby-plugin-utils"
+            ],
+            "fixAvailable": {
+              "name": "gatsby-plugin-utils",
+              "version": "1.6.0",
+              "isSemVerMajor": true
+            }
+          },
+          "gatsby-recipes": {
+            "name": "gatsby-recipes",
+            "severity": "high",
+            "via": [
+              "remark-parse"
+            ],
+            "effects": [
+              "gatsby-cli"
+            ],
+            "range": "0.0.7-unifiedroutes.76 - 0.0.7-unifiedroutes-v2.135 || >=0.1.31",
+            "nodes": [
+              "node_modules/gatsby-recipes"
+            ],
+            "fixAvailable": {
+              "name": "gatsby",
+              "version": "3.6.2",
+              "isSemVerMajor": true
+            }
+          },
+          "optimize-css-assets-webpack-plugin": {
+            "name": "optimize-css-assets-webpack-plugin",
+            "severity": "moderate",
+            "via": [
+              "cssnano"
+            ],
+            "effects": [
+              "gatsby"
+            ],
+            "range": "3.2.1 || 5.0.2 - 5.0.6",
+            "nodes": [
+              "node_modules/optimize-css-assets-webpack-plugin"
+            ],
+            "fixAvailable": {
+              "name": "gatsby",
+              "version": "3.6.2",
+              "isSemVerMajor": true
+            }
+          },
+          "postcss": {
+            "name": "postcss",
+            "severity": "moderate",
+            "via": [
+              {
+                "source": 1693,
+                "name": "postcss",
+                "dependency": "postcss",
+                "title": "Regular Expression Denial of Service",
+                "url": "https://npmjs.com/advisories/1693",
+                "severity": "moderate",
+                "range": ">=7.0.0 <8.2.10"
+              }
+            ],
+            "effects": [
+              "autoprefixer",
+              "css-declaration-sorter",
+              "cssnano",
+              "cssnano-preset-default",
+              "cssnano-util-raw-cache",
+              "postcss-calc",
+              "postcss-colormin",
+              "postcss-convert-values",
+              "postcss-discard-comments",
+              "postcss-discard-duplicates",
+              "postcss-discard-empty",
+              "postcss-discard-overridden",
+              "postcss-flexbugs-fixes",
+              "postcss-loader",
+              "postcss-merge-longhand",
+              "postcss-merge-rules",
+              "postcss-minify-font-values",
+              "postcss-minify-gradients",
+              "postcss-minify-params",
+              "postcss-minify-selectors",
+              "postcss-normalize-charset",
+              "postcss-normalize-display-values",
+              "postcss-normalize-positions",
+              "postcss-normalize-repeat-style",
+              "postcss-normalize-string",
+              "postcss-normalize-timing-functions",
+              "postcss-normalize-unicode",
+              "postcss-normalize-url",
+              "postcss-normalize-whitespace",
+              "postcss-ordered-values",
+              "postcss-reduce-initial",
+              "postcss-reduce-transforms",
+              "postcss-svgo",
+              "postcss-unique-selectors",
+              "stylehacks"
+            ],
+            "range": "7.0.0 - 8.2.9",
+            "nodes": [
+              "node_modules/postcss"
+            ],
+            "fixAvailable": {
+              "name": "gatsby",
+              "version": "3.6.2",
+              "isSemVerMajor": true
+            }
+          },
+          "postcss-calc": {
+            "name": "postcss-calc",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [
+              "cssnano-preset-default"
+            ],
+            "range": "6.0.2 - 7.0.5",
+            "nodes": [
+              "node_modules/postcss-calc"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-colormin": {
+            "name": "postcss-colormin",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.2 - 4.0.3",
+            "nodes": [
+              "node_modules/postcss-colormin"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-convert-values": {
+            "name": "postcss-convert-values",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.1",
+            "nodes": [
+              "node_modules/postcss-convert-values"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-discard-comments": {
+            "name": "postcss-discard-comments",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.1 - 4.0.2",
+            "nodes": [
+              "node_modules/postcss-discard-comments"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-discard-duplicates": {
+            "name": "postcss-discard-duplicates",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.2",
+            "nodes": [
+              "node_modules/postcss-discard-duplicates"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-discard-empty": {
+            "name": "postcss-discard-empty",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.1",
+            "nodes": [
+              "node_modules/postcss-discard-empty"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-discard-overridden": {
+            "name": "postcss-discard-overridden",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.1",
+            "nodes": [
+              "node_modules/postcss-discard-overridden"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-flexbugs-fixes": {
+            "name": "postcss-flexbugs-fixes",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [
+              "gatsby"
+            ],
+            "range": "4.0.0 - 4.2.1",
+            "nodes": [
+              "node_modules/postcss-flexbugs-fixes"
+            ],
+            "fixAvailable": {
+              "name": "gatsby",
+              "version": "3.6.2",
+              "isSemVerMajor": true
+            }
+          },
+          "postcss-loader": {
+            "name": "postcss-loader",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [
+              "gatsby"
+            ],
+            "range": "3.0.0 - 4.0.1",
+            "nodes": [
+              "node_modules/postcss-loader"
+            ],
+            "fixAvailable": {
+              "name": "gatsby",
+              "version": "3.6.2",
+              "isSemVerMajor": true
+            }
+          },
+          "postcss-merge-longhand": {
+            "name": "postcss-merge-longhand",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.6 - 4.0.11",
+            "nodes": [
+              "node_modules/postcss-merge-longhand"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-merge-rules": {
+            "name": "postcss-merge-rules",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.2 - 4.0.3",
+            "nodes": [
+              "node_modules/postcss-merge-rules"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-minify-font-values": {
+            "name": "postcss-minify-font-values",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.2",
+            "nodes": [
+              "node_modules/postcss-minify-font-values"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-minify-gradients": {
+            "name": "postcss-minify-gradients",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.1 - 4.0.2",
+            "nodes": [
+              "node_modules/postcss-minify-gradients"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-minify-params": {
+            "name": "postcss-minify-params",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.1 - 4.0.2",
+            "nodes": [
+              "node_modules/postcss-minify-params"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-minify-selectors": {
+            "name": "postcss-minify-selectors",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.1 - 4.0.2",
+            "nodes": [
+              "node_modules/postcss-minify-selectors"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-normalize-charset": {
+            "name": "postcss-normalize-charset",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.1",
+            "nodes": [
+              "node_modules/postcss-normalize-charset"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-normalize-display-values": {
+            "name": "postcss-normalize-display-values",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "<=4.0.0-rc.2 || 4.0.1 - 4.0.2",
+            "nodes": [
+              "node_modules/postcss-normalize-display-values"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-normalize-positions": {
+            "name": "postcss-normalize-positions",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "<=4.0.0-rc.2 || 4.0.1 - 4.0.2",
+            "nodes": [
+              "node_modules/postcss-normalize-positions"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-normalize-repeat-style": {
+            "name": "postcss-normalize-repeat-style",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "<=4.0.0-rc.2 || 4.0.1 - 4.0.2",
+            "nodes": [
+              "node_modules/postcss-normalize-repeat-style"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-normalize-string": {
+            "name": "postcss-normalize-string",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "<=4.0.0-rc.2 || 4.0.1 - 4.0.2",
+            "nodes": [
+              "node_modules/postcss-normalize-string"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-normalize-timing-functions": {
+            "name": "postcss-normalize-timing-functions",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "<=4.0.0-rc.2 || 4.0.1 - 4.0.2",
+            "nodes": [
+              "node_modules/postcss-normalize-timing-functions"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-normalize-unicode": {
+            "name": "postcss-normalize-unicode",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "<=4.0.0-rc.2 || 4.0.1",
+            "nodes": [
+              "node_modules/postcss-normalize-unicode"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-normalize-url": {
+            "name": "postcss-normalize-url",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.1",
+            "nodes": [
+              "node_modules/postcss-normalize-url"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-normalize-whitespace": {
+            "name": "postcss-normalize-whitespace",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "<=4.0.0-rc.2 || 4.0.1 - 4.0.2",
+            "nodes": [
+              "node_modules/postcss-normalize-whitespace"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-ordered-values": {
+            "name": "postcss-ordered-values",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.1.1 - 4.1.2",
+            "nodes": [
+              "node_modules/postcss-ordered-values"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-reduce-initial": {
+            "name": "postcss-reduce-initial",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.2 - 4.0.3",
+            "nodes": [
+              "node_modules/postcss-reduce-initial"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-reduce-transforms": {
+            "name": "postcss-reduce-transforms",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.1 - 4.0.2",
+            "nodes": [
+              "node_modules/postcss-reduce-transforms"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-svgo": {
+            "name": "postcss-svgo",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.1 - 4.0.3",
+            "nodes": [
+              "node_modules/postcss-svgo"
+            ],
+            "fixAvailable": true
+          },
+          "postcss-unique-selectors": {
+            "name": "postcss-unique-selectors",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.1",
+            "nodes": [
+              "node_modules/postcss-unique-selectors"
+            ],
+            "fixAvailable": true
+          },
+          "remark-parse": {
+            "name": "remark-parse",
+            "severity": "high",
+            "via": [
+              "trim"
+            ],
+            "effects": [
+              "gatsby-recipes"
+            ],
+            "range": "<=8.0.3",
+            "nodes": [
+              "node_modules/remark-parse"
+            ],
+            "fixAvailable": {
+              "name": "gatsby",
+              "version": "3.6.2",
+              "isSemVerMajor": true
+            }
+          },
+          "stylehacks": {
+            "name": "stylehacks",
+            "severity": "moderate",
+            "via": [
+              "postcss"
+            ],
+            "effects": [],
+            "range": "4.0.0-nightly.2020.1.9 - 4.0.0-rc.2 || 4.0.1 - 4.0.3",
+            "nodes": [
+              "node_modules/stylehacks"
+            ],
+            "fixAvailable": true
+          },
+          "subscriptions-transport-ws": {
+            "name": "subscriptions-transport-ws",
+            "severity": "moderate",
+            "via": [
+              "ws"
+            ],
+            "effects": [
+              "@graphql-tools/url-loader"
+            ],
+            "range": ">=0.9.10",
+            "nodes": [
+              "node_modules/subscriptions-transport-ws"
+            ],
+            "fixAvailable": true
+          },
+          "trim": {
+            "name": "trim",
+            "severity": "high",
+            "via": [
+              {
+                "source": 1700,
+                "name": "trim",
+                "dependency": "trim",
+                "title": "Regular Expression Denial of Service in trim",
+                "url": "https://npmjs.com/advisories/1700",
+                "severity": "high",
+                "range": "<0.0.3"
+              }
+            ],
+            "effects": [
+              "remark-parse"
+            ],
+            "range": "<0.0.3",
+            "nodes": [
+              "node_modules/trim"
+            ],
+            "fixAvailable": {
+              "name": "gatsby",
+              "version": "3.6.2",
+              "isSemVerMajor": true
+            }
+          },
+          "webpack-dev-server": {
+            "name": "webpack-dev-server",
+            "severity": "moderate",
+            "via": [
+              "ws"
+            ],
+            "effects": [
+              "gatsby"
+            ],
+            "range": "3.8.0 - 3.11.2",
+            "nodes": [
+              "node_modules/webpack-dev-server"
+            ],
+            "fixAvailable": {
+              "name": "gatsby",
+              "version": "3.6.2",
+              "isSemVerMajor": true
+            }
+          },
+          "ws": {
+            "name": "ws",
+            "severity": "moderate",
+            "via": [
+              {
+                "source": 1748,
+                "name": "ws",
+                "dependency": "ws",
+                "title": "Regular Expression Denial of Service",
+                "url": "https://npmjs.com/advisories/1748",
+                "severity": "moderate",
+                "range": ">=5.0.0 <7.4.6"
+              }
+            ],
+            "effects": [
+              "@graphql-tools/url-loader",
+              "subscriptions-transport-ws",
+              "webpack-dev-server"
+            ],
+            "range": "5.0.0 - 7.4.5",
+            "nodes": [
+              "node_modules/@graphql-tools/url-loader/node_modules/ws",
+              "node_modules/subscriptions-transport-ws/node_modules/ws",
+              "node_modules/webpack-dev-server/node_modules/ws"
+            ],
+            "fixAvailable": {
+              "name": "gatsby",
+              "version": "3.6.2",
+              "isSemVerMajor": true
+            }
+          }
+        },
+        "metadata": {
+          "vulnerabilities": {
+            "info": 0,
+            "low": 0,
+            "moderate": 42,
+            "high": 5,
+            "critical": 0,
+            "total": 47
+          },
+          "dependencies": {
+            "prod": 1919,
+            "dev": 0,
+            "optional": 26,
+            "peer": 4,
+            "peerOptional": 0,
+            "total": 1948
+          }
+        }
+      }
+      
+}

@@ -9,20 +9,15 @@ function validate(choices, resp) {
 }
 
 function choose(text, choices, options) {
-    return new Promise((resolve, reject) => {
-        read({
+    return read({
             prompt: text
-        }, (err, resp) => {
-            if (err) {
-                return reject(err)
-            }
+        }).then((resp) => {
             const cleanResult = validate(choices, (options.trim ? resp.trim() : resp))
             if (!cleanResult && options.retry) {
-                return choose(text, choices, options).then(resolve, reject)
+                return choose(text, choices, options)
             }
-            resolve(cleanResult)
+            return cleanResult
         })
-    })
 }
 
 module.exports = {

@@ -1,3 +1,7 @@
+# Audit Resolver 
+
+![](https://img.shields.io/npm/v/npm-audit-resolver.svg)
+![](https://img.shields.io/static/v1?label=finally&message=released&color=green&style=flat-square)
 
 A tool for building a responsible but practical supply chain security practice.
 
@@ -9,18 +13,19 @@ Audit resolver creates a `audit-resolve.json` file in your app and interactively
 You can decide what to ignore and for how long, or track what's been fixed before.  
 The `audit-resolve.json` file sits in the repository and you can see who decided to ignore what and when.
 
-*This package is meant for early adopters. Anything can change, but my team uses it for maintaining over 20 apps so there's likely to be a migration path.*
-
-I'm working on getting it built into npm. See [the RFC](https://github.com/npm/rfcs/pull/18)  
 I'm participating in [Package Vulnerability Management & Reporting Collaboration Space](https://github.com/openjs-foundation/pkg-vuln-collab-space) where I intend to donate parts of the audit-resolver's core.
 
-## 👷 🚧
+## Changes in version 3
 
-npm7 has introduced significant changes to the audit output. Support for that is in a release candidate for v3. 
-You can try it out by installing `npm-audit-resolver@next`
+Due to changes introduced by npm7+ the option to fix an individual package is no longer available from npm and wasn't always working correctly anyway. By virtue of "doing one thing and one thing well" this package will no longer provide that option. 
+You can run `npm audit fix` before resolving unfixable issues. `resolve-audit` will offer you that option first before asking any questions about specific issues.
+
+Requires npm v7.24.2+ or yarn installed alongside    
+Works with node 14+ (could run on 12 and npm6 but no guarantees going forward)  
+*You can use audit resolver v2.x with npm6.*  
+*Yarn support was not heavily tested across versions, but works well with current yarn 1 and 3 at the time of writing*  
+
 ## Install
-
-Requires npm v6.1.0+ or yarn installed alongside
 
 ```
 npm install -g npm-audit-resolver
@@ -40,15 +45,17 @@ The decisions you make are stored in `audit-resolve.json` to keep track of it in
 ### Arguments 
 
 ```
---yarn switch to calling yarn audit instead of npm audit.
---migrate forces migration to a new file and format even if no modifications are made to decisions
+--yarn switches to yarn instead of npm.
+--yarn-berry switches to yarn2 or yarn3 instead of npm.
+--migrate forces migration to the new audit-resolve.json file and format even if no modifications are made to decisions
+--mock used in tests
 ```
 
 All other arguments are passed down to the npm/yarn audit call
 
 ### Running in CI
 
-One of the problems this solves is running audit as part of your build pipeline.
+One of the problems npm-audit-resolver solves is running audit as part of your build pipeline.
 You don't want to break your CI for a few days waiting to get a fix on a dependency, but at the same time ignoring the whole class of issues or the audit result entirely means you'll rarely notice it at all.
 
 Run
@@ -67,12 +74,10 @@ All other arguments are passed down to the npm/yarn audit call
 
 ## Features
 
-Want to give it a go? Download this repo and run `npm run testdrive`
+If `npm audit fix` can help, you'll be prompted to run it first. 
 
-When a vulnerability is found, you get to choose between the following options:
+For all vulnerabilities found, you get to choose between the following options:
 
-- fix - Runs the fix proposed by npm audit and makes a note. If the same issue comes back because someone else on the team changed package-lock.json, you'll get a warning about that.
-- show details - Prints more information about the issues form the audit and asks what to do again
 - remind in 24h - Lets you ignore an issue temporarily to make the build pass until a fix is known
 - ignore - Adds the particular dependency paths and advisories to be ignored in the future. If the same issue in the same package comes up, but it's a dependency of another package, it won't get ignored. If a new issue is found in the package, it doesn't get ignored. You can decide if the decision expires or not.
 - delete - Removes your dependency that brought the vulnerability in its dependencies.
@@ -88,3 +93,4 @@ Because otherwise running `npm audit` as part of your CI is not practical.
 - build tooling vulnerability
 - dependencies of a tool you use very narrowly and can prove it's safe
 - new vulnerability without a fix and you want to wait for a fix while running your builds (there's a remind me in 24h option available)
+- Further in the future - because a maintainer you trust has checked and the vulnerability in their dependency tree that you pulled is not affecting the package you're using

@@ -9,34 +9,18 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [19.x, 18.x, 16.x, 14.x]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
     - name: test
       run: |
-        npm ci
-        npm test
-      env:
-        CI: true
-  node6support:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js 6
-      uses: actions/setup-node@v1
-      with:
-        node-version: 6.x
-    - name: test
-      run: |
-        npm i -g npm
-        npm install
-        npm test
+        npm ci || npm i ## npm6 and npm9 incompatibility
+        npm test --ignore-scripts=false
+      ## had to unignore scripts because some npm versions just skip the test
       env:
         CI: true

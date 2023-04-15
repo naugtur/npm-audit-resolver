@@ -1,10 +1,10 @@
 {
   "name": "npm-audit-resolver",
-  "version": "2.3.1",
+  "version": "3.0.0-8",
   "description": "Aids humans and automation in managing npm audit results",
   "bin": {
-    "resolve-audit": "resolve.js",
-    "check-audit": "check.js"
+    "check-audit": "check.js",
+    "resolve-audit": "resolve.js"
   },
   "main": "index.js",
   "scripts": {
@@ -12,14 +12,14 @@
     "rm-vulns": "npm rm -D base64url lodash dependo",
     "test-exec": "rm -f audit-resolv.json && ! node check.js && node resolve.js && node check.js",
     "testdrive": "npm run add-vulns && rm -f audit-resolve.json && ! node check.js && node resolve.js && node check.js && npm run rm-vulns",
-    "test": "sh test/e2e/test.sh"
+    "test": " node test/e2e/test.js && sh test/e2e/test.sh"
   },
   "keywords": [
     "npm",
     "audit",
     "security",
     "dependencies",
-    "nsp",
+    "supply chain",
     "check",
     "resolve"
   ],
@@ -34,16 +34,24 @@
   "homepage": "https://github.com/naugtur/npm-audit-resolver#readme",
   "license": "Apache 2.0",
   "dependencies": {
-    "audit-resolve-core": "^1.1.8",
-    "chalk": "^2.4.2",
+    "@npmcli/ci-detect": "^3.0.2",
+    "audit-resolve-core": "^3.0.0-3",
+    "chalk": "^4.1.2",
+    "concat-stream": "^2.0.0",
     "djv": "^2.1.4",
     "jsonlines": "^0.1.1",
-    "read": "^1.0.7",
+    "read": "^2.0.0",
     "spawn-shell": "^2.1.0",
-    "yargs-parser": "^18.1.3",
-    "yargs-unparser": "^1.6.4"
+    "yargs-parser": "^21.1.1",
+    "yargs-unparser": "^2.0.0"
   },
   "devDependencies": {
     "pre-commit": "^1.2.2"
-  }
+  },
+  "files": [
+    "src/*",
+    "check.js",
+    "resolve.js"
+  ],
+  "packageManager": "yarn@1.22.19"
 }

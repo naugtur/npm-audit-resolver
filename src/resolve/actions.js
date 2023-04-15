@@ -1,17 +1,20 @@
-const statusManager = require('audit-resolve-core/statusManager');
-const pkgFacade = require('audit-resolve-core/pkgFacade')
+const pkgFacade = require('../pkgFacade')
 // const investigate = require('../investigate');
 const view = require('../views/decisions')
-const RESOLUTIONS = require('audit-resolve-core/resolutions/RESOLUTIONS')
+const { RESOLUTIONS, saveResolution } = require('audit-resolve-core')
 const ONE_WEEK_LATER = Date.now() + 7 * 24 * 60 * 60 * 1000
 const TWO_WEEKS_LATER = Date.now() + 14 * 24 * 60 * 60 * 1000
 const MONTH_LATER = Date.now() + 30 * 24 * 60 * 60 * 1000
 const NEVER = undefined
 
+function getIdentifiers(vuln) {
+    return vuln.paths.map(path => ({ path, id: vuln.id }))
+}
+
 const strategies = {
-    i: function ignore() {
+    i: function ignore({ vuln }) {
         view.printIgnoreQuestion()
-        return [
+        const subOptions = [
             {
                 key: 'M',
                 name: 'ignore for a month'
@@ -25,29 +28,28 @@ const strategies = {
                 name: 'ignore permanently'
             },
         ]
+        if (vuln.fixAvailable) {
+            view.printFixAvailable()
+            subOptions.unshift({ key: 's', name: 'Skip, I will fix it' })
+        }
+        return subOptions
     },
-    W: function ignoreWeek({ action, advisories }) {
-        return statusManager.saveResolution(action, { resolution: RESOLUTIONS.IGNORE, expiresAt: ONE_WEEK_LATER });
+    W: function ignoreWeek({ vuln }) {
+        return saveResolution(getIdentifiers(vuln), { resolution: RESOLUTIONS.IGNORE, expiresAt: ONE_WEEK_LATER });
     },
-    M: function ignoreMonth({ action, advisories }) {
-        return statusManager.saveResolution(action, { resolution: RESOLUTIONS.IGNORE, expiresAt: MONTH_LATER });
+    M: function ignoreMonth({ vuln }) {
+        return saveResolution(getIdentifiers(vuln), { resolution: RESOLUTIONS.IGNORE, expiresAt: MONTH_LATER });
     },
-    '!': function ignoreForever({ action, advisories }) {
-        return statusManager.saveResolution(action, { resolution: RESOLUTIONS.IGNORE, expiresAt: NEVER });
+    '!': function ignoreForever({ vuln }) {
+        return saveResolution(getIdentifiers(vuln), { resolution: RESOLUTIONS.IGNORE, expiresAt: NEVER });
     },
-    r: function remindLater({ action, advisories }) {
-        return statusManager.saveResolution(action, { resolution: RESOLUTIONS.POSTPONE });
+    r: function remindLater({ vuln }) {
+        return saveResolution(getIdentifiers(vuln), { resolution: RESOLUTIONS.POSTPONE });
     },
-    f: function fix({ action, advisories }) {
-        view.printDecision('Fix!');
-        return pkgFacade.fix({ action }).then(() =>
-            statusManager.saveResolution(action, { resolution: RESOLUTIONS.FIX })
-        );
-    },
-    del: function del({ action, advisories }) {
+    del: function del({ vuln }) {
         view.printDecision('Remove');
-        const uniqueNames = action.resolves.reduce((mem, re) => {
-            const topModule = re.path.split('>')[0]
+        const uniqueNames = vuln.paths.reduce((mem, path) => {
+            const topModule = path.split('>')[0]
             if (topModule) {
                 mem[topModule] = true
             }
@@ -55,29 +57,20 @@ const strategies = {
         }, {})
         return pkgFacade.remove({ names: Object.keys(uniqueNames) })
             .then(() =>
-                statusManager.saveResolution(action, { resolution: RESOLUTIONS.NONE, reason: 'package was removed', expiresAt: TWO_WEEKS_LATER })
+                saveResolution(getIdentifiers(vuln), { resolution: RESOLUTIONS.NONE, reason: 'package was removed', expiresAt: TWO_WEEKS_LATER })
             );
     },
-    d: function details({ action, advisories }) {
-
-        Object.keys(action.resolves.reduce((mem, re) => {
-            mem[re.id] = 1
-            return mem
-        }, {})).map(advId => {
-            view.printDetailsOfAdvisory({ advisory: advisories[advId] })
-        })
-        return null
-    },
-    // '?': function investigateIt({ action, advisories }) {
-    //     console.log('Investigating!');
-    //     return investigate.findFeasibleResolutions({ action, advisories })
-    // },
     s: function skip() {
         view.printDecision('Skip');
     },
     q: function abort() {
         view.printDecision('Bye!');
-        process.exit(1);
+        process.exit(0);
+    },
+    f: async function fixAll() {
+        view.printDecision('Fix all');
+        // TODO: add marking all fixed items as fixed
+        await pkgFacade.fix()
     }
 };
 
@@ -87,7 +80,14 @@ function strategyOf(choice) {
 }
 
 module.exports = {
-    takeAction(choice, details) {
-        return strategyOf(choice)(details);
+    /**
+     *
+     *
+     * @param {string} choice
+     * @param {VulnResolution} vuln
+     * @returns
+     */
+    takeAction(choice, vuln) {
+        return strategyOf(choice)(vuln);
     }
 };

@@ -1,29 +1,38 @@
-const safePrint = message => new Promise((resolve, reject) => process.stdout.write(message, (err) => {
-    if (err) { reject(err) }
-    resolve()
-}));
+const { RESOLUTIONS } = require('audit-resolve-core');
 
-// FIXME: drop Node.js v6 support
-// const safePrint = require('util').promisify(process.stdout.write.bind(process.stdout))
+const safePrint = require('util').promisify(process.stdout.write.bind(process.stdout))
 const severityNumber = {
     low: 10,
     moderate: 20,
     high: 30,
     critical: 40
 }
+
+reportMessages = {
+    [RESOLUTIONS.EXPIRED]: "! decision to ignore expired"
+}
+
+function reportResolution(resolution) {
+    return reportMessages[resolution] || ""
+}
 const view = {
+    /**
+     *
+     *
+     * @param {VulnResolution} issue
+     */
     printIssue(issue) {
         console.log(
             `--------------------------------------------------`
         );
-        console.log(`[${issue.severity}] ${issue.title}`);
-        console.log(issue.items.map(item => item.report).join("\n"));
+        console.log(`[${issue.severity}] ${issue.name}: ${issue.title} (${issue.id})`);
+        console.log(issue.resolutions.map(({ path, resolution }) => `  ${path} ${reportResolution(resolution)}`).join("\n"));
     },
     printOhnoes() {
         console.log(
             `--------------------------------------------------`
         );
-        console.error(" 😱   Unresolved issues found!");
+        console.log(" 😱   Unresolved issues found!");
         console.log(
             `--------------------------------------------------`
         );

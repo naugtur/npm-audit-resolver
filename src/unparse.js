@@ -8,6 +8,8 @@ function unparse(argv, filteredKeys = []) {
     });
 
     const unparsed = yargsUnparse(filteredArgs).join(' ');
-    return unparsed;
+    // Dummy fix for npm6 args parsing inconsistency
+    // I hope it doesn't hurt later :|
+    return unparsed.replace('--omit ','--omit=');
 }
 module.exports = unparse;

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-const pkgFacade = require('audit-resolve-core/pkgFacade');
+const pkgFacade = require('./src/pkgFacade');
 const view = Object.assign({}, require('./src/views/package'), require('./src/views/general'))
-const argv = require('audit-resolve-core/arguments').get();
+const argv = require('./src/arguments').get();
 const auditChecker = require('./src/check/auditChecker')
 
 function auditOk(issues) {
@@ -11,28 +11,34 @@ function auditOk(issues) {
 if (argv.yarn) {
     pkgFacade.addImplementation('yarn', require('./src/pkgmanagers/yarn'))
     pkgFacade.setActiveImplementation('yarn')
+} else if (argv["yarn-berry"]) {
+    pkgFacade.addImplementation('yarn-berry', require('./src/pkgmanagers/yarnBerry'))
+    pkgFacade.setActiveImplementation('yarn-berry')
 } else {
     pkgFacade.addImplementation('npm', require('./src/pkgmanagers/npm'))
     pkgFacade.setActiveImplementation('npm')
 }
 
-pkgFacade.getAudit({ argv, shellOptions: { ignoreExit: true } })
+let auditExit;
+pkgFacade.getAudit({ argv, shellOptions: { ignoreExit: true, handleExit: (ex) => { auditExit = ex }} })
     .then(input => {
         if (!argv.json) {
-            view.totalActions(input.actions.length)
+            view.totalActions(Object.keys(input).length)
         }
-        return auditChecker.aggregateIssuesFromAudit(input)
+        return auditChecker.getUnresolved(input)
     })
-    .then(result => {
-        const { issues } = result;
+    .then(issues => {
         if (argv.json) {
-            return view.printJsonReportAsync(result)
+            return view.printJsonReportAsync(issues)
                 .then(() => auditOk(issues));
         } else {
             view.printHumanReadableReport(auditOk(issues), issues);
             return auditOk(issues)
         }
     }).then(isOk => {
+        if (auditExit === 0) {
+            process.exit(0);
+        }
         if (!isOk) {
             process.exit(1);
         }

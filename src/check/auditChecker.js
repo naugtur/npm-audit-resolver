@@ -1,65 +1,34 @@
-const { dropResolvedActions } = require('audit-resolve-core/statusManager');
-
-
-function countVulnerabilities(advisories, severity) {
-    return Object.keys(advisories)
-        .reduce((count, advisoryKey) => advisories[advisoryKey].severity === severity ? count + 1 : count, 0);
-}
+const { getResolution, RESOLUTIONS } = require('audit-resolve-core');
 
 
 module.exports = {
-    dropResolvedActions,
-    aggregateIssuesFromAudit(audit) {
-        const relevantActions = dropResolvedActions(audit.actions)
-        const groups = {}
-        relevantActions.forEach(action => {
-            action.resolves && action.resolves.forEach(re => {
-                groups[re.id] = groups[re.id] || [];
-                let type = re.dev ? " devDependencies" : "dependencies";
-                re.optional && (type += " (optional)");
-                re.bundled && (type += " (bundled)");
-                //TODO: put this in views
-                let reportLine = ` - ${type}: ${re.path}`;
-                if (re.decision) {
-                    re.decision.fix &&
-                        (reportLine +=
-                            "\n     ^ this issue was marked as fixed earlier");
-                    re.decision.remind &&
-                        (reportLine +=
-                            "\n     ^ this issue was postponed, the time ran out");
-                }
-                groups[re.id].push({
-                    data: re,
-                    report: reportLine
-                });
-            });
-        });
-        const relevantAdvisories = {};
-        const issues = Object.keys(groups).map(reId => {
-            const adv = audit.advisories[reId];
-            relevantAdvisories[reId] = adv;
-            return {
-                title: adv.title,
-                severity: adv.severity,
-                items: groups[reId]
-            }
-        });
-        return {
-            issues,
-            actions: relevantActions,
-            advisories: relevantAdvisories,
-            metadata: Object.assign({},
-                audit.metadata,
-                {
-                    vulnerabilities: {
-                        info: countVulnerabilities(relevantAdvisories, 'info'),
-                        low: countVulnerabilities(relevantAdvisories, 'low'),
-                        moderate: countVulnerabilities(relevantAdvisories, 'moderate'),
-                        high: countVulnerabilities(relevantAdvisories, 'high'),
-                        critical: countVulnerabilities(relevantAdvisories, 'critical')
+    /**
+     *
+     *
+     * @param {Array<Vuln>} audit
+     * @returns {Array<VulnResolution} 
+     */
+    getUnresolved(audit = []) {
+        return audit.map(item => {
+            let unresolved = false;
+            item.resolutions = item.paths.map(path => {
+                const resolution = getResolution({ id: item.id, path })
+                if (resolution) {
+                    if (resolution === RESOLUTIONS.EXPIRED) {
+                        unresolved = true
                     }
+                    if (resolution === RESOLUTIONS.NONE) {
+                        unresolved = true
+                    }
+                } else {
+                    unresolved = true
                 }
-            )
-        };
+                return { path, resolution }
+
+            })
+            if (unresolved) {
+                return item
+            }
+        }).filter(a => a);
     }
 }

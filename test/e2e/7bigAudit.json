@@ -1,0 +1,587 @@
+{
+  "npm audit --json": {
+    "auditReportVersion": 2,
+    "vulnerabilities": {
+      "bower": {
+        "name": "bower",
+        "severity": "high",
+        "via": [
+          {
+            "source": 776,
+            "name": "bower",
+            "dependency": "bower",
+            "title": "Symlink Arbitrary File Overwrite",
+            "url": "https://npmjs.com/advisories/776",
+            "severity": "high",
+            "range": "<1.8.8"
+          },
+          "fstream",
+          "lodash",
+          "rc",
+          "read-package-json",
+          "request",
+          "semver",
+          "tar",
+          "unzip",
+          "update-notifier"
+        ],
+        "effects": [
+          "show"
+        ],
+        "range": "<=1.8.7 || 1.8.10",
+        "nodes": [
+          "node_modules/bower"
+        ],
+        "fixAvailable": false
+      },
+      "config-chain": {
+        "name": "config-chain",
+        "severity": "low",
+        "via": [
+          "ini"
+        ],
+        "effects": [
+          "rc"
+        ],
+        "range": "0.2.0 - 1.1.3",
+        "nodes": [
+          "node_modules/config-chain"
+        ],
+        "fixAvailable": false
+      },
+      "connect": {
+        "name": "connect",
+        "severity": "high",
+        "via": [
+          {
+            "source": 3,
+            "name": "connect",
+            "dependency": "connect",
+            "title": "methodOverride Middleware Reflected Cross-Site Scripting",
+            "url": "https://npmjs.com/advisories/3",
+            "severity": "low",
+            "range": "<=2.8.0"
+          },
+          "cookie-signature",
+          "fresh",
+          "qs",
+          "send"
+        ],
+        "effects": [
+          "express"
+        ],
+        "range": "<=2.30.2",
+        "nodes": [
+          "node_modules/connect"
+        ],
+        "fixAvailable": true
+      },
+      "cookie-signature": {
+        "name": "cookie-signature",
+        "severity": "moderate",
+        "via": [
+          {
+            "source": 134,
+            "name": "cookie-signature",
+            "dependency": "cookie-signature",
+            "title": "Timing Attack",
+            "url": "https://npmjs.com/advisories/134",
+            "severity": "moderate",
+            "range": "<=1.0.5"
+          }
+        ],
+        "effects": [
+          "connect",
+          "express"
+        ],
+        "range": "<=1.0.5",
+        "nodes": [
+          "node_modules/cookie-signature"
+        ],
+        "fixAvailable": true
+      },
+      "express": {
+        "name": "express",
+        "severity": "high",
+        "via": [
+          {
+            "source": 8,
+            "name": "express",
+            "dependency": "express",
+            "title": "No Charset in Content-Type Header",
+            "url": "https://npmjs.com/advisories/8",
+            "severity": "moderate",
+            "range": "<3.11 || >= 4 <4.5"
+          },
+          "connect",
+          "cookie-signature",
+          "fresh",
+          "send"
+        ],
+        "effects": [],
+        "range": "<=4.15.4 || 5.0.0-alpha.1 - 5.0.0-alpha.5",
+        "nodes": [
+          "node_modules/express"
+        ],
+        "fixAvailable": true
+      },
+      "form-data": {
+        "name": "form-data",
+        "severity": "moderate",
+        "via": [
+          "mime"
+        ],
+        "effects": [
+          "request"
+        ],
+        "range": "0.0.2 - 0.1.4",
+        "nodes": [
+          "node_modules/request/node_modules/form-data"
+        ],
+        "fixAvailable": false
+      },
+      "fresh": {
+        "name": "fresh",
+        "severity": "high",
+        "via": [
+          {
+            "source": 526,
+            "name": "fresh",
+            "dependency": "fresh",
+            "title": "Regular Expression Denial of Service",
+            "url": "https://npmjs.com/advisories/526",
+            "severity": "high",
+            "range": "< 0.5.2"
+          }
+        ],
+        "effects": [
+          "connect",
+          "express",
+          "send"
+        ],
+        "range": "< 0.5.2",
+        "nodes": [
+          "node_modules/fresh"
+        ],
+        "fixAvailable": true
+      },
+      "fstream": {
+        "name": "fstream",
+        "severity": "high",
+        "via": [
+          {
+            "source": 886,
+            "name": "fstream",
+            "dependency": "fstream",
+            "title": "Arbitrary File Overwrite",
+            "url": "https://npmjs.com/advisories/886",
+            "severity": "high",
+            "range": "<1.0.12"
+          }
+        ],
+        "effects": [
+          "bower",
+          "tar",
+          "unzip"
+        ],
+        "range": "<1.0.12",
+        "nodes": [
+          "node_modules/fstream"
+        ],
+        "fixAvailable": false
+      },
+      "glob": {
+        "name": "glob",
+        "severity": "high",
+        "via": [
+          "minimatch"
+        ],
+        "effects": [
+          "read-package-json"
+        ],
+        "range": "3.0.0 - 5.0.14",
+        "nodes": [
+          "node_modules/glob"
+        ],
+        "fixAvailable": false
+      },
+      "ini": {
+        "name": "ini",
+        "severity": "low",
+        "via": [
+          {
+            "source": 1589,
+            "name": "ini",
+            "dependency": "ini",
+            "title": "Prototype Pollution",
+            "url": "https://npmjs.com/advisories/1589",
+            "severity": "low",
+            "range": "<1.3.6"
+          }
+        ],
+        "effects": [
+          "config-chain"
+        ],
+        "range": "<1.3.6",
+        "nodes": [
+          "node_modules/ini"
+        ],
+        "fixAvailable": false
+      },
+      "lodash": {
+        "name": "lodash",
+        "severity": "high",
+        "via": [
+          {
+            "source": 1065,
+            "name": "lodash",
+            "dependency": "lodash",
+            "title": "Prototype Pollution",
+            "url": "https://npmjs.com/advisories/1065",
+            "severity": "high",
+            "range": "<4.17.12"
+          },
+          {
+            "source": 1523,
+            "name": "lodash",
+            "dependency": "lodash",
+            "title": "Prototype Pollution",
+            "url": "https://npmjs.com/advisories/1523",
+            "severity": "low",
+            "range": "<4.17.19"
+          },
+          {
+            "source": 1673,
+            "name": "lodash",
+            "dependency": "lodash",
+            "title": "Command Injection",
+            "url": "https://npmjs.com/advisories/1673",
+            "severity": "high",
+            "range": "<4.17.21"
+          },
+          {
+            "source": 577,
+            "name": "lodash",
+            "dependency": "lodash",
+            "title": "Prototype Pollution",
+            "url": "https://npmjs.com/advisories/577",
+            "severity": "low",
+            "range": "<4.17.5"
+          },
+          {
+            "source": 782,
+            "name": "lodash",
+            "dependency": "lodash",
+            "title": "Prototype Pollution",
+            "url": "https://npmjs.com/advisories/782",
+            "severity": "high",
+            "range": "<4.17.11"
+          }
+        ],
+        "effects": [
+          "bower"
+        ],
+        "range": "<=4.17.20",
+        "nodes": [
+          "node_modules/bower/node_modules/lodash",
+          "node_modules/lodash"
+        ],
+        "fixAvailable": false
+      },
+      "mime": {
+        "name": "mime",
+        "severity": "moderate",
+        "via": [
+          {
+            "source": 535,
+            "name": "mime",
+            "dependency": "mime",
+            "title": "Regular Expression Denial of Service",
+            "url": "https://npmjs.com/advisories/535",
+            "severity": "moderate",
+            "range": "< 1.4.1 || > 2.0.0 < 2.0.3"
+          }
+        ],
+        "effects": [
+          "form-data",
+          "request",
+          "send"
+        ],
+        "range": "<=1.4.0 || 2.0.1 - 2.0.2",
+        "nodes": [
+          "node_modules/mime",
+          "node_modules/request/node_modules/mime",
+          "node_modules/send/node_modules/mime"
+        ],
+        "fixAvailable": false
+      },
+      "minimatch": {
+        "name": "minimatch",
+        "severity": "high",
+        "via": [
+          {
+            "source": 118,
+            "name": "minimatch",
+            "dependency": "minimatch",
+            "title": "Regular Expression Denial of Service",
+            "url": "https://npmjs.com/advisories/118",
+            "severity": "high",
+            "range": "<=3.0.1"
+          }
+        ],
+        "effects": [
+          "glob"
+        ],
+        "range": "<=3.0.1",
+        "nodes": [
+          "node_modules/minimatch"
+        ],
+        "fixAvailable": false
+      },
+      "qs": {
+        "name": "qs",
+        "severity": "high",
+        "via": [
+          {
+            "source": 1469,
+            "name": "qs",
+            "dependency": "qs",
+            "title": "Prototype Pollution Protection Bypass",
+            "url": "https://npmjs.com/advisories/1469",
+            "severity": "high",
+            "range": "<6.0.4 || >=6.1.0 <6.1.2 || >=6.2.0 <6.2.3 || >=6.3.0 <6.3.2"
+          },
+          {
+            "source": 29,
+            "name": "qs",
+            "dependency": "qs",
+            "title": "Denial-of-Service Memory Exhaustion",
+            "url": "https://npmjs.com/advisories/29",
+            "severity": "high",
+            "range": "<1.0.0"
+          }
+        ],
+        "effects": [
+          "connect"
+        ],
+        "range": "<=6.0.3 || 6.1.0 - 6.1.1 || 6.2.0 - 6.2.2 || 6.3.0 - 6.3.1",
+        "nodes": [
+          "node_modules/connect/node_modules/qs"
+        ],
+        "fixAvailable": true
+      },
+      "rc": {
+        "name": "rc",
+        "severity": "low",
+        "via": [
+          "config-chain"
+        ],
+        "effects": [
+          "bower"
+        ],
+        "range": "<=0.1.0",
+        "nodes": [
+          "node_modules/rc"
+        ],
+        "fixAvailable": false
+      },
+      "read-package-json": {
+        "name": "read-package-json",
+        "severity": "high",
+        "via": [
+          "glob",
+          "semver"
+        ],
+        "effects": [
+          "bower"
+        ],
+        "range": "<=1.3.2",
+        "nodes": [
+          "node_modules/read-package-json"
+        ],
+        "fixAvailable": false
+      },
+      "request": {
+        "name": "request",
+        "severity": "moderate",
+        "via": [
+          {
+            "source": 309,
+            "name": "request",
+            "dependency": "request",
+            "title": "Remote Memory Exposure",
+            "url": "https://npmjs.com/advisories/309",
+            "severity": "moderate",
+            "range": ">=2.2.6 <2.47.0 || >2.51.0 <=2.67.0"
+          },
+          "form-data",
+          "mime"
+        ],
+        "effects": [
+          "bower"
+        ],
+        "range": "2.2.6 - 2.49.0 || 2.52.0 - 2.67.0",
+        "nodes": [
+          "node_modules/request"
+        ],
+        "fixAvailable": false
+      },
+      "semver": {
+        "name": "semver",
+        "severity": "moderate",
+        "via": [
+          {
+            "source": 31,
+            "name": "semver",
+            "dependency": "semver",
+            "title": "Regular Expression Denial of Service",
+            "url": "https://npmjs.com/advisories/31",
+            "severity": "moderate",
+            "range": "<4.3.2"
+          }
+        ],
+        "effects": [
+          "bower",
+          "read-package-json",
+          "update-notifier"
+        ],
+        "range": "<4.3.2",
+        "nodes": [
+          "node_modules/semver",
+          "node_modules/update-notifier/node_modules/semver"
+        ],
+        "fixAvailable": false
+      },
+      "send": {
+        "name": "send",
+        "severity": "high",
+        "via": [
+          {
+            "source": 32,
+            "name": "send",
+            "dependency": "send",
+            "title": "Directory Traversal",
+            "url": "https://npmjs.com/advisories/32",
+            "severity": "low",
+            "range": "< 0.8.4"
+          },
+          {
+            "source": 56,
+            "name": "send",
+            "dependency": "send",
+            "title": "Root Path Disclosure",
+            "url": "https://npmjs.com/advisories/56",
+            "severity": "low",
+            "range": "<0.11.1"
+          },
+          "fresh",
+          "mime"
+        ],
+        "effects": [
+          "connect",
+          "express"
+        ],
+        "range": "<=0.15.6",
+        "nodes": [
+          "node_modules/connect/node_modules/send",
+          "node_modules/send"
+        ],
+        "fixAvailable": true
+      },
+      "show": {
+        "name": "show",
+        "severity": "high",
+        "via": [
+          "bower"
+        ],
+        "effects": [],
+        "range": "*",
+        "nodes": [
+          "node_modules/show"
+        ],
+        "fixAvailable": false
+      },
+      "tar": {
+        "name": "tar",
+        "severity": "critical",
+        "via": [
+          {
+            "source": 57,
+            "name": "tar",
+            "dependency": "tar",
+            "title": "Symlink Arbitrary File Overwrite",
+            "url": "https://npmjs.com/advisories/57",
+            "severity": "critical",
+            "range": "<2.0.0"
+          },
+          {
+            "source": 803,
+            "name": "tar",
+            "dependency": "tar",
+            "title": "Arbitrary File Overwrite",
+            "url": "https://npmjs.com/advisories/803",
+            "severity": "high",
+            "range": "<2.2.2 || >=3.0.0 <4.4.2"
+          },
+          "fstream"
+        ],
+        "effects": [
+          "bower"
+        ],
+        "range": "<=2.2.1 || 3.0.0 - 4.4.1",
+        "nodes": [
+          "node_modules/tar"
+        ],
+        "fixAvailable": false
+      },
+      "unzip": {
+        "name": "unzip",
+        "severity": "high",
+        "via": [
+          "fstream"
+        ],
+        "effects": [
+          "bower"
+        ],
+        "range": "*",
+        "nodes": [
+          "node_modules/unzip"
+        ],
+        "fixAvailable": false
+      },
+      "update-notifier": {
+        "name": "update-notifier",
+        "severity": "moderate",
+        "via": [
+          "semver"
+        ],
+        "effects": [
+          "bower"
+        ],
+        "range": "0.1.3 - 0.1.10",
+        "nodes": [
+          "node_modules/update-notifier"
+        ],
+        "fixAvailable": false
+      }
+    },
+    "metadata": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 3,
+        "moderate": 6,
+        "high": 13,
+        "critical": 1,
+        "total": 23
+      },
+      "dependencies": {
+        "prod": 148,
+        "dev": 0,
+        "optional": 4,
+        "peer": 0,
+        "peerOptional": 0,
+        "total": 151
+      }
+    }
+  }
+}
